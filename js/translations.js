@@ -86,6 +86,20 @@ const translations = {
       tag_global: 'Global',
       tag_studio_j: 'Studio J',
       
+      // 首頁時間軸事件
+      timeline_event_1_title: '🎤 Stray Kids 世界巡演',
+      timeline_event_1_desc: '「dominATE」世界巡迴演唱會正式啟動，橫跨 40 個城市',
+      timeline_event_1_tag: '演唱會',
+      timeline_event_2_title: '🏆 TWICE 獲獎',
+      timeline_event_2_desc: '榮獲 Golden Disc Awards 最佳女團獎項',
+      timeline_event_2_tag: '獎項',
+      timeline_event_3_title: '🎵 ITZY 新專輯',
+      timeline_event_3_desc: '迷你專輯「GOLD」打破首週銷量紀錄',
+      timeline_event_3_tag: '回歸',
+      timeline_event_4_title: '🎸 DAY6 演唱會',
+      timeline_event_4_desc: '「Forever Young」演唱會門票秒殺售罄',
+      timeline_event_4_tag: '演唱會',
+      
       // 團體卡片
       members_count: '名成員',
       overseas_groups: '海外團體',
@@ -357,6 +371,20 @@ const translations = {
       tag_global: 'Global',
       tag_studio_j: 'Studio J',
       
+      // Homepage timeline events
+      timeline_event_1_title: '🎤 Stray Kids World Tour',
+      timeline_event_1_desc: '"dominATE" World Tour officially launches across 40 cities',
+      timeline_event_1_tag: 'Concert',
+      timeline_event_2_title: '🏆 TWICE Award Win',
+      timeline_event_2_desc: 'Awarded Best Female Group at Golden Disc Awards',
+      timeline_event_2_tag: 'Award',
+      timeline_event_3_title: '🎵 ITZY New Album',
+      timeline_event_3_desc: 'Mini album "GOLD" breaks first-week sales record',
+      timeline_event_3_tag: 'Comeback',
+      timeline_event_4_title: '🎸 DAY6 Concert',
+      timeline_event_4_desc: '"Forever Young" concert tickets sold out instantly',
+      timeline_event_4_tag: 'Concert',
+      
       // Group cards
       members_count: ' Members',
       overseas_groups: 'International Groups',
@@ -620,6 +648,20 @@ const translations = {
       tag_global: 'Global',
       tag_studio_j: 'Studio J',
       
+      // 홈페이지 타임라인 이벤트
+      timeline_event_1_title: '🎤 Stray Kids 월드 투어',
+      timeline_event_1_desc: '"dominATE" 월드 투어 공식 시작, 40개 도시 횡단',
+      timeline_event_1_tag: '콘서트',
+      timeline_event_2_title: '🏆 TWICE 수상',
+      timeline_event_2_desc: 'Golden Disc Awards 최우수 여자그룹 상 수상',
+      timeline_event_2_tag: '시상',
+      timeline_event_3_title: '🎵 ITZY 신규 앨범',
+      timeline_event_3_desc: '미니 앨범 "GOLD" 첫 주 판매 기록 경신',
+      timeline_event_3_tag: '컴백',
+      timeline_event_4_title: '🎸 DAY6 콘서트',
+      timeline_event_4_desc: '"Forever Young" 콘서트 티켓 순식간에 매진',
+      timeline_event_4_tag: '콘서트',
+      
       // 그룹 카드
       members_count: '명',
       overseas_groups: '해외 그룹',
@@ -882,6 +924,20 @@ const translations = {
       tag_usa: 'アメリカ',
       tag_global: 'Global',
       tag_studio_j: 'Studio J',
+      
+      // ホームページのタイムラインイベント
+      timeline_event_1_title: '🎤 Stray Kids ワールドツアー',
+      timeline_event_1_desc: '「dominATE」ワールドツアー正式開始、40都市を横断',
+      timeline_event_1_tag: 'コンサート',
+      timeline_event_2_title: '🏆 TWICE 受賞',
+      timeline_event_2_desc: 'Golden Disc Awards 最優秀女性グループ賞を受賞',
+      timeline_event_2_tag: '賞',
+      timeline_event_3_title: '🎵 ITZY 新アルバム',
+      timeline_event_3_desc: 'ミニアルバム「GOLD」初週売上記録を更新',
+      timeline_event_3_tag: 'カムバック',
+      timeline_event_4_title: '🎸 DAY6 コンサート',
+      timeline_event_4_desc: '「Forever Young」コンサートチケット即完売',
+      timeline_event_4_tag: 'コンサート',
       
       // グループカード
       members_count: '名',

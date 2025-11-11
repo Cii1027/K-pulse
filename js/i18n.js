@@ -286,12 +286,44 @@
     if (exploreMoreBtn) exploreMoreBtn.textContent = home.explore_more;
     if (refreshBtn) refreshBtn.textContent = home.refresh;
 
-    // 最新動態
+    // 最新動態時間軸
     const timelineTitle = document.querySelector('.timeline-section h2');
-    const timelineMore = document.querySelector('.timeline-more a');
+    const timelineItems = document.querySelectorAll('.timeline-item');
     
     if (timelineTitle) timelineTitle.textContent = home.timeline_title;
-    if (timelineMore) timelineMore.textContent = home.timeline_more;
+    if (timelineItems.length >= 4) {
+      // 時間軸事件 1
+      const event1Title = timelineItems[0].querySelector('h4');
+      const event1Desc = timelineItems[0].querySelector('p');
+      const event1Tag = timelineItems[0].querySelector('.timeline-tag');
+      if (event1Title) event1Title.textContent = home.timeline_event_1_title;
+      if (event1Desc) event1Desc.textContent = home.timeline_event_1_desc;
+      if (event1Tag) event1Tag.textContent = home.timeline_event_1_tag;
+      
+      // 時間軸事件 2
+      const event2Title = timelineItems[1].querySelector('h4');
+      const event2Desc = timelineItems[1].querySelector('p');
+      const event2Tag = timelineItems[1].querySelector('.timeline-tag');
+      if (event2Title) event2Title.textContent = home.timeline_event_2_title;
+      if (event2Desc) event2Desc.textContent = home.timeline_event_2_desc;
+      if (event2Tag) event2Tag.textContent = home.timeline_event_2_tag;
+      
+      // 時間軸事件 3
+      const event3Title = timelineItems[2].querySelector('h4');
+      const event3Desc = timelineItems[2].querySelector('p');
+      const event3Tag = timelineItems[2].querySelector('.timeline-tag');
+      if (event3Title) event3Title.textContent = home.timeline_event_3_title;
+      if (event3Desc) event3Desc.textContent = home.timeline_event_3_desc;
+      if (event3Tag) event3Tag.textContent = home.timeline_event_3_tag;
+      
+      // 時間軸事件 4
+      const event4Title = timelineItems[3].querySelector('h4');
+      const event4Desc = timelineItems[3].querySelector('p');
+      const event4Tag = timelineItems[3].querySelector('.timeline-tag');
+      if (event4Title) event4Title.textContent = home.timeline_event_4_title;
+      if (event4Desc) event4Desc.textContent = home.timeline_event_4_desc;
+      if (event4Tag) event4Tag.textContent = home.timeline_event_4_tag;
+    }
 
     // 團體預覽
     const groupsTitle = document.querySelector('.idols-preview h2');
