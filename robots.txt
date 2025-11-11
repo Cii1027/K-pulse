@@ -1,5 +1,5 @@
 # K-PULSE Robots.txt
-# https://www.k-pulse.com/robots.txt
+# https://cii1027.github.io/K-pulse/robots.txt
 
 User-agent: *
 Allow: /
@@ -34,4 +34,4 @@ Disallow: /.git/
 Disallow: /scripts/
 
 # Sitemap 位置
-Sitemap: https://www.k-pulse.com/sitemap.xml
+Sitemap: https://cii1027.github.io/K-pulse/sitemap.xml

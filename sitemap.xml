@@ -3,7 +3,7 @@
   
   <!-- 首頁 -->
   <url>
-    <loc>https://www.k-pulse.com/index.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/index.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
   
   <!-- JYP 偶像總覽 -->
   <url>
-    <loc>https://www.k-pulse.com/idols.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/idols.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -19,7 +19,7 @@
   
   <!-- 韓流探討 -->
   <url>
-    <loc>https://www.k-pulse.com/hallyu.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/hallyu.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -27,7 +27,7 @@
   
   <!-- 關於我們 -->
   <url>
-    <loc>https://www.k-pulse.com/about.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/about.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -35,14 +35,14 @@
   
   <!-- ONE Label 團體 -->
   <url>
-    <loc>https://www.k-pulse.com/twice.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/twice.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://www.k-pulse.com/straykids.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/straykids.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -50,14 +50,14 @@
   
   <!-- BLU:M 團體 -->
   <url>
-    <loc>https://www.k-pulse.com/itzy.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/itzy.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   
   <url>
-    <loc>https://www.k-pulse.com/nmixx.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/nmixx.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -65,7 +65,7 @@
   
   <!-- STRIDE 團體 -->
   <url>
-    <loc>https://www.k-pulse.com/kickflip.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/kickflip.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -73,7 +73,7 @@
   
   <!-- SQU4D 團體 -->
   <url>
-    <loc>https://www.k-pulse.com/2pm.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/2pm.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -81,14 +81,14 @@
   
   <!-- Studio J 團體 -->
   <url>
-    <loc>https://www.k-pulse.com/day6.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/day6.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.k-pulse.com/xdinary-heroes.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/xdinary-heroes.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -96,21 +96,21 @@
   
   <!-- 海外團體 -->
   <url>
-    <loc>https://www.k-pulse.com/niziu.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/niziu.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.k-pulse.com/nexz.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/nexz.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://www.k-pulse.com/vcha.html</loc>
+    <loc>https://cii1027.github.io/K-pulse/vcha.html</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
