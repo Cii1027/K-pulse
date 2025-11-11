@@ -242,3 +242,57 @@
     });
   }
 })();
+
+/* ================================
+   時間軸頁面篩選功能
+   ================================ */
+(function() {
+  // 確認是否在時間軸頁面
+  if (!document.querySelector('.timeline-full')) return;
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const timelineYears = document.querySelectorAll('.timeline-year');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 更新按鈕狀態
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selectedYear = btn.dataset.year;
+
+      // 篩選顯示
+      timelineYears.forEach(yearBlock => {
+        if (selectedYear === 'all') {
+          yearBlock.style.display = 'block';
+          // 重新觸發動畫
+          const items = yearBlock.querySelectorAll('.timeline-item-full');
+          items.forEach((item, index) => {
+            item.style.animation = 'none';
+            setTimeout(() => {
+              item.style.animation = `slideInLeft 0.6s ease ${index * 0.1}s forwards`;
+            }, 10);
+          });
+        } else if (yearBlock.dataset.year === selectedYear) {
+          yearBlock.style.display = 'block';
+          // 重新觸發動畫
+          const items = yearBlock.querySelectorAll('.timeline-item-full');
+          items.forEach((item, index) => {
+            item.style.animation = 'none';
+            setTimeout(() => {
+              item.style.animation = `slideInLeft 0.6s ease ${index * 0.1}s forwards`;
+            }, 10);
+          });
+        } else {
+          yearBlock.style.display = 'none';
+        }
+      });
+
+      // 平滑滾動到時間軸開始
+      document.querySelector('.timeline-full').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    });
+  });
+})();

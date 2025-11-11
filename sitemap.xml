@@ -25,6 +25,14 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- 時間軸 / 大事記 -->
+  <url>
+    <loc>https://cii1027.github.io/K-pulse/timeline.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- 關於我們 -->
   <url>
     <loc>https://cii1027.github.io/K-pulse/about.html</loc>
