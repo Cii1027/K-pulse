@@ -301,6 +301,36 @@
     if (groupsTitle) groupsTitle.textContent = home.groups_title;
     if (groupsIntro) groupsIntro.textContent = home.groups_intro;
     if (viewAllBtn) viewAllBtn.textContent = home.view_all;
+    
+    // 團體卡片描述
+    const groupCards = document.querySelectorAll('.idol-card');
+    groupCards.forEach(card => {
+      const groupName = card.dataset.name;
+      const memberCount = card.querySelector('.member-count');
+      const groupDesc = card.querySelector('.group-desc');
+      
+      // 翻譯成員數量
+      if (memberCount) {
+        const count = memberCount.textContent.match(/\d+/);
+        if (count) {
+          memberCount.textContent = count[0] + home.members_count;
+        }
+      }
+      
+      // 翻譯團體描述
+      if (groupDesc && groupName) {
+        const descKey = `card_${groupName.toLowerCase().replace(/\s+/g, '')}_desc`;
+        if (home[descKey]) {
+          groupDesc.textContent = home[descKey];
+        }
+      }
+    });
+    
+    // 翻譯「海外團體」標籤
+    const overseasLabel = document.querySelector('.label-section h3');
+    if (overseasLabel && overseasLabel.textContent.includes('海外團體')) {
+      overseasLabel.innerHTML = `<span class="label-badge">${home.overseas_groups}</span>`;
+    }
   }
 
   // 翻譯時間軸頁面

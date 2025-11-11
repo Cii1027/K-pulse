@@ -58,7 +58,22 @@ const translations = {
       timeline_more: '查看更多動態 →',
       groups_title: 'JYP 娛樂旗下團體',
       groups_intro: '探索 JYP Entertainment 旗下所有活躍團體，從第二代到第五代，每個團體都有獨特的音樂風格與魅力。',
-      view_all: '查看所有團體 →'
+      view_all: '查看所有團體',
+      
+      // 團體卡片
+      members_count: '名成員',
+      overseas_groups: '海外團體',
+      card_2pm_desc: '「野獸偶像」，以強烈男性魅力和高難度表演著稱，韓國第二代男團代表之一',
+      card_straykids_desc: '以自製音樂與實驗性風格征服全球，3RACHA 創作小分隊打造獨特音樂色彩',
+      card_itzy_desc: '以「DALLA DALLA」出道即獲九冠王，Girl Crush風格與自信態度席捲全球',
+      card_twice_desc: '「國民女團」，以甜美風格與多首熱門曲目稱霸韓日市場，全球粉絲無數',
+      card_kickflip_desc: 'JYP 2025年最新男團，充滿活力與年輕氣息的新生代代表',
+      card_nmixx_desc: '以「MIXX POP」獨創音樂風格挑戰傳統，展現實力派新生代女團魅力',
+      card_day6_desc: '全能樂隊，成員全員作詞作曲，「HAPPY」達成 Perfect All-Kill，韓國樂團史上第一',
+      card_xdinary_desc: '搖滾樂隊，結合 K-pop 與搖滾元素，展現新世代樂團風貌',
+      card_niziu_desc: 'JYP×Sony Music Japan 合作企劃，引領日本第五代女團風潮',
+      card_nexz_desc: 'JYP 首個日本男團，融合 K-pop 訓練體系與日本在地文化',
+      card_vcha_desc: 'JYP 首個美國女團，透過選秀節目「A2K」誕生，進軍北美市場'
     },
     
     // 時間軸頁面
@@ -210,10 +225,25 @@ const translations = {
       explore_more: 'Explore More',
       refresh: '🎲 Refresh',
       timeline_title: '📅 Latest Updates',
-      timeline_more: 'View More Updates →',
+      timeline_more: 'View All Updates →',
       groups_title: 'JYP Entertainment Groups',
-      groups_intro: 'Explore all active groups under JYP Entertainment, from 2nd to 5th generation, each with unique music styles and charms.',
-      view_all: 'View All Groups →'
+      groups_intro: 'Explore all active groups under JYP Entertainment, from 2nd to 5th generation, each with unique musical styles and charms.',
+      view_all: 'View All Groups',
+      
+      // Group cards
+      members_count: ' Members',
+      overseas_groups: 'International Groups',
+      card_2pm_desc: '"Beast Idols" known for powerful masculine charm and difficult performances, one of Korea\'s 2nd gen boy group representatives',
+      card_straykids_desc: 'Conquering the world with self-produced music and experimental style, 3RACHA sub-unit creates unique musical colors',
+      card_itzy_desc: 'Achieved nine music show wins with debut "DALLA DALLA", Girl Crush style and confident attitude sweeping globally',
+      card_twice_desc: '"Nation\'s Girl Group" dominating Korean and Japanese markets with sweet style and numerous hit songs, countless fans worldwide',
+      card_kickflip_desc: 'JYP\'s newest boy group in 2025, representing the new generation with energy and youthful vibes',
+      card_nmixx_desc: 'Challenging traditions with original "MIXX POP" music style, showcasing powerful new generation girl group charm',
+      card_day6_desc: 'All-around band with all members composing, "HAPPY" achieved Perfect All-Kill, first in Korean band history',
+      card_xdinary_desc: 'Rock band combining K-pop and rock elements, showcasing new generation band style',
+      card_niziu_desc: 'JYP×Sony Music Japan collaboration project, leading Japan\'s 5th generation girl group wave',
+      card_nexz_desc: 'JYP\'s first Japanese boy group, merging K-pop training system with Japanese local culture',
+      card_vcha_desc: 'JYP\'s first American girl group, born through reality show "A2K", advancing into North American market'
     },
     
     timeline: {
@@ -360,7 +390,22 @@ const translations = {
       timeline_more: '더 많은 소식 보기 →',
       groups_title: 'JYP 엔터테인먼트 그룹',
       groups_intro: 'JYP Entertainment 소속의 모든 활동 그룹을 탐험하세요. 2세대부터 5세대까지, 각각 독특한 음악 스타일과 매력을 가지고 있습니다.',
-      view_all: '모든 그룹 보기 →'
+      view_all: '모든 그룹 보기 →',
+      
+      // 그룹 카드
+      members_count: '명',
+      overseas_groups: '해외 그룹',
+      card_2pm_desc: '"야수돌", 강렬한 남성미와 고난도 퍼포먼스로 유명한 한국 2세대 보이그룹 대표',
+      card_straykids_desc: '자체 제작 음악과 실험적 스타일로 전 세계를 정복, 3RACHA 창작 유닛이 독특한 음악 색깔 구축',
+      card_itzy_desc: '"DALLA DALLA"로 데뷔 동시 9관왕 달성, Girl Crush 스타일과 자신감 넘치는 태도로 전 세계 석권',
+      card_twice_desc: '"국민 걸그룹", 달콤한 스타일과 수많은 히트곡으로 한일 시장 석권, 전 세계 무수한 팬 보유',
+      card_kickflip_desc: 'JYP 2025년 최신 보이그룹, 에너지와 젊은 감성이 넘치는 신세대 대표',
+      card_nmixx_desc: '"MIXX POP" 독창적 음악 스타일로 전통에 도전, 실력파 신세대 걸그룹 매력 발산',
+      card_day6_desc: '만능 밴드, 멤버 전원 작사·작곡, "HAPPY"로 Perfect All-Kill 달성, 한국 밴드 사상 최초',
+      card_xdinary_desc: '록 밴드, K-pop과 록 요소 결합, 신세대 밴드 풍모 선보임',
+      card_niziu_desc: 'JYP×Sony Music Japan 합작 프로젝트, 일본 5세대 걸그룹 열풍 선도',
+      card_nexz_desc: 'JYP 첫 일본 보이그룹, K-pop 훈련 시스템과 일본 현지 문화 융합',
+      card_vcha_desc: 'JYP 첫 미국 걸그룹, 오디션 프로그램 "A2K"를 통해 탄생, 북미 시장 진출'
     },
     
     timeline: {
@@ -507,7 +552,22 @@ const translations = {
       timeline_more: 'もっと見る →',
       groups_title: 'JYPエンターテインメント グループ',
       groups_intro: 'JYP Entertainment所属のすべてのアクティブグループを探索しましょう。第2世代から第5世代まで、それぞれ独自の音楽スタイルと魅力を持っています。',
-      view_all: 'すべてのグループを見る →'
+      view_all: 'すべてのグループを見る →',
+      
+      // グループカード
+      members_count: '名',
+      overseas_groups: '海外グループ',
+      card_2pm_desc: '「野獣アイドル」、強烈な男性美と高難度パフォーマンスで有名な韓国第2世代ボーイグループの代表',
+      card_straykids_desc: '自作音楽と実験的スタイルで世界を征服、3RACHAクリエイティブユニットが独特な音楽カラーを構築',
+      card_itzy_desc: '「DALLA DALLA」でデビューと同時に9冠達成、ガールクラッシュスタイルと自信に満ちた態度で世界を席巻',
+      card_twice_desc: '「国民的ガールグループ」、甘いスタイルと数々のヒット曲で韓日市場を制覇、世界中に無数のファン',
+      card_kickflip_desc: 'JYP 2025年最新ボーイグループ、エネルギーと若々しい感性があふれる新世代の代表',
+      card_nmixx_desc: '「MIXX POP」独創的な音楽スタイルで伝統に挑戦、実力派新世代ガールグループの魅力を発揮',
+      card_day6_desc: '万能バンド、メンバー全員作詞作曲、「HAPPY」でPerfect All-Kill達成、韓国バンド史上初',
+      card_xdinary_desc: 'ロックバンド、K-popとロック要素を融合、新世代バンドスタイルを披露',
+      card_niziu_desc: 'JYP×Sony Music Japan共同プロジェクト、日本第5世代ガールグループブームをリード',
+      card_nexz_desc: 'JYP初の日本ボーイグループ、K-popトレーニングシステムと日本のローカル文化を融合',
+      card_vcha_desc: 'JYP初のアメリカガールグループ、オーディション番組「A2K」を通じて誕生、北米市場進出'
     },
     
     timeline: {
