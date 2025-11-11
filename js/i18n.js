@@ -1,0 +1,338 @@
+/* ================================
+   多語言切換功能
+   ================================ */
+
+(function() {
+  // 默認語言
+  let currentLang = localStorage.getItem('preferred-language') || 'zh';
+
+  // 初始化
+  function initLanguage() {
+    // 設置 HTML lang 屬性
+    document.documentElement.lang = getLangCode(currentLang);
+    
+    // 創建語言切換器
+    createLanguageSwitcher();
+    
+    // 應用翻譯
+    applyTranslations();
+  }
+
+  // 獲取語言代碼
+  function getLangCode(lang) {
+    const codes = {
+      'zh': 'zh-Hant',
+      'en': 'en',
+      'ko': 'ko',
+      'ja': 'ja'
+    };
+    return codes[lang] || 'zh-Hant';
+  }
+
+  // 創建語言切換器
+  function createLanguageSwitcher() {
+    const header = document.querySelector('.site-header .nav-container');
+    if (!header) return;
+
+    // 檢查是否已存在
+    if (document.querySelector('.language-switcher')) return;
+
+    const langSwitcher = document.createElement('div');
+    langSwitcher.className = 'language-switcher';
+    langSwitcher.innerHTML = `
+      <button class="lang-btn" id="langBtn" aria-label="切換語言">
+        <span class="lang-icon">🌐</span>
+        <span class="lang-text">${currentLang.toUpperCase()}</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option ${currentLang === 'zh' ? 'active' : ''}" data-lang="zh">
+          <span class="lang-flag">🇹🇼</span>
+          <span>繁體中文</span>
+        </button>
+        <button class="lang-option ${currentLang === 'en' ? 'active' : ''}" data-lang="en">
+          <span class="lang-flag">🇺🇸</span>
+          <span>English</span>
+        </button>
+        <button class="lang-option ${currentLang === 'ko' ? 'active' : ''}" data-lang="ko">
+          <span class="lang-flag">🇰🇷</span>
+          <span>한국어</span>
+        </button>
+        <button class="lang-option ${currentLang === 'ja' ? 'active' : ''}" data-lang="ja">
+          <span class="lang-flag">🇯🇵</span>
+          <span>日本語</span>
+        </button>
+      </div>
+    `;
+
+    // 插入到主題切換按鈕之前
+    const themeToggle = header.querySelector('.theme-toggle');
+    if (themeToggle) {
+      header.insertBefore(langSwitcher, themeToggle);
+    } else {
+      header.appendChild(langSwitcher);
+    }
+
+    // 綁定事件
+    setupLanguageSwitcherEvents();
+  }
+
+  // 設置事件監聽
+  function setupLanguageSwitcherEvents() {
+    const langBtn = document.getElementById('langBtn');
+    const langDropdown = document.getElementById('langDropdown');
+    const langOptions = document.querySelectorAll('.lang-option');
+
+    if (!langBtn || !langDropdown) return;
+
+    // 切換下拉選單
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('show');
+    });
+
+    // 點擊外部關閉
+    document.addEventListener('click', () => {
+      langDropdown.classList.remove('show');
+    });
+
+    // 選擇語言
+    langOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const selectedLang = option.dataset.lang;
+        
+        if (selectedLang !== currentLang) {
+          switchLanguage(selectedLang);
+        }
+        
+        langDropdown.classList.remove('show');
+      });
+    });
+  }
+
+  // 切換語言
+  function switchLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('preferred-language', lang);
+    
+    // 更新 HTML lang 屬性
+    document.documentElement.lang = getLangCode(lang);
+    
+    // 更新按鈕文字
+    const langText = document.querySelector('.lang-text');
+    if (langText) {
+      langText.textContent = lang.toUpperCase();
+    }
+    
+    // 更新選中狀態
+    document.querySelectorAll('.lang-option').forEach(option => {
+      option.classList.toggle('active', option.dataset.lang === lang);
+    });
+    
+    // 應用翻譯
+    applyTranslations();
+    
+    // 顯示提示
+    showLanguageToast(lang);
+  }
+
+  // 應用翻譯
+  function applyTranslations() {
+    if (typeof translations === 'undefined') {
+      console.warn('Translations not loaded');
+      return;
+    }
+
+    const t = translations[currentLang];
+    if (!t) return;
+
+    // 導航欄
+    translateNav(t.nav);
+    
+    // 首頁內容
+    if (document.querySelector('.hero')) {
+      translateHome(t.home);
+    }
+    
+    // 時間軸頁面
+    if (document.querySelector('.timeline-header')) {
+      translateTimeline(t.timeline);
+    }
+    
+    // 頁尾
+    translateFooter(t.footer);
+    
+    // 通用元素
+    translateCommon(t.common);
+  }
+
+  // 翻譯導航欄
+  function translateNav(nav) {
+    const navLinks = document.querySelectorAll('.main-nav a');
+    if (navLinks.length >= 4) {
+      navLinks[0].textContent = nav.home;
+      navLinks[1].textContent = nav.idols;
+      navLinks[2].textContent = nav.hallyu;
+      navLinks[3].textContent = nav.about;
+    }
+  }
+
+  // 翻譯首頁
+  function translateHome(home) {
+    // Hero 區塊
+    const heroTitle = document.querySelector('.hero h1');
+    const heroSubtitle = document.querySelector('.hero p');
+    const exploreBtn = document.querySelector('.hero .cta-button');
+    
+    if (heroTitle) heroTitle.textContent = home.hero_title;
+    if (heroSubtitle) heroSubtitle.textContent = home.hero_subtitle;
+    if (exploreBtn) exploreBtn.textContent = home.explore_btn;
+
+    // 統計數據
+    const statLabels = document.querySelectorAll('.stat p');
+    if (statLabels.length >= 4) {
+      statLabels[0].textContent = home.stats_groups;
+      statLabels[1].textContent = home.stats_members;
+      statLabels[2].textContent = home.stats_awards;
+      statLabels[3].textContent = home.stats_years;
+    }
+
+    // 今日推薦
+    const dailyPickTitle = document.querySelector('.daily-pick h2');
+    const dailyPickBadge = document.querySelector('.pick-badge');
+    const exploreMoreBtn = document.querySelector('#dailyLink');
+    const refreshBtn = document.querySelector('#refreshPick');
+    
+    if (dailyPickTitle) dailyPickTitle.textContent = home.daily_pick_title;
+    if (dailyPickBadge) dailyPickBadge.textContent = home.daily_pick_badge;
+    if (exploreMoreBtn) exploreMoreBtn.textContent = home.explore_more;
+    if (refreshBtn) refreshBtn.textContent = home.refresh;
+
+    // 最新動態
+    const timelineTitle = document.querySelector('.timeline-section h2');
+    const timelineMore = document.querySelector('.timeline-more a');
+    
+    if (timelineTitle) timelineTitle.textContent = home.timeline_title;
+    if (timelineMore) timelineMore.textContent = home.timeline_more;
+
+    // 團體預覽
+    const groupsTitle = document.querySelector('.idols-preview h2');
+    const groupsIntro = document.querySelector('.idols-preview .section-intro');
+    const viewAllBtn = document.querySelector('.idols-preview .view-all-btn');
+    
+    if (groupsTitle) groupsTitle.textContent = home.groups_title;
+    if (groupsIntro) groupsIntro.textContent = home.groups_intro;
+    if (viewAllBtn) viewAllBtn.textContent = home.view_all;
+  }
+
+  // 翻譯時間軸頁面
+  function translateTimeline(timeline) {
+    const title = document.querySelector('.timeline-header h1');
+    const intro = document.querySelector('.timeline-intro');
+    const filterAll = document.querySelector('.filter-btn[data-year="all"]');
+    
+    if (title) title.textContent = timeline.title;
+    if (intro) intro.textContent = timeline.intro;
+    if (filterAll) filterAll.textContent = timeline.filter_all;
+
+    // 分類標籤
+    const categories = document.querySelectorAll('.timeline-categories .category-tag');
+    if (categories.length >= 6) {
+      categories[0].textContent = timeline.category_debut;
+      categories[1].textContent = timeline.category_comeback;
+      categories[2].textContent = timeline.category_award;
+      categories[3].textContent = timeline.category_concert;
+      categories[4].textContent = timeline.category_achievement;
+      categories[5].textContent = timeline.category_collaboration;
+    }
+
+    // 頁尾
+    const footerText = document.querySelector('.timeline-footer p');
+    const backBtn = document.querySelector('.timeline-footer .btn');
+    
+    if (footerText) footerText.textContent = timeline.footer_updating;
+    if (backBtn) backBtn.textContent = timeline.back_home;
+  }
+
+  // 翻譯頁尾
+  function translateFooter(footer) {
+    const description = document.querySelector('.footer-section p');
+    const quickLinks = document.querySelectorAll('.footer-section h4')[0];
+    const popularGroups = document.querySelectorAll('.footer-section h4')[1];
+    const contact = document.querySelectorAll('.footer-section h4')[2];
+    const copyright = document.querySelector('.footer-bottom p:first-child');
+    const note = document.querySelector('.footer-note');
+    
+    if (description) description.textContent = footer.description;
+    if (quickLinks) quickLinks.textContent = footer.quick_links;
+    if (popularGroups) popularGroups.textContent = footer.popular_groups;
+    if (contact) contact.textContent = footer.contact;
+    if (copyright) copyright.textContent = footer.copyright;
+    if (note) note.textContent = footer.note;
+  }
+
+  // 翻譯通用元素
+  function translateCommon(common) {
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+      backToTop.setAttribute('aria-label', common.back_to_top);
+    }
+  }
+
+  // 顯示語言切換提示
+  function showLanguageToast(lang) {
+    const langNames = {
+      'zh': '繁體中文',
+      'en': 'English',
+      'ko': '한국어',
+      'ja': '日本語'
+    };
+
+    // 移除現有提示
+    const existingToast = document.querySelector('.language-toast');
+    if (existingToast) {
+      existingToast.remove();
+    }
+
+    // 創建新提示
+    const toast = document.createElement('div');
+    toast.className = 'language-toast';
+    toast.innerHTML = `
+      <span class="toast-icon">✓</span>
+      <span class="toast-text">Language switched to ${langNames[lang]}</span>
+    `;
+    
+    document.body.appendChild(toast);
+
+    // 顯示動畫
+    setTimeout(() => toast.classList.add('show'), 100);
+
+    // 3秒後移除
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // 頁面載入時初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguage);
+  } else {
+    initLanguage();
+  }
+
+  // 導出給外部使用
+  window.i18n = {
+    getCurrentLanguage: () => currentLang,
+    switchLanguage: switchLanguage,
+    getTranslation: (key) => {
+      if (typeof translations === 'undefined') return key;
+      const keys = key.split('.');
+      let value = translations[currentLang];
+      for (const k of keys) {
+        value = value?.[k];
+      }
+      return value || key;
+    }
+  };
+})();

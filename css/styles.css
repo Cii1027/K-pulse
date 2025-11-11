@@ -2004,3 +2004,202 @@ body.dark .back-to-top:hover {
     font-size: var(--text-lg);
   }
 }
+
+/* ================================
+   多語言切換器 Language Switcher
+   ================================ */
+
+.language-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: var(--space-md);
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 111, 163, 0.2);
+}
+
+.lang-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.lang-text {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* 語言下拉選單 */
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.lang-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-option:hover {
+  background: rgba(255, 111, 163, 0.1);
+}
+
+.lang-option.active {
+  background: linear-gradient(135deg, rgba(255, 111, 163, 0.15), rgba(79, 195, 247, 0.15));
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lang-option.active::after {
+  content: '✓';
+  margin-left: auto;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.lang-flag {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* 語言切換提示 */
+.language-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(255, 111, 163, 0.3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+
+.language-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--accent), #4fc3f7);
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.toast-text {
+  white-space: nowrap;
+}
+
+/* 響應式設計 - 語言切換器 */
+@media (max-width: 768px) {
+  .language-switcher {
+    margin-right: var(--space-sm);
+  }
+  
+  .lang-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .lang-icon {
+    font-size: 16px;
+  }
+  
+  .lang-text {
+    display: none;
+  }
+  
+  .lang-dropdown {
+    min-width: 160px;
+  }
+  
+  .language-toast {
+    bottom: 70px;
+    right: 10px;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 12px;
+  }
+  
+  .toast-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lang-dropdown {
+    right: -20px;
+  }
+  
+  .language-toast {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(20px);
+  }
+  
+  .language-toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+}
