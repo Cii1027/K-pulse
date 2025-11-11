@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>韓流探討 - K-PULSE</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* 韓流探討頁面專用樣式 */
+        .hallyu-hero {
+            background: linear-gradient(135deg, rgba(255, 111, 163, 0.1), rgba(79, 195, 247, 0.1));
+            padding: calc(var(--space-2xl) + var(--space-lg)) 0 var(--space-2xl);
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hallyu-hero::before {
+            content: '🎵';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            pointer-events: none;
+        }
+        
+        .hallyu-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+            animation: fadeInDown 0.8s ease-out;
+            position: relative;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hallyu-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeIn 1s ease-out 0.3s both;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 章節導航 */
+        .chapter-nav {
+            position: sticky;
+            top: 80px;
+            background: var(--surface);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-2xl);
+            z-index: 10;
+        }
+        
+        .chapter-nav h3 {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-md);
+            color: var(--accent);
+        }
+        
+        .chapter-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .chapter-nav li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .chapter-nav a {
+            display: block;
+            padding: var(--space-sm) var(--space-md);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chapter-nav a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform var(--transition);
+        }
+        
+        .chapter-nav a:hover,
+        .chapter-nav a.active {
+            background: rgba(255, 111, 163, 0.1);
+            color: var(--accent);
+            transform: translateX(8px);
+        }
+        
+        .chapter-nav a:hover::before,
+        .chapter-nav a.active::before {
+            transform: scaleY(1);
+        }
+        
+        /* 內容區塊 */
+        .hallyu-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--space-2xl);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .content-main {
+            min-width: 0;
+        }
+        
+        .chapter {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-md);
+            scroll-margin-top: 100px;
+            transition: all var(--transition);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .chapter:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chapter h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .chapter h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .chapter:hover h2::after {
+            transform: scaleX(1);
+        }
+        
+        .chapter h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: var(--space-xl) 0 var(--space-md);
+            position: relative;
+            padding-left: var(--space-md);
+        }
+        
+        .chapter h3::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.8em;
+        }
+        
+        .chapter h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: var(--space-lg) 0 var(--space-sm);
+        }
+        
+        .chapter p {
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .chapter ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-xl);
+        }
+        
+        .chapter li {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .chapter strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        /* 時間軸設計 */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: var(--space-xl) 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+        
+        .timeline-item {
+            position: relative;
+            background: rgba(255, 111, 163, 0.05);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+            border-left-color: var(--accent);
+            background: rgba(255, 111, 163, 0.08);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 3px rgba(255, 111, 163, 0.2);
+        }
+        
+        .timeline-period {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            box-shadow: 0 2px 8px rgba(255, 111, 163, 0.3);
+            transition: all var(--transition);
+        }
+        
+        .timeline-item:hover .timeline-period {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 111, 163, 0.4);
+        }
+        
+        .timeline-item h4 {
+            margin-top: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+        
+        /* 重點提示框 */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 111, 163, 0.1), rgba(79, 195, 247, 0.1));
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 111, 163, 0.05), rgba(79, 195, 247, 0.05));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        
+        .highlight-box:hover::before {
+            opacity: 1;
+        }
+        
+        .highlight-box:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .highlight-box h4 {
+            color: var(--accent);
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 影響對比卡片 */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        
+        .impact-card {
+            background: var(--bg);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            border: 2px solid transparent;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: currentColor;
+            transform: scaleY(0);
+            transition: transform var(--transition);
+        }
+        
+        .impact-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .impact-card.positive {
+            border-color: #4caf50;
+        }
+        
+        .impact-card.positive::before {
+            background: #4caf50;
+        }
+        
+        .impact-card.negative {
+            border-color: #ff6b6b;
+        }
+        
+        .impact-card.negative::before {
+            background: #ff6b6b;
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .impact-card.positive:hover {
+            background: rgba(76, 175, 80, 0.05);
+        }
+        
+        .impact-card.negative:hover {
+            background: rgba(255, 107, 107, 0.05);
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-top: 0;
+        }
+        
+        .impact-card.positive h4 {
+            color: #4caf50;
+        }
+        
+        .impact-card.negative h4 {
+            color: #ff6b6b;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* 回到頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 111, 163, 0.4);
+        }
+        
+        .back-to-top:active {
+            transform: translateY(-2px);
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .hallyu-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .chapter-nav {
+                position: static;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hallyu-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hallyu-hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .chapter {
+                padding: var(--space-lg);
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a class="logo" href="index.html">K-PULSE</a>
+            <nav class="main-nav">
+                <a href="index.html">首頁</a>
+                <a href="idols.html">JYP 偶像</a>
+                <a href="hallyu.html" class="active">韓流探討</a>
+                <a href="about.html">關於我</a>
+            </nav>
+            <button id="theme-toggle-hallyu" class="theme-toggle" aria-label="切換日夜模式">
+                <span class="icon sun">☀️</span>
+                <span class="icon moon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero 區塊 -->
+    <section class="hallyu-hero">
+        <div class="container">
+            <h1>🎵 韓流探討 Hallyu</h1>
+            <p class="subtitle">
+                深入探討韓流現象的起源、發展、成功因素與全球影響。<br>
+                從 K-Pop、K-Drama 到 K-Culture，了解韓國文化如何席捲世界。
+            </p>
+        </div>
+    </section>
+
+    <!-- 主要內容 -->
+    <div class="hallyu-content">
+        <!-- 側邊章節導航 -->
+        <aside class="chapter-nav">
+            <h3>📖 章節導航</h3>
+            <ul>
+                <li><a href="#intro">壹、緒論</a></li>
+                <li><a href="#history">貳、發展歷程與演變</a></li>
+                <li><a href="#success">參、成功的關鍵因素</a></li>
+                <li><a href="#impact">肆、影響與反思</a></li>
+            </ul>
+        </aside>
+
+        <!-- 內容主體 -->
+        <main class="content-main">
+            <!-- 壹、緒論 -->
+            <section id="intro" class="chapter">
+                <h2>壹、緒論 Introduction</h2>
+                
+                <h3>1. 研究背景與動機</h3>
+                
+                <h4>韓流的定義與範圍</h4>
+                <p>
+                    「韓流」（Hallyu，한류）是指源自韓國的流行文化在全球範圍內產生的文化現象與影響力。
+                    這個詞彙最早出現於 1990 年代末期，當時韓國流行文化開始在中國、日本等亞洲國家引起廣泛關注。
+                </p>
+                <p>韓流的主要內容包括：</p>
+                <ul>
+                    <li><strong>K-Pop（韓國流行音樂）：</strong>以精緻的視覺呈現、高水準的舞蹈編排、多元音樂風格著稱</li>
+                    <li><strong>K-Drama（韓國電視劇）：</strong>劇情細膩、製作精良，探討愛情、家庭、社會議題</li>
+                    <li><strong>K-Movie（韓國電影）：</strong>題材多元，從商業大片到藝術電影皆具國際競爭力</li>
+                    <li><strong>K-Beauty（韓國美妝）：</strong>護膚理念、彩妝產品引領亞洲乃至全球美妝趨勢</li>
+                    <li><strong>K-Food（韓國料理）：</strong>泡菜、炸雞、韓式烤肉等美食風靡全球</li>
+                    <li><strong>K-Fashion（韓國時尚）：</strong>街頭風格、偶像穿搭成為時尚指標</li>
+                    <li><strong>K-Content（韓國內容）：</strong>Webtoon（網路漫畫）、綜藝節目等數位內容</li>
+                </ul>
+                
+                <h4>全球與在地的顯著性</h4>
+                <p>
+                    韓流不僅在亞洲地區（特別是中國、日本、台灣、東南亞）具有深遠影響，
+                    近年來更成功進軍歐美市場，打破文化與語言障礙。
+                </p>
+                
+                <div class="highlight-box">
+                    <h4>🎯 研究核心問題</h4>
+                    <ul>
+                        <li>韓流成功的關鍵因素是什麼？</li>
+                        <li>它為韓國帶來了哪些經濟與文化影響？</li>
+                        <li>韓流現象背後存在哪些值得反思的議題？</li>
+                        <li>台灣在韓流浪潮中扮演什麼角色？</li>
+                    </ul>
+                </div>
+                
+                <h3>2. 文獻回顧</h3>
+                <p>
+                    學術界對韓流的研究主要聚焦於以下幾個面向：
+                </p>
+                <ul>
+                    <li><strong>文化工業理論：</strong>從阿多諾（Adorno）的批判理論角度，探討大眾文化的商品化</li>
+                    <li><strong>軟實力研究：</strong>約瑟夫·奈伊（Joseph Nye）提出的軟實力概念，韓流作為國家軟實力的體現</li>
+                    <li><strong>全球化與在地化：</strong>「全球在地化」（Glocalization）理論，探討韓流如何平衡全球與在地元素</li>
+                    <li><strong>粉絲文化研究：</strong>數位時代的粉絲參與、社群媒體對文化傳播的影響</li>
+                    <li><strong>文化認同與混雜性：</strong>後殖民主義視角下的文化交流與認同建構</li>
+                </ul>
+                
+                <h3>3. 研究方法與架構</h3>
+                <p>
+                    本研究採用<strong>文獻分析法</strong>、<strong>個案研究法</strong>與<strong>比較分析法</strong>，
+                    從歷史發展、產業結構、文化內容、社會影響等多個維度，全面剖析韓流現象。
+                </p>
+                <p>
+                    研究架構分為四大章節：緒論、發展歷程與演變、成功的關鍵因素、影響與反思。
+                    透過系統性的分析，期望能深入理解韓流的本質及其對全球文化格局的影響。
+                </p>
+            </section>
+
+            <!-- 貳、發展歷程與演變 -->
+            <section id="history" class="chapter">
+                <h2>貳、韓流的發展歷程與演變 Development History</h2>
+                
+                <p>
+                    韓流的發展可以劃分為三個主要階段，每個階段都有其獨特的特徵與代表性作品。
+                    以下透過時間軸呈現韓流的演進過程：
+                </p>
+                
+                <div class="timeline">
+                    <!-- 萌芽期 -->
+                    <div class="timeline-item">
+                        <span class="timeline-period">1990s 末 - 2000s 初</span>
+                        <h4>萌芽期：亞洲市場的初步拓展</h4>
+                        
+                        <p><strong>時代背景：</strong></p>
+                        <ul>
+                            <li>1997 年亞洲金融風暴重創韓國經濟，促使政府重新思考產業結構</li>
+                            <li>韓國政府提出「<strong>文化立國</strong>」（Culture Nation）戰略，將文化產業視為新的經濟增長點</li>
+                            <li>大量資金投入文化內容產業，包括影視、音樂、遊戲等領域</li>
+                        </ul>
+                        
+                        <p><strong>代表性作品與現象：</strong></p>
+                        <ul>
+                            <li>📺 <strong>韓劇：</strong>《冬季戀歌》（2002）在日本引發「冬季戀歌熱潮」，主演裴勇俊成為亞洲巨星</li>
+                            <li>🎵 <strong>K-Pop：</strong>第一代偶像團體如 H.O.T.、S.E.S.、Baby V.O.X、g.o.d 在韓國及亞洲國家走紅</li>
+                            <li>🌏 <strong>市場範圍：</strong>主要集中在東亞地區（中國、日本、台灣、香港）</li>
+                        </ul>
+                        
+                        <p><strong>影響：</strong></p>
+                        <p>奠定了韓國文化產業的基礎架構，建立起「偶像養成系統」的雛形。</p>
+                    </div>
+                    
+                    <!-- 擴張期 -->
+                    <div class="timeline-item">
+                        <span class="timeline-period">2000s 中期 - 2010s 初期</span>
+                        <h4>擴張期：數位化推動下的區域深化</h4>
+                        
+                        <p><strong>時代背景：</strong></p>
+                        <ul>
+                            <li>網路科技迅速發展，YouTube（2005 年創立）成為內容傳播的重要平台</li>
+                            <li>社群媒體興起（Facebook、Twitter），粉絲能更便捷地接觸偶像與內容</li>
+                            <li>韓國政府持續投資文化產業，完善產業鏈與出口機制</li>
+                        </ul>
+                        
+                        <p><strong>代表性作品與現象：</strong></p>
+                        <ul>
+                            <li>🎵 <strong>第二代偶像團體崛起：</strong>Super Junior、Wonder Girls、少女時代、Big Bang、2NE1 等</li>
+                            <li>📱 <strong>數位傳播：</strong>Wonder Girls 的《Nobody》MV 在 YouTube 上創造驚人點擊率，開啟數位時代的韓流傳播模式</li>
+                            <li>📺 <strong>韓劇多元化：</strong>《大長今》（2003）、《浪漫滿屋》（2004）、《我叫金三順》（2005）等劇集在亞洲各地廣受歡迎</li>
+                            <li>🌏 <strong>市場拓展：</strong>從東亞擴展至東南亞（泰國、越南、菲律賓、印尼等）</li>
+                        </ul>
+                        
+                        <p><strong>影響：</strong></p>
+                        <p>韓流在亞洲地區的影響力進一步鞏固，開始嘗試進軍歐美市場（如 Wonder Girls 在美國的巡演）。</p>
+                    </div>
+                    
+                    <!-- 全球化與爆發期 -->
+                    <div class="timeline-item">
+                        <span class="timeline-period">2010s 中期 - 至今</span>
+                        <h4>全球化與爆發期：席捲歐美、成為世界現象</h4>
+                        
+                        <p><strong>時代背景：</strong></p>
+                        <ul>
+                            <li>社群媒體與影音平台全面普及（Instagram、TikTok、Spotify 等）</li>
+                            <li>串流媒體服務（Netflix、Disney+）打破地域限制，加速韓國內容的全球傳播</li>
+                            <li>粉絲文化高度組織化與國際化，透過網路形成強大的全球社群</li>
+                        </ul>
+                        
+                        <p><strong>代表性作品與現象：</strong></p>
+                        <ul>
+                            <li>🎵 <strong>K-Pop 的全球爆發：</strong>
+                                <ul>
+                                    <li><strong>BTS（防彈少年團）：</strong>多次登上 Billboard 200 榜首，成為首個在美國體育場舉辦演唱會的韓國藝人，獲得葛萊美提名</li>
+                                    <li><strong>BLACKPINK：</strong>成為 Coachella 首個 K-Pop 女團表演者，與國際品牌合作，YouTube 訂閱數破億</li>
+                                    <li><strong>NewJeans、aespa、Stray Kids、ITZY：</strong>第四代偶像團體持續在全球市場創造佳績</li>
+                                </ul>
+                            </li>
+                            <li>🎬 <strong>韓國影視的國際突破：</strong>
+                                <ul>
+                                    <li>《寄生上流》（2019）榮獲奧斯卡最佳影片、最佳導演等四項大獎，成為首部獲得奧斯卡最佳影片的非英語電影</li>
+                                    <li>《魷魚遊戲》（2021）成為 Netflix 史上最受歡迎的劇集，全球觀看數破億</li>
+                                    <li>《太陽的後裔》、《愛的迫降》、《梨泰院 Class》等劇集在全球引發熱議</li>
+                                </ul>
+                            </li>
+                            <li>📱 <strong>多元內容發展：</strong>
+                                <ul>
+                                    <li>Webtoon（網路漫畫）成為新的文化輸出形式，多部作品改編為影視</li>
+                                    <li>綜藝節目如《Running Man》、《新西遊記》在全球擁有龐大粉絲群</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <p><strong>影響：</strong></p>
+                        <p>
+                            韓流從「亞洲現象」真正成為「世界現象」，韓國文化在歐美主流市場獲得認可，
+                            對全球流行文化產生深遠影響。韓國成功建立起「文化強國」的國際形象。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>📊 數據亮點</h4>
+                    <ul>
+                        <li>2022 年韓國文化內容出口額達 <strong>124 億美元</strong>，較十年前成長超過 3 倍</li>
+                        <li>K-Pop 產業市場規模在 2023 年突破 <strong>100 億美元</strong></li>
+                        <li>BTS 為韓國經濟每年帶來約 <strong>50 億美元</strong>的經濟效益</li>
+                        <li>Netflix 在 2021-2023 年間投資韓國內容超過 <strong>25 億美元</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 參、成功的關鍵因素 -->
+            <section id="success" class="chapter">
+                <h2>參、韓流成功的關鍵因素 Key Factors for Success</h2>
+                
+                <p>
+                    韓流能夠從區域現象發展為全球文化浪潮，絕非偶然。
+                    其成功背後有著多層次、系統性的支撐因素，以下分為三大面向進行探討：
+                </p>
+                
+                <h3>1. 政府政策與產業結構</h3>
+                
+                <h4>「文化立國」戰略與政府支持</h4>
+                <ul>
+                    <li><strong>政策扶持：</strong>韓國政府自 1990 年代末期起，將文化產業列為國家戰略產業，透過「文化立國」政策大力扶持</li>
+                    <li><strong>資金投入：</strong>設立文化產業振興基金，提供低利貸款、稅收減免等優惠措施，支持內容創作與出口</li>
+                    <li><strong>法規完善：</strong>制定《文化產業振興基本法》等法律，保護智慧財產權，規範產業發展</li>
+                    <li><strong>人才培養：</strong>在大學設立相關科系，培育專業人才（如製作人、編導、表演者等）</li>
+                    <li><strong>海外推廣：</strong>透過韓國國際交流財團（Korea Foundation）、韓國文化產業交流財團（KOCCA）等機構，積極推動文化輸出</li>
+                </ul>
+                
+                <h4>完善且專業化的「偶像養成系統」</h4>
+                <p>
+                    韓國娛樂公司（特別是「<strong>Big 4</strong>」：SM、JYP、YG、HYBE）建立了高度系統化的偶像培訓機制：
+                </p>
+                <ul>
+                    <li><strong>選秀與甄選：</strong>透過大規模選秀（如 JYP 的公開甄選）挑選潛力新人</li>
+                    <li><strong>長期訓練：</strong>練習生制度，平均訓練時間 3-7 年，涵蓋唱歌、跳舞、表演、外語、體能等全方位培養</li>
+                    <li><strong>專業分工：</strong>由作曲家、編舞家、造型師、經紀人等專業團隊打造藝人形象與作品</li>
+                    <li><strong>品質控管：</strong>嚴格的篩選與淘汰機制，確保最終出道的偶像具備高水準的專業能力</li>
+                    <li><strong>科學管理：</strong>運用數據分析、市場調查等現代管理手法，精準定位藝人風格與市場策略</li>
+                </ul>
+                
+                <h4>對內容創作的投資與鼓勵</h4>
+                <ul>
+                    <li><strong>高額製作預算：</strong>韓劇與 K-Pop MV 的製作成本逐年提升，追求電影級的視覺效果</li>
+                    <li><strong>創作者友善環境：</strong>保障創作者權益，鼓勵原創內容開發</li>
+                    <li><strong>跨界合作：</strong>影視、音樂、遊戲、動漫等產業相互合作，形成完整的文化內容生態系統</li>
+                </ul>
+                
+                <h3>2. 內容製作與創新</h3>
+                
+                <h4>高標準的製作水準</h4>
+                <ul>
+                    <li><strong>視覺呈現：</strong>精緻的美術設計、場景布置、服裝造型，追求完美的視覺體驗</li>
+                    <li><strong>音樂製作：</strong>高品質的編曲、混音、母帶處理，與國際頂尖製作人合作（如 Teddy Park、Ryan Jhun）</li>
+                    <li><strong>舞蹈編排：</strong>複雜且具辨識度的舞蹈動作，成為社群媒體上的「病毒式傳播」素材（如《江南 Style》的騎馬舞、TWICE 的《TT》手勢）</li>
+                    <li><strong>技術運用：</strong>運用 AR、VR、全息投影等新科技，提升演出效果</li>
+                </ul>
+                
+                <h4>內容的在地化與全球化並重</h4>
+                <p>
+                    韓流成功的核心策略之一，就是在保持韓國文化特色的同時，融入全球化元素：
+                </p>
+                <ul>
+                    <li><strong>語言策略：</strong>K-Pop 歌曲中融入英文、日文等多種語言，降低語言障礙</li>
+                    <li><strong>文化元素融合：</strong>在音樂、影視作品中融入西方流行文化元素，同時保留韓國傳統美學</li>
+                    <li><strong>在地化行銷：</strong>針對不同市場推出在地化版本（如日文專輯、中文字幕）</li>
+                    <li><strong>普世價值：</strong>韓劇探討愛情、友情、家庭、夢想等普世主題，引發全球觀眾共鳴</li>
+                </ul>
+                
+                <h4>跨文化合作與元素融合</h4>
+                <ul>
+                    <li><strong>音樂風格多元：</strong>K-Pop 融合 Hip-Hop、R&B、EDM、Rock、Latin 等多種音樂風格</li>
+                    <li><strong>國際團員：</strong>團體中加入外籍成員（如 BLACKPINK 的 Lisa、GOT7 的 Jackson、TWICE 的 Momo 等），擴大國際影響力</li>
+                    <li><strong>跨國合作：</strong>與歐美藝人合作（如 BTS 與 Halsey、Coldplay 合作，BLACKPINK 與 Selena Gomez、Lady Gaga 合作）</li>
+                </ul>
+                
+                <h3>3. 數位科技與粉絲社群</h3>
+                
+                <h4>社群媒體的精準運用</h4>
+                <ul>
+                    <li><strong>多平台經營：</strong>YouTube、Instagram、Twitter、TikTok、Weverse 等平台全方位布局</li>
+                    <li><strong>內容多元化：</strong>除了正式作品，還提供幕後花絮、直播、Vlog 等多樣化內容，拉近與粉絲的距離</li>
+                    <li><strong>即時互動：</strong>藝人透過社群媒體與粉絲直接互動，建立親密的情感連結</li>
+                    <li><strong>病毒式傳播：</strong>鼓勵粉絲創作二創內容（舞蹈翻跳、Cover、Reaction Video），形成自發性傳播</li>
+                </ul>
+                
+                <h4>粉絲文化（Fandom Culture）</h4>
+                <p>
+                    韓流粉絲文化的組織力與行動力，是其全球擴散的重要推手：
+                </p>
+                <ul>
+                    <li><strong>高度組織化：</strong>粉絲社群具備明確的分工（翻譯組、應援組、數據組等）</li>
+                    <li><strong>強大消費力：</strong>購買專輯、周邊、演唱會門票，支撐產業發展</li>
+                    <li><strong>積極傳播：</strong>主動推廣喜愛的藝人與作品，透過社群媒體擴大影響力</li>
+                    <li><strong>全球連結：</strong>跨國粉絲社群形成緊密網絡，共同支持偶像</li>
+                    <li><strong>社會行動：</strong>粉絲以偶像名義進行公益捐款、環保行動等社會參與</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>💡 關鍵洞察</h4>
+                    <p>
+                        韓流的成功並非單一因素造成，而是<strong>政府政策、產業結構、內容創新、科技運用、粉絲文化</strong>等多重因素的綜合作用。
+                        這種「系統性」的成功模式，值得其他國家的文化產業借鑑與學習。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 肆、影響與反思 -->
+            <section id="impact" class="chapter">
+                <h2>肆、韓流帶來的影響與反思 Impact and Reflection</h2>
+                
+                <p>
+                    韓流作為一種全球性文化現象,對韓國本身以及世界各地都帶來了深遠的影響。
+                    然而,在光鮮亮麗的表象之下,也存在著值得深思的問題與挑戰。
+                </p>
+                
+                <h3>正向影響與負面影響對比</h3>
+                
+                <div class="impact-grid">
+                    <!-- 正向影響 -->
+                    <div class="impact-card positive">
+                        <h4><span class="icon">✅</span> 正向影響</h4>
+                        
+                        <p><strong>1. 提升國家軟實力與形象</strong></p>
+                        <ul>
+                            <li>韓國從戰後貧困國家轉變為「文化強國」,國際地位顯著提升</li>
+                            <li>「韓國製造」從低品質印象轉變為高品質象徵</li>
+                            <li>在國際政治與外交中獲得更多話語權與影響力</li>
+                            <li>韓語學習熱潮,全球學習韓語人口大幅增長</li>
+                        </ul>
+                        
+                        <p><strong>2. 帶動經濟發展</strong></p>
+                        <ul>
+                            <li><strong>旅遊業：</strong>「韓流觀光」帶動大量外國遊客訪韓,參觀拍攝地、購物、體驗韓國文化</li>
+                            <li><strong>美妝產業：</strong>K-Beauty 成為全球美妝市場的重要勢力,韓國化妝品出口大幅成長</li>
+                            <li><strong>時尚產業：</strong>偶像穿搭引領時尚潮流,韓國品牌受到國際關注</li>
+                            <li><strong>周邊商品：</strong>專輯、應援物、聯名商品創造龐大商機</li>
+                            <li><strong>娛樂產業：</strong>經紀公司市值飆升,HYBE、SM 等公司成為上市公司</li>
+                        </ul>
+                        
+                        <p><strong>3. 促進文化交流與多元性</strong></p>
+                        <ul>
+                            <li>打破東西方文化藩籬,證明非英語文化也能在全球市場成功</li>
+                            <li>促進不同文化背景的人們相互理解與欣賞</li>
+                            <li>為亞洲文化在全球文化版圖中爭取到更多空間</li>
+                            <li>激勵其他國家發展本土文化產業</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 負面影響 -->
+                    <div class="impact-card negative">
+                        <h4><span class="icon">⚠️</span> 負面影響與社會反思</h4>
+                        
+                        <p><strong>1. 文化帝國主義爭議</strong></p>
+                        <ul>
+                            <li><strong>文化同質化：</strong>韓流的強勢傳播可能壓縮其他地區本土文化的生存空間</li>
+                            <li><strong>價值觀輸出：</strong>韓國的審美標準、生活方式透過媒體影響其他國家年輕人</li>
+                            <li><strong>文化依賴：</strong>部分地區過度依賴韓國文化產品,本土創作能量不足</li>
+                            <li><strong>文化霸權：</strong>引發關於「文化侵略」的討論與抵制</li>
+                        </ul>
+                        
+                        <p><strong>2. 產業背後的陰影</strong></p>
+                        <ul>
+                            <li><strong>偶像壓力：</strong>練習生與偶像面臨巨大的身心壓力,長時間訓練、嚴格管理、隱私受限</li>
+                            <li><strong>不平等合約：</strong>「奴隸合約」爭議,經紀公司與藝人之間的權力不平等</li>
+                            <li><strong>心理健康問題：</strong>多位韓國藝人因憂鬱症、網路霸凌等問題選擇輕生,引發社會關注</li>
+                            <li><strong>競爭激烈：</strong>高淘汰率造成許多練習生夢想破碎,投入大量時間卻無法出道</li>
+                            <li><strong>性別不平等：</strong>女性偶像面臨更嚴苛的外貌要求與行為限制</li>
+                        </ul>
+                        
+                        <p><strong>3. 對年輕人的影響</strong></p>
+                        <ul>
+                            <li><strong>盲目追星：</strong>過度投入時間與金錢在追星活動上,影響學業與生活</li>
+                            <li><strong>外貌焦慮：</strong>過度推崇「完美外貌」,導致年輕人產生外貌焦慮,整形風氣盛行</li>
+                            <li><strong>消費主義：</strong>鼓勵過度消費,購買專輯、周邊等商品成為「愛的證明」</li>
+                            <li><strong>價值觀扭曲：</strong>將成功定義為成為明星或網紅,忽視其他人生可能性</li>
+                            <li><strong>粉絲對立：</strong>不同偶像的粉絲之間可能產生衝突與對立</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>批判理論視角：阿多諾的大眾文化批判</h3>
+                <div class="highlight-box">
+                    <h4>🧠 理論反思</h4>
+                    <p>
+                        德國哲學家<strong>阿多諾</strong>（Theodor Adorno）認為,大眾文化是一種「<strong>文化工業</strong>」（Culture Industry）,
+                        它將文化商品化,透過標準化、可預測性來滿足市場需求,最終使人們成為被動的消費者,失去批判思考的能力。
+                    </p>
+                    <p>從這個角度審視韓流:</p>
+                    <ul>
+                        <li>K-Pop 的「工業化生產」模式是否將藝術淪為商品?</li>
+                        <li>高度相似的偶像形象與音樂風格是否限制了創意多元性?</li>
+                        <li>粉絲文化是否將人們變成了「文化商品的消費者」而非「文化的參與者」?</li>
+                        <li>韓流是否在「販賣夢想」的同時,也在製造「虛假的需求」?</li>
+                    </ul>
+                    <p>
+                        這些問題沒有標準答案,但值得我們在享受韓流文化的同時,保持批判性思考,
+                        不被動地接受,而是主動地思考文化現象背後的意義與影響。
+                    </p>
+                </div>
+                
+                <h3>台灣與韓流</h3>
+                <p>
+                    台灣是韓流在海外發展的重要市場之一,也是最早接受韓流的地區之一:
+                </p>
+                <ul>
+                    <li><strong>早期接觸：</strong>2000 年代初期,台灣已經開始播放韓劇,如《藍色生死戀》、《浪漫滿屋》等</li>
+                    <li><strong>K-Pop 熱潮：</strong>台灣擁有龐大的 K-Pop 粉絲群體,演唱會幾乎場場爆滿</li>
+                    <li><strong>文化影響：</strong>韓式料理、韓國美妝、韓系時尚在台灣流行</li>
+                    <li><strong>反思與借鑑：</strong>台灣文化產業可以從韓流的成功模式中學習,同時也要思考如何發展具有台灣特色的文化內容</li>
+                </ul>
+                
+                <h3>結語：理性看待韓流現象</h3>
+                <p>
+                    韓流作為一種全球性文化現象,無疑為世界帶來了豐富的娛樂內容與文化交流機會。
+                    然而,我們在欣賞與享受的同時,也應保持清醒的頭腦:
+                </p>
+                <ul>
+                    <li><strong>理性消費：</strong>適度追星,不過度消費,保持經濟與生活的平衡</li>
+                    <li><strong>批判思考：</strong>思考媒體訊息背後的意涵,不盲目跟隨潮流</li>
+                    <li><strong>尊重多元：</strong>在欣賞韓流的同時,也要尊重與支持本土文化與其他文化</li>
+                    <li><strong>關注議題：</strong>關心偶像產業背後的勞動權益、心理健康等社會議題</li>
+                    <li><strong>平衡發展：</strong>將韓流視為文化交流的一部分,而非唯一的文化來源</li>
+                </ul>
+                <p>
+                    唯有在<strong>欣賞與反思</strong>之間取得平衡,我們才能真正從韓流現象中獲得啟發,
+                    並建立起更加健康、多元、包容的文化環境。
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2024 K-PULSE. 探索韓流文化的深度與廣度.</p>
+    </footer>
+
+    <!-- 回到頂部按鈕 -->
+    <button class="back-to-top" id="backToTop" aria-label="回到頂部">
+        ↑
+    </button>
+
+    <script>
+        // 平滑滾動到章節
+        document.querySelectorAll('.chapter-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // 滾動時高亮當前章節
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('.chapter');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.chapter-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // 回到頂部按鈕顯示/隱藏
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // 回到頂部功能
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    
+    <!-- 使用統一的主題切換腳本 -->
+    <script src="js/script.js"></script>
+</body>
+</html>

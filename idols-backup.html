@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="探索 JYP 旗下的人氣偶像團體，包含 TWICE、Stray Kids、ITZY、NMIXX 等完整資料" />
+  <meta name="theme-color" content="#ff6fa3" />
+  <title>JYP 偶像 — K-PULSE</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">K-PULSE</a>
+      <nav class="main-nav">
+        <a href="index.html">首頁</a>
+        <a href="idols.html">JYP 偶像</a>
+        <a href="hallyu.html">韓流探討</a>
+        <a href="about.html">關於我</a>
+      </nav>
+      <button id="theme-toggle-2" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 style="text-align:center;">JYP 偶像</h1>
+
+      <div class="search-row" style="max-width:600px;margin-left:auto;margin-right:auto;">
+        <input id="idol-search" type="search" placeholder="搜尋團體或關鍵字，例如: TWICE" />
+      </div>
+    </div>
+
+    <section class="idols-grid" style="padding: 0 var(--space-lg); max-width: 100%;" aria-live="polite">
+      <article id="twice" class="idol-card" data-name="twice" data-tags="pop,bright,international">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/twice-400.webp 400w, images/optimized/twice-800.webp 800w, images/optimized/twice-1200.webp 1200w" sizes="(max-width:480px) 100vw, 160px">
+          <img loading="lazy" src="images/highres/twice-hd.svg" srcset="images/optimized/twice-400.jpg 400w, images/optimized/twice-800.jpg 800w, images/optimized/twice-1200.jpg 1200w" sizes="(max-width:480px) 100vw, 160px" alt="TWICE" />
+        </picture>
+        <div class="card-body">
+          <h3>TWICE</h3>
+          <p>出道日：2015 / 粉絲名：ONCE。風格：流行、明亮的概念與舞台編排。</p>
+          <a href="twice.html">詳情</a>
+        </div>
+      </article>
+
+      <article id="straykids" class="idol-card" data-name="stray kids" data-tags="hiphop,creative,3racha">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/straykids-400.webp 400w, images/optimized/straykids-800.webp 800w, images/optimized/straykids-1200.webp 1200w" sizes="(max-width:480px) 100vw, 160px">
+          <img loading="lazy" src="images/highres/straykids-hd.svg" srcset="images/optimized/straykids-400.jpg 400w, images/optimized/straykids-800.jpg 800w, images/optimized/straykids-1200.jpg 1200w" sizes="(max-width:480px) 100vw, 160px" alt="Stray Kids" />
+        </picture>
+        <div class="card-body">
+          <h3>Stray Kids</h3>
+          <p>出道日：2018 / 粉絲名：STAY。特色：內部創作團隊 3RACHA，強烈自我風格。</p>
+          <a href="straykids.html">詳情</a>
+        </div>
+      </article>
+
+      <article id="itzy" class="idol-card" data-name="itzy" data-tags="dance,confident">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/itzy-400.webp 400w, images/optimized/itzy-800.webp 800w, images/optimized/itzy-1200.webp 1200w" sizes="(max-width:480px) 100vw, 160px">
+          <img loading="lazy" src="images/highres/itzy-hd.svg" srcset="images/optimized/itzy-400.jpg 400w, images/optimized/itzy-800.jpg 800w, images/optimized/itzy-1200.jpg 1200w" sizes="(max-width:480px) 100vw, 160px" alt="ITZY" />
+        </picture>
+        <div class="card-body">
+          <h3>ITZY</h3>
+          <p>出道日：2019 / 粉絲名：MIDZY。風格：自信、女生力量、強烈節奏感。</p>
+          <a href="itzy.html">詳情</a>
+        </div>
+      </article>
+
+      <article id="nmixx" class="idol-card" data-name="nmixx" data-tags="experimental,versatile">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/nmixx-400.webp 400w, images/optimized/nmixx-800.webp 800w, images/optimized/nmixx-1200.webp 1200w" sizes="(max-width:480px) 100vw, 160px">
+          <img loading="lazy" src="images/highres/nmixx-hd.svg" srcset="images/optimized/nmixx-400.jpg 400w, images/optimized/nmixx-800.jpg 800w, images/optimized/nmixx-1200.jpg 1200w" sizes="(max-width:480px) 100vw, 160px" alt="NMIXX" />
+        </picture>
+        <div class="card-body">
+          <h3>NMIXX</h3>
+          <p>出道日：2022 / 粉絲名：NSWER。風格：多變、實驗性概念。</p>
+          <a href="nmixx.html">詳情</a>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© K-PULSE</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/features.js"></script>
+</body>
+</html>

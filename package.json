@@ -1,0 +1,14 @@
+{
+  "name": "k-pulse",
+  "version": "1.0.0",
+  "description": "K-PULSE static site — image optimization helper",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

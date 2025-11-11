@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="探索 JYP 旗下的人氣偶像團體，包含 TWICE、Stray Kids、ITZY、NMIXX、2PM、DAY6、NiziU 等完整資料" />
+  <meta name="theme-color" content="#ff6fa3" />
+  <title>JYP 偶像 — K-PULSE</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* 偶像團體頁面專用樣式 */
+    .idols-main {
+      padding: var(--space-xl) 0;
+      background: var(--bg);
+    }
+
+    .idols-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      padding: 0 var(--space-md);
+    }
+
+    .idols-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+      padding: 0 var(--space-md);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--space-md);
+      border: 2px solid var(--primary);
+      border-radius: 50px;
+      font-size: 1rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 111, 163, 0.1);
+    }
+
+    .idols-grid-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 600px), 1fr));
+      gap: var(--space-xl);
+    }
+
+    .idol-card-enhanced {
+      background: var(--surface);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .idol-card-enhanced:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .idol-header-section {
+      padding: var(--space-lg);
+      border-bottom: 2px solid var(--bg);
+    }
+
+    .idol-title-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .idol-title-row h2 {
+      font-size: 2rem;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .group-label {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: white;
+    }
+
+    .group-label.male {
+      background: var(--primary);
+    }
+
+    .stats-row {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .idol-content-section {
+      padding: var(--space-lg);
+      flex: 1;
+    }
+
+    .info-block {
+      margin-bottom: var(--space-md);
+      line-height: 1.8;
+    }
+
+    .info-block strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .achievements-section {
+      margin: var(--space-lg) 0;
+    }
+
+    .achievements-section h4 {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-sm);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .achievements-section h4::before {
+      content: "🏆";
+      font-size: 1.3rem;
+    }
+
+    .achievements-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .achievements-list li {
+      padding: var(--space-sm) 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .achievements-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .discography-section {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 2px solid var(--bg);
+    }
+
+    .discography-section h4 {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-md);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .discography-section h4::before {
+      content: "🎵";
+      font-size: 1.3rem;
+    }
+
+    .songs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .song-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+    }
+
+    .song-badge:hover {
+      transform: scale(1.05);
+    }
+
+    .mv-section {
+      margin-top: var(--space-lg);
+      padding: var(--space-md);
+      background: linear-gradient(135deg, rgba(255, 111, 163, 0.08) 0%, rgba(138, 99, 210, 0.08) 100%);
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+    }
+
+    .mv-section h4 {
+      color: var(--text);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .mv-section h4::before {
+      content: "🎬";
+      font-size: 1.3rem;
+    }
+
+    .mv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.75rem;
+      background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .mv-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+      background: linear-gradient(135deg, #FF1a1a 0%, #DD0000 100%);
+    }
+
+    .mv-link::before {
+      content: '▶';
+      font-size: 1.2rem;
+    }
+
+    .mv-info {
+      margin-top: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .mv-embed {
+      margin-top: var(--space-md);
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 比例 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .mv-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: var(--space-xl);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .idols-grid-container {
+        grid-template-columns: 1fr;
+      }
+
+      .idol-title-row h2 {
+        font-size: 1.5rem;
+      }
+
+      .stats-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">K-PULSE</a>
+      <nav class="main-nav">
+        <a href="index.html">首頁</a>
+        <a href="idols.html">JYP 偶像</a>
+        <a href="hallyu.html">韓流探討</a>
+        <a href="about.html">關於我</a>
+      </nav>
+      <button id="theme-toggle-2" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="idols-main">
+    <div class="idols-header">
+      <h1>JYP 偶像團體</h1>
+      <p style="color: var(--text-secondary); font-size: 1.1rem;">詳細資料來源：維基百科</p>
+    </div>
+
+    <div class="search-container">
+      <input 
+        type="search" 
+        class="search-input" 
+        id="idolSearch" 
+        placeholder="搜尋團體名稱、成員或關鍵字..." 
+        aria-label="搜尋偶像團體"
+      />
+    </div>
+
+    <div class="idols-grid-container" id="idolsGrid">
+      <!-- TWICE -->
+      <article class="idol-card-enhanced" data-keywords="twice 트와이스 나연 정연 모모 사나 지효 미나 다현 채영 쯔위 nayeon jeongyeon momo sana jihyo mina dahyun chaeyoung tzuyu once 2015 女團">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h2>TWICE</h2>
+            <span class="group-label">女團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 9位成員</span>
+            <span class="stat-badge">📅 2015.10.20 出道</span>
+            <span class="stat-badge">💿 14張韓語專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>娜璉（隊長）、定延、Momo、Sana、志效、Mina、多賢、彩瑛、子瑜
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>ONCE（意為粉絲只要看一眼就會愛上TWICE）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>TWICE 是韓國最具代表性的女子團體之一，以明亮可愛的形象和朗朗上口的歌曲聞名全球。團名「TWICE」意為通過耳朵和眼睛讓人感動兩次。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>韓日兩國累計專輯銷量突破1000萬張（2020年）</li>
+              <li>首個登上Billboard 200前十的K-POP女團</li>
+              <li>〈TT〉MV觀看次數突破7億，創YouTube破億最快紀錄</li>
+              <li>日本出道首週銷量創外國女藝人最高紀錄</li>
+              <li>連續三年蓋洛普韓國民調十大藝人第二名（2016-2018）</li>
+              <li>獲韓國大眾文化藝術獎國務總理表彰（2017年）</li>
+              <li>第68回NHK紅白歌合戰首次出演（2017年）</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">Like OOH-AHH</span>
+              <span class="song-badge">Cheer Up</span>
+              <span class="song-badge">TT</span>
+              <span class="song-badge">Likey</span>
+              <span class="song-badge">What is Love?</span>
+              <span class="song-badge">FANCY</span>
+              <span class="song-badge">Feel Special</span>
+              <span class="song-badge">I CAN'T STOP ME</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=zqorlX_5oHQ" target="_blank" rel="noopener noreferrer" class="mv-link">
+              ME+YOU
+            </a>
+            <p class="mv-info">📅 2025年10月 | 特別專輯《TEN: The Story Goes On》主打曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/zqorlX_5oHQ?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="TWICE - ME+YOU">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Stray Kids -->
+      <article class="idol-card-enhanced" data-keywords="stray kids 스트레이키즈 방찬 리노 창빈 현진 한 필릭스 승민 아이엔 bang chan lee know changbin hyunjin han felix seungmin i.n stay 2018 男團 3racha">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h2>Stray Kids</h2>
+            <span class="group-label male">男團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 8位成員</span>
+            <span class="stat-badge">📅 2018.03.25 出道</span>
+            <span class="stat-badge">💿 4張正規專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>方燦（Bang Chan，隊長）、Lee Know、彰彬、鉉辰、HAN、Felix、昇玟、I.N
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>STAY（意為永遠陪伴在身邊）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>Stray Kids 以強烈的自製音樂和獨特風格著稱。團內小分隊3RACHA（方燦、彰彬、HAN）負責大部分歌曲創作，展現高度音樂自主性。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>JYP娛樂首個百萬銷量藝人，《NOEASY》突破110萬張（2021年）</li>
+              <li>連續四張專輯登上Billboard 200冠軍（韓國團體第三組）</li>
+              <li>《Kingdom》競演節目冠軍（2021年）</li>
+              <li>《5-STAR》創韓國流行音樂史上最高預售量513萬張（2023年）</li>
+              <li>首張正規專輯《GO生》全球銷量突破百萬張</li>
+              <li>〈God's Menu〉MV突破5億觀看（2025年）</li>
+              <li>全員續約五年（2024年7月）</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">District 9</span>
+              <span class="song-badge">MIROH</span>
+              <span class="song-badge">God's Menu</span>
+              <span class="song-badge">Back Door</span>
+              <span class="song-badge">Thunderous</span>
+              <span class="song-badge">MANIAC</span>
+              <span class="song-badge">S-Class</span>
+              <span class="song-badge">樂(LALALALA)</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=RLQav6te1e8" target="_blank" rel="noopener noreferrer" class="mv-link">
+              Walkin On Water
+            </a>
+            <p class="mv-info">📅 2024年12月 | 正規2輯《HOP》主打曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/RLQav6te1e8?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="Stray Kids - Walkin On Water">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ITZY -->
+      <article class="idol-card-enhanced" data-keywords="itzy 있지 예지 리아 류진 채령 유나 yeji lia ryujin chaeryeong yuna midzy 2019 女團">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h2>ITZY</h2>
+            <span class="group-label">女團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 5位成員</span>
+            <span class="stat-badge">📅 2019.02.12 出道</span>
+            <span class="stat-badge">💿 10張迷你專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>禮志（隊長）、Lia、留眞、彩領、有娜
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>MIDZY（韓語「믿다」信任之意）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>ITZY 以「自信」和「女生力量」為核心概念，強調「做自己」的訊息。她們的歌曲充滿能量，舞蹈編排力量十足，深受年輕世代喜愛。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>出道9天獲首個音樂節目一位（韓國女團最快記錄）</li>
+              <li>出道曲累計獲得9個音樂節目一位（當時女團最高記錄）</li>
+              <li>〈DALLA DALLA〉57天破億（YouTube觀看）</li>
+              <li>首張正規專輯《CRAZY IN LOVE》登上Billboard 200第11位</li>
+              <li>〈WANNABE〉獲美國唱片工業協會（RIAA）金獎認證（2023年）</li>
+              <li>2025年全員續約，成員禮志SOLO出道</li>
+              <li>首組在台北大巨蛋擔任開球嘉賓的K-POP女團（2025年）</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">DALLA DALLA</span>
+              <span class="song-badge">ICY</span>
+              <span class="song-badge">WANNABE</span>
+              <span class="song-badge">Not Shy</span>
+              <span class="song-badge">In the Morning</span>
+              <span class="song-badge">LOCO</span>
+              <span class="song-badge">SNEAKERS</span>
+              <span class="song-badge">CAKE</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=piSq8IioghU" target="_blank" rel="noopener noreferrer" class="mv-link">
+              TUNNEL VISION
+            </a>
+            <p class="mv-info">📅 2025年11月 | 最新回歸曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/piSq8IioghU?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="ITZY - TUNNEL VISION">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NMIXX -->
+      <article class="idol-card-enhanced" data-keywords="nmixx 엔믹스 릴리 해원 설윤 배이 지우 규진 lily haewon sullyoon bae jiwoo kyujin nswer 2022 女團">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h2>NMIXX</h2>
+            <span class="group-label">女團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 6位成員</span>
+            <span class="stat-badge">📅 2022.02.22 出道</span>
+            <span class="stat-badge">💿 1張正規專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>Lily、Haewon（隊長）、Sullyoon、Bae、Jiwoo、Kyujin
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>NSWER（Answer的變形，代表粉絲是NMIXX的答案）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>NMIXX 以「MIXX」音樂概念著稱，結合多種音樂風格於一首歌曲中。她們擁有出色的現場演唱實力，被稱為「全員主唱」團體。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>首張單曲《AD MARE》首週銷量突破20萬張，獲Hanteo Chart銀獎</li>
+              <li>〈O.O〉MV發布24小時觀看1970萬次</li>
+              <li>2023年首個音樂節目一位（〈Love Me Like This〉）</li>
+              <li>迷你二輯《Fe3O4: BREAK》連奪四台音樂節目冠軍</li>
+              <li>首組登上台北大巨蛋的K-POP團體（2025年4月）</li>
+              <li>首張正規專輯《Blue Valentine》登上Melon榜TOP100一位</li>
+              <li>達成Realtime All-Kill（即時音源全榜一位，2025年10月）</li>
+              <li>NPR Tiny Desk Korea 演出無後製、無監聽耳機完美演唱</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">O.O</span>
+              <span class="song-badge">DICE</span>
+              <span class="song-badge">Love Me Like This</span>
+              <span class="song-badge">Party O'Clock</span>
+              <span class="song-badge">DASH</span>
+              <span class="song-badge">See that?</span>
+              <span class="song-badge">Blue Valentine</span>
+              <span class="song-badge">ADORE U</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=EmeW6li6bbo" target="_blank" rel="noopener noreferrer" class="mv-link">
+              Blue Valentine
+            </a>
+            <p class="mv-info">📅 2025年10月 | 正規1輯《Blue Valentine》主打曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/EmeW6li6bbo?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="NMIXX - Blue Valentine">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2PM -->
+      <article class="idol-card-enhanced" data-keywords="2pm 투피엠 taecyeon 玉澤演 nichkhun 尼坤 junho 李俊昊 jun.k 金旼俊 wooyoung 張祐榮 chansung 黃燦盛 獸偶像 野獸派 hottest again again heartbeat hands up my house gentleman 第二代 二代團">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h3>2PM</h3>
+            <span class="group-label male">男團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 6位成員</span>
+            <span class="stat-badge">📅 2008.09.04 出道</span>
+            <span class="stat-badge">💿 7張正規專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>Jun. K（金旼俊）、Nichkhun（尼坤）、玉澤演、張祐榮、李俊昊、黃燦盛
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>HOTTEST（最熱的人，代表粉絲對2PM的熱情支持）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>2PM 是韓國第二代男團代表，以「獸偶像」形象著稱，展現強烈的男性魅力與野獸派舞台風格。他們擅長表演性感、力量型的舞蹈，並在日本市場取得巨大成功。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>2010、2011年榮登韓國福布斯名人榜第11名及第5名</li>
+              <li>日本出道Showcase創2.5萬人參加，歷代最高紀錄（2010年）</li>
+              <li>日本首張專輯《Republic of 2PM》獲Oricon榜首（2011年）</li>
+              <li>2013年首次登上東京巨蛋舉行演唱會</li>
+              <li>《Again & Again》獲KBS歌謠盛典年度最佳歌曲獎（2009年）</li>
+              <li>全員與JYP續約兩次（2015、2018），成為公司最資深團體</li>
+              <li>《My House》2020年逆襲音源榜，成為三大逆襲曲之一</li>
+              <li>2021年完整體回歸，時隔5年發行正規七輯《MUST》</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">10分滿分的10分</span>
+              <span class="song-badge">Again & Again</span>
+              <span class="song-badge">Heartbeat</span>
+              <span class="song-badge">Without U</span>
+              <span class="song-badge">Hands Up</span>
+              <span class="song-badge">整天想著你</span>
+              <span class="song-badge">My House</span>
+              <span class="song-badge">Make It</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=jtzxa8__jyQ" target="_blank" rel="noopener noreferrer" class="mv-link">
+              Make It
+            </a>
+            <p class="mv-info">📅 2021年06月 | 正規7輯《MUST》主打曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/jtzxa8__jyQ?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="2PM - Make It">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- DAY6 -->
+      <article class="idol-card-enhanced" data-keywords="day6 데이식스 sungjin 朴晟鎮 young k 姜永晛 wonpil 金元弼 dowoon 尹度云 jae 박제형 myday 樂團 樂隊 band every day6 happy shoot me congratulations zombie time of our life you were beautiful 逆襲曲">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h3>DAY6</h3>
+            <span class="group-label male">男子樂團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 4位成員</span>
+            <span class="stat-badge">📅 2015.09.07 出道</span>
+            <span class="stat-badge">💿 4張正規+9張迷你專輯</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>晟鎮（隊長、主唱、吉他手）、Young K（主唱、Rap、貝斯手）、元弼（主唱、鍵盤手）、度云（忙內、副唱、鼓手）
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>My Day（我的一天，來自團名DAY6的延伸，週六是與粉絲相處的日子）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>DAY6 是韓國少見的樂團型態偶像團體，成員同時擔任演奏與vocal。他們以全創作樂團著稱，所有成員皆參與作詞作曲，音樂風格橫跨搖滾、流行、抒情等多種類型。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>完成「Every DAY6」計畫，2017年每月發行新歌與演唱會（共12個月）</li>
+              <li>告示牌選為「2016年最佳韓國流行音樂專輯第二名」（DAYDREAM）</li>
+              <li>〈You Were Beautiful〉發行3年後逆襲，重回Melon榜單（2020年）</li>
+              <li>〈Zombie〉創自身音源最佳成績，登上Melon第4位（2020年）</li>
+              <li>〈HAPPY〉達成Perfect All Kill（PAK），為當年唯一男團（2024年）</li>
+              <li>時隔11年，韓國樂團再次達成PAK的成就</li>
+              <li>首個唱進高尺巨蛋的韓國樂團（2024年聖誕演唱會）</li>
+              <li>首次唱進首爾奧林匹克體操競技場，完成第三次世界巡迴演唱會（2025年5月）</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">Congratulations</span>
+              <span class="song-badge">You Were Beautiful</span>
+              <span class="song-badge">Shoot Me</span>
+              <span class="song-badge">Time of Our Life</span>
+              <span class="song-badge">Zombie</span>
+              <span class="song-badge">Where the sea sleeps</span>
+              <span class="song-badge">Welcome to the Show</span>
+              <span class="song-badge">HAPPY</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=EjeX4mtNTlo" target="_blank" rel="noopener noreferrer" class="mv-link">
+              HAPPY
+            </a>
+            <p class="mv-info">📅 2024年03月 | 迷你8輯《Fourever》收錄曲（逆襲神曲）</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/EjeX4mtNTlo?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="DAY6 - HAPPY">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NiziU -->
+      <article class="idol-card-enhanced" data-keywords="niziu ニジュー mako 山口真子 rio 花橋梨緒 maya 勝村摩耶 riku 大江梨久 ayaka 新井彩花 mayuka 小合麻由佳 rima 橫井里茉 miihi 鈴野未光 nina 牧野仁菜 withu nizi project jyp 日本 make you happy step and a step 紅白 紅白歌合戰 朴軫永">
+        <div class="idol-header-section">
+          <div class="idol-title-row">
+            <h3>NiziU</h3>
+            <span class="group-label female">女團</span>
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">👥 9位成員</span>
+            <span class="stat-badge">📅 2020.12.02 出道（日本）</span>
+            <span class="stat-badge">💿 2張專輯+5張單曲</span>
+          </div>
+        </div>
+        <div class="idol-content-section">
+          <p class="info-block">
+            <strong>成員：</strong>MAKO（隊長）、RIO、MAYA、RIKU、AYAKA、MAYUKA、RIMA、MIIHI、NINA
+          </p>
+          <p class="info-block">
+            <strong>粉絲名：</strong>WithU（與U同在，U代表粉絲，意指永遠與粉絲同行）
+          </p>
+          <p class="info-block">
+            <strong>簡介：</strong>NiziU 是透過《Nizi Project》選秀節目誕生的日本女子團體，由JYP娛樂與日本索尼音樂合作打造。團體以明亮、可愛的形象和易於學習的舞蹈深受大眾喜愛，在日韓均有活動。
+          </p>
+
+          <div class="achievements-section">
+            <h4>主要成就</h4>
+            <ul class="achievements-list">
+              <li>出道29天登上NHK紅白歌合戰，打破女團最快紀錄（2020年）</li>
+              <li>連續四年參加NHK紅白歌合戰（2020-2023年）</li>
+              <li>〈Make you happy〉縄跳び舞（跳繩舞）在TikTok全球爆紅</li>
+              <li>出道單曲《Step and a step》首週銷量31.1萬張</li>
+              <li>首張專輯《U》首週銷量17.9萬張，登Oricon榜首</li>
+              <li>2023年韓國出道，首組在Show Champion獲一位的外國女團</li>
+              <li>巡迴演唱會唱進東京巨蛋、大阪巨蛋、千葉海洋球場等大型場館</li>
+              <li>獲日本唱片大獎、MTV日本音樂錄影帶大獎等多項榮譽</li>
+            </ul>
+          </div>
+
+          <div class="discography-section">
+            <h4>代表作品</h4>
+            <div class="songs-tags">
+              <span class="song-badge">Make you happy</span>
+              <span class="song-badge">Step and a step</span>
+              <span class="song-badge">Take a picture</span>
+              <span class="song-badge">Poppin' Shakin'</span>
+              <span class="song-badge">Chopstick</span>
+              <span class="song-badge">CLAP CLAP</span>
+              <span class="song-badge">Paradise</span>
+              <span class="song-badge">HEARTRIS</span>
+            </div>
+          </div>
+
+          <div class="mv-section">
+            <h4>最新 M/V</h4>
+            <a href="https://www.youtube.com/watch?v=VfZgaG1qPHQ" target="_blank" rel="noopener noreferrer" class="mv-link">
+              LOVE LINE
+            </a>
+            <p class="mv-info">📅 2025年03月 | 韓語單曲2輯《LOVE LINE》主打曲</p>
+            <div class="mv-embed">
+              <iframe src="https://www.youtube.com/embed/VfZgaG1qPHQ?rel=0&modestbranding=1" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      title="NiziU - LOVE LINE">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div id="noResults" class="no-results" style="display: none;">
+      <p>😕 找不到符合搜尋條件的團體</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 K-PULSE | 資料來源：維基百科</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // 搜尋功能
+    const searchInput = document.getElementById('idolSearch');
+    const idolCards = document.querySelectorAll('.idol-card-enhanced');
+    const noResults = document.getElementById('noResults');
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase().trim();
+      let hasResults = false;
+
+      idolCards.forEach(card => {
+        const keywords = card.dataset.keywords.toLowerCase();
+        const shouldShow = keywords.includes(searchTerm) || searchTerm === '';
+        
+        card.style.display = shouldShow ? 'flex' : 'none';
+        if (shouldShow) hasResults = true;
+      });
+
+      noResults.style.display = hasResults ? 'none' : 'block';
+    });
+
+    // 平滑滾動動畫
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    idolCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="K-PULSE - JYP 娛樂藝人與韓流文化研究中心，深入探索 TWICE、Stray Kids、ITZY、NMIXX 等人氣團體" />
+  <meta name="theme-color" content="#ff6fa3" />
+  <title>K-PULSE — JYP 韓流文化</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+  <div class="container nav-container">
+    <a class="logo" href="index.html">K-PULSE</a>
+    <nav class="main-nav">
+      <a href="index.html">首頁</a>
+      <a href="idols.html">JYP 偶像</a>
+      <a href="hallyu.html">韓流探討</a>
+      <a href="about.html">關於我</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </button>
+  </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner container">
+          <div class="hero-text">
+            <h1>歡迎來到 K-PULSE</h1>
+            <p>這裡是 JYP 娛樂藝人與韓流文化研究中心。從自信的 ITZY 到全球現象級的 Stray Kids，我們將帶您一同追隨這股席捲全球的 K-pop 脈動。</p>
+            <a class="btn" href="idols.html">探索 JYP 偶像</a>
+          </div>
+          <div class="hero-media">
+            <!-- 簡易輪播（JS 會操作 .slide） -->
+            <div class="carousel" role="region" aria-roledescription="carousel" aria-label="網站焦點輪播">
+              <button class="carousel-btn prev" aria-label="上一張">‹</button>
+              <div class="carousel-track" aria-live="polite">
+                <div class="slide">
+                  <picture>
+                    <source type="image/webp" srcset="images/optimized/straykids-400.webp 400w, images/optimized/straykids-800.webp 800w, images/optimized/straykids-1200.webp 1200w, images/optimized/straykids-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
+                    <!-- fallback src points to existing highres SVG so page shows before optimization runs -->
+                    <img loading="lazy" src="images/highres/straykids-hd.svg" srcset="images/optimized/straykids-400.jpg 400w, images/optimized/straykids-800.jpg 800w, images/optimized/straykids-1200.jpg 1200w, images/optimized/straykids-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="Stray Kids 演唱會示意圖">
+                  </picture>
+                </div>
+                <div class="slide">
+                  <picture>
+                    <source type="image/webp" srcset="images/optimized/twice-400.webp 400w, images/optimized/twice-800.webp 800w, images/optimized/twice-1200.webp 1200w, images/optimized/twice-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/highres/twice-hd.svg" srcset="images/optimized/twice-400.jpg 400w, images/optimized/twice-800.jpg 800w, images/optimized/twice-1200.jpg 1200w, images/optimized/twice-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="TWICE 圖片示意">
+                  </picture>
+                </div>
+                <div class="slide">
+                  <picture>
+                    <source type="image/webp" srcset="images/optimized/itzy-400.webp 400w, images/optimized/itzy-800.webp 800w, images/optimized/itzy-1200.webp 1200w, images/optimized/itzy-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/highres/itzy-hd.svg" srcset="images/optimized/itzy-400.jpg 400w, images/optimized/itzy-800.jpg 800w, images/optimized/itzy-1200.jpg 1200w, images/optimized/itzy-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="ITZY 圖片示意">
+                  </picture>
+                </div>
+              </div>
+              <button class="carousel-btn next" aria-label="下一張">›</button>
+              <div class="carousel-dots" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- About JYP Entertainment -->
+    <section class="about-jyp">
+      <div class="container">
+        <h2>關於 JYP Entertainment</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>JYP娛樂（JYP Entertainment）成立於1997年，由韓國知名音樂製作人<strong>朴軫永</strong>創立，是韓國三大娛樂公司之一。</p>
+            <p>公司以打造<strong>「有實力的藝人」</strong>為核心理念，不僅注重藝人的才華培養，更強調品德教育。JYP旗下藝人包括Wonder Girls、2PM、TWICE、Stray Kids、ITZY、NMIXX等知名團體，在全球K-pop市場擁有巨大影響力。</p>
+            <p>特別是<strong>TWICE</strong>被譽為「國民女團」，而<strong>Stray Kids</strong>則以自製音樂和實驗性風格在全球獲得高度評價，多次登上Billboard 200榜首，成為JYP首位百萬銷量藝人。</p>
+          </div>
+          <div class="about-achievements">
+            <h3>主要成就</h3>
+            <ul>
+              <li>🏆 TWICE：連續三年登上蓋洛普韓國民調十大藝人榜單</li>
+              <li>📀 Stray Kids：首張百萬銷量專輯創JYP歷史紀錄</li>
+              <li>🌍 多次獲得Mnet亞洲音樂大獎（MAMA）、甜瓜音樂獎等殊榮</li>
+              <li>🎤 旗下藝人在日本、美國等海外市場表現卓越</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="statistics">
+      <div class="container">
+        <h2>令人驚艷的成就</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">10億+</div>
+            <div class="stat-label">TWICE Spotify總串流量</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">500萬+</div>
+            <div class="stat-label">Stray Kids 專輯預售量</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">4次</div>
+            <div class="stat-label">Stray Kids Billboard 200冠軍</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">9年</div>
+            <div class="stat-label">TWICE全員續約創JYP歷史</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JYP Idols preview -->
+    <section class="idols-preview container">
+      <h2>JYP 娛樂旗下團體</h2>
+      <p class="section-intro">探索 JYP Entertainment 旗下所有活躍團體，從第二代到第五代，每個團體都有獨特的音樂風格與魅力。</p>
+      
+      <!-- ONE Label -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge">ONE Label</span></h3>
+        <div class="grid idols-grid">
+          <div class="idol-card" data-name="2PM">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">2PM</span>
+              <span class="placeholder-icon">🎤</span>
+            </div>
+            <div class="card-body">
+              <h4>2PM <span class="debut-year">2008</span></h4>
+              <p class="group-info">
+                <span class="member-count">6名成員</span> · <span class="fandom-name">HOTTEST</span>
+              </p>
+              <p class="group-desc">「野獸偶像」，以強烈男性魅力和高難度表演著稱，韓國第二代男團代表之一</p>
+            </div>
+          </div>
+
+          <a class="idol-card" href="straykids.html" data-name="Stray Kids" aria-label="Stray Kids 頁面">
+            <picture>
+              <source type="image/webp" srcset="images/optimized/straykids-400.webp 400w, images/optimized/straykids-800.webp 800w" sizes="(max-width:800px) 100vw, 200px">
+              <img loading="lazy" src="images/optimized/straykids-400.jpg" srcset="images/optimized/straykids-400.jpg 400w, images/optimized/straykids-800.jpg 800w" sizes="(max-width:800px) 100vw, 200px" alt="Stray Kids 團體照">
+            </picture>
+            <div class="card-body">
+              <h4>Stray Kids <span class="debut-year">2018</span></h4>
+              <p class="group-info">
+                <span class="member-count">8名成員</span> · <span class="fandom-name">STAY</span>
+              </p>
+              <p class="group-desc">以自製音樂與實驗性風格征服全球，3RACHA 創作小分隊打造獨特音樂色彩</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- BLU:M -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge">BLU:M</span></h3>
+        <div class="grid idols-grid">
+          <a class="idol-card" href="itzy.html" data-name="ITZY" aria-label="ITZY 頁面">
+            <picture>
+              <source type="image/webp" srcset="images/optimized/itzy-400.webp 400w, images/optimized/itzy-800.webp 800w" sizes="(max-width:800px) 100vw, 200px">
+              <img loading="lazy" src="images/optimized/itzy-400.jpg" srcset="images/optimized/itzy-400.jpg 400w, images/optimized/itzy-800.jpg 800w" sizes="(max-width:800px) 100vw, 200px" alt="ITZY 團體照">
+            </picture>
+            <div class="card-body">
+              <h4>ITZY <span class="debut-year">2019</span></h4>
+              <p class="group-info">
+                <span class="member-count">5名成員</span> · <span class="fandom-name">MIDZY</span>
+              </p>
+              <p class="group-desc">以「DALLA DALLA」出道即獲九冠王，Girl Crush風格與自信態度席捲全球</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- STRIDE -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge">STRIDE</span></h3>
+        <div class="grid idols-grid">
+          <a class="idol-card" href="twice.html" data-name="TWICE" aria-label="TWICE 頁面">
+            <picture>
+              <source type="image/webp" srcset="images/optimized/twice-400.webp 400w, images/optimized/twice-800.webp 800w" sizes="(max-width:800px) 100vw, 200px">
+              <img loading="lazy" src="images/optimized/twice-400.jpg" srcset="images/optimized/twice-400.jpg 400w, images/optimized/twice-800.jpg 800w" sizes="(max-width:800px) 100vw, 200px" alt="TWICE 團體照">
+            </picture>
+            <div class="card-body">
+              <h4>TWICE <span class="debut-year">2015</span></h4>
+              <p class="group-info">
+                <span class="member-count">9名成員</span> · <span class="fandom-name">ONCE</span>
+              </p>
+              <p class="group-desc">「國民女團」，以甜美風格與多首熱門曲目稱霸韓日市場，全球粉絲無數</p>
+            </div>
+          </a>
+
+          <div class="idol-card" data-name="KickFlip">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">KickFlip</span>
+              <span class="placeholder-icon">🛹</span>
+            </div>
+            <div class="card-body">
+              <h4>KickFlip <span class="debut-year">2025</span></h4>
+              <p class="group-info">
+                <span class="member-count">7名成員</span> · <span class="fandom-name">WEFLIP</span>
+              </p>
+              <p class="group-desc">JYP 2025年最新男團，充滿活力與年輕氣息的新生代代表</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SQU4D -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge">SQU4D</span></h3>
+        <div class="grid idols-grid">
+          <a class="idol-card" href="nmixx.html" data-name="NMIXX" aria-label="NMIXX 頁面">
+            <picture>
+              <source type="image/webp" srcset="images/optimized/nmixx-400.webp 400w, images/optimized/nmixx-800.webp 800w" sizes="(max-width:800px) 100vw, 200px">
+              <img loading="lazy" src="images/optimized/nmixx-400.jpg" srcset="images/optimized/nmixx-400.jpg 400w, images/optimized/nmixx-800.jpg 800w" sizes="(max-width:800px) 100vw, 200px" alt="NMIXX 團體照">
+            </picture>
+            <div class="card-body">
+              <h4>NMIXX <span class="debut-year">2022</span></h4>
+              <p class="group-info">
+                <span class="member-count">6名成員</span> · <span class="fandom-name">NSWER</span>
+              </p>
+              <p class="group-desc">以「MIXX POP」獨創音樂風格挑戰傳統，展現實力派新生代女團魅力</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Studio J -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge">Studio J</span></h3>
+        <div class="grid idols-grid">
+          <div class="idol-card" data-name="DAY6">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">DAY6</span>
+              <span class="placeholder-icon">🎸</span>
+            </div>
+            <div class="card-body">
+              <h4>DAY6 <span class="debut-year">2015</span></h4>
+              <p class="group-info">
+                <span class="member-count">4名成員</span> · <span class="fandom-name">MY DAY</span>
+              </p>
+              <p class="group-desc">全能樂隊，成員全員作詞作曲，「HAPPY」達成 Perfect All-Kill，韓國樂團史上第一</p>
+            </div>
+          </div>
+
+          <div class="idol-card" data-name="Xdinary Heroes">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">Xdinary Heroes</span>
+              <span class="placeholder-icon">🎸</span>
+            </div>
+            <div class="card-body">
+              <h4>Xdinary Heroes <span class="debut-year">2021</span></h4>
+              <p class="group-info">
+                <span class="member-count">6名成員</span> · <span class="fandom-name">VILLAINS</span>
+              </p>
+              <p class="group-desc">搖滾樂隊，結合 K-pop 與搖滾元素，展現新世代樂團風貌</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 海外團體 -->
+      <div class="label-section">
+        <h3 class="label-title"><span class="label-badge international">海外團體</span></h3>
+        <div class="grid idols-grid">
+          <div class="idol-card" data-name="NiziU">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">NiziU</span>
+              <span class="placeholder-icon">🌸</span>
+            </div>
+            <div class="card-body">
+              <h4>NiziU <span class="debut-year">2020 · 日本</span></h4>
+              <p class="group-info">
+                <span class="member-count">9名成員</span> · <span class="fandom-name">WithU</span>
+              </p>
+              <p class="group-desc">JYP 與 Sony Music 日本合作企劃，《Nizi Project》選秀誕生的超人氣女團</p>
+            </div>
+          </div>
+
+          <div class="idol-card" data-name="NEXZ">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">NEXZ</span>
+              <span class="placeholder-icon">⚡</span>
+            </div>
+            <div class="card-body">
+              <h4>NEXZ <span class="debut-year">2024 · 日本</span></h4>
+              <p class="group-info">
+                <span class="member-count">7名成員</span> · <span class="fandom-name">NEX2Y</span>
+              </p>
+              <p class="group-desc">《Nizi Project Season 2》選秀男團，JYP 日本市場新力軍</p>
+            </div>
+          </div>
+
+          <div class="idol-card" data-name="VCHA">
+            <div class="group-image-placeholder">
+              <span class="placeholder-text">VCHA</span>
+              <span class="placeholder-icon">🇺🇸</span>
+            </div>
+            <div class="card-body">
+              <h4>VCHA <span class="debut-year">2024 · 美國</span></h4>
+              <p class="group-info">
+                <span class="member-count">4名成員</span>
+              </p>
+              <p class="group-desc">JYP USA 首個女團，瞄準北美市場的全球化戰略團體</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="groups-note">💡 <strong>注意</strong>：部分團體圖片將陸續更新。資料來源：維基百科</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© K-PULSE — 深入探索 JYP 與 K-pop 文化</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/features.js"></script>
+</body>
+</html>
