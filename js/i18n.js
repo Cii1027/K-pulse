@@ -159,6 +159,31 @@
       translateTimeline(t.timeline);
     }
     
+    // Idols 頁面
+    if (document.querySelector('.idols-page-header')) {
+      translateIdols(t.idols);
+    }
+    
+    // Hallyu 頁面
+    if (document.querySelector('.hallyu-header')) {
+      translateHallyu(t.hallyu);
+    }
+    
+    // About 頁面
+    if (document.querySelector('.about-header')) {
+      translateAbout(t.about);
+    }
+    
+    // 404 頁面
+    if (document.querySelector('.error-page')) {
+      translate404(t.error404);
+    }
+    
+    // 團體頁面
+    if (document.querySelector('.group-header')) {
+      translateGroup(t.group);
+    }
+    
     // 頁尾
     translateFooter(t.footer);
     
@@ -277,6 +302,78 @@
     if (backToTop) {
       backToTop.setAttribute('aria-label', common.back_to_top);
     }
+  }
+
+  // 翻譯 Idols 頁面
+  function translateIdols(idols) {
+    const title = document.querySelector('.idols-page-header h1');
+    const subtitle = document.querySelector('.idols-page-header p');
+    const searchInput = document.querySelector('#groupSearch');
+    
+    if (title) title.textContent = idols.title;
+    if (subtitle) subtitle.textContent = idols.subtitle;
+    if (searchInput) searchInput.setAttribute('placeholder', idols.search_placeholder);
+  }
+
+  // 翻譯 Hallyu 頁面
+  function translateHallyu(hallyu) {
+    const title = document.querySelector('.hallyu-header h1');
+    const subtitle = document.querySelector('.hallyu-header p');
+    
+    if (title) title.textContent = hallyu.title;
+    if (subtitle) subtitle.textContent = hallyu.subtitle;
+  }
+
+  // 翻譯 About 頁面
+  function translateAbout(about) {
+    const title = document.querySelector('.about-header h1');
+    const subtitle = document.querySelector('.about-header p');
+    const contactTitle = document.querySelector('.contact-section h2');
+    const nameLabel = document.querySelector('label[for="name"]');
+    const emailLabel = document.querySelector('label[for="email"]');
+    const subjectLabel = document.querySelector('label[for="subject"]');
+    const messageLabel = document.querySelector('label[for="message"]');
+    const submitBtn = document.querySelector('.contact-form button[type="submit"]');
+    
+    if (title) title.textContent = about.title;
+    if (subtitle) subtitle.textContent = about.subtitle;
+    if (contactTitle) contactTitle.textContent = about.contact_us;
+    if (nameLabel) nameLabel.textContent = about.your_name;
+    if (emailLabel) emailLabel.textContent = about.your_email;
+    if (subjectLabel) subjectLabel.textContent = about.subject;
+    if (messageLabel) messageLabel.textContent = about.message;
+    if (submitBtn && !submitBtn.disabled) submitBtn.textContent = about.send;
+  }
+
+  // 翻譯 404 頁面
+  function translate404(error404) {
+    const title = document.querySelector('.error-page h1');
+    const message = document.querySelector('.error-message');
+    const suggestion = document.querySelector('.error-suggestion');
+    const homeBtn = document.querySelector('.error-actions .btn:first-child');
+    const groupsBtn = document.querySelector('.error-actions .btn:last-child');
+    
+    if (title) title.innerHTML = error404.oops;
+    if (message) message.textContent = error404.message;
+    if (suggestion) suggestion.textContent = error404.suggestion;
+    if (homeBtn) homeBtn.textContent = error404.back_home;
+    if (groupsBtn) groupsBtn.textContent = error404.browse_groups;
+  }
+
+  // 翻譯團體頁面
+  function translateGroup(group) {
+    const overviewTitle = document.querySelector('h2:contains("團體簡介")');
+    const membersTitle = document.querySelector('h2:contains("成員介紹")');
+    const workTitle = document.querySelector('h2:contains("代表作品")');
+    
+    // 使用更通用的選擇器
+    const headings = document.querySelectorAll('h2');
+    headings.forEach(h2 => {
+      if (h2.textContent.includes('團體簡介')) h2.textContent = group.overview;
+      if (h2.textContent.includes('成員介紹')) h2.textContent = group.members;
+      if (h2.textContent.includes('代表作品')) h2.textContent = group.representative_work;
+      if (h2.textContent.includes('主要成就')) h2.textContent = group.achievements;
+    });
   }
 
   // 顯示語言切換提示
