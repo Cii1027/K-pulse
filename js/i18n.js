@@ -389,43 +389,173 @@
 
   // 翻譯 Idols 頁面
   function translateIdols(idols) {
-    const title = document.querySelector('.idols-page-header h1');
+    // 標題和搜尋
+    const title = document.querySelector('.idols-main h1, .idols-page-header h1');
     const subtitle = document.querySelector('.idols-page-header p');
-    const searchInput = document.querySelector('#groupSearch');
+    const searchInput = document.querySelector('#groupSearch, .search-input');
     
     if (title) title.textContent = idols.title;
     if (subtitle) subtitle.textContent = idols.subtitle;
     if (searchInput) searchInput.setAttribute('placeholder', idols.search_placeholder);
+    
+    // 標題（主要成就、代表作品、最新 M/V）
+    const achievementTitles = document.querySelectorAll('h4');
+    achievementTitles.forEach(h4 => {
+      if (h4.textContent.includes('主要成就')) h4.textContent = idols.main_achievements;
+      if (h4.textContent.includes('代表作品')) h4.textContent = idols.representative_works;
+      if (h4.textContent.includes('最新 M/V')) h4.textContent = idols.latest_mv;
+    });
+    
+    // 找不到結果訊息
+    const noResults = document.querySelector('.no-results p, .idols-main > p');
+    if (noResults && noResults.textContent.includes('找不到')) {
+      noResults.textContent = idols.no_results;
+    }
+    
+    // 資料來源
+    const dataSource = document.querySelector('.idols-main > p:last-child, footer p');
+    if (dataSource && dataSource.textContent.includes('資料來源')) {
+      dataSource.textContent = idols.data_source;
+    }
   }
 
   // 翻譯 Hallyu 頁面
   function translateHallyu(hallyu) {
-    const title = document.querySelector('.hallyu-header h1');
-    const subtitle = document.querySelector('.hallyu-header p');
+    const title = document.querySelector('.hallyu-hero h1, .hallyu-header h1');
+    const subtitle = document.querySelector('.hallyu-hero .subtitle, .hallyu-header p');
     
     if (title) title.textContent = hallyu.title;
     if (subtitle) subtitle.textContent = hallyu.subtitle;
+    
+    // 章節導航
+    const chapterNavTitle = document.querySelector('.chapter-nav h3');
+    if (chapterNavTitle) chapterNavTitle.textContent = hallyu.chapter_nav_title;
+    
+    // 章節標題
+    const chapters = document.querySelectorAll('.chapter h2');
+    if (chapters.length >= 4) {
+      if (chapters[0].textContent.includes('什麼是韓流')) chapters[0].textContent = hallyu.what_is_hallyu;
+      if (chapters[1].textContent.includes('K-pop 發展史')) chapters[1].textContent = hallyu.kpop_history;
+      if (chapters[2].textContent.includes('全球影響力')) chapters[2].textContent = hallyu.global_impact;
+      if (chapters[3].textContent.includes('未來趨勢')) chapters[3].textContent = hallyu.future_trends;
+    }
   }
 
   // 翻譯 About 頁面
   function translateAbout(about) {
-    const title = document.querySelector('.about-header h1');
-    const subtitle = document.querySelector('.about-header p');
-    const contactTitle = document.querySelector('.contact-section h2');
+    // 標題
+    const mainTitle = document.querySelector('main h1');
+    if (mainTitle) mainTitle.textContent = about.title;
+    
+    // 我們的使命
+    const missionTitle = document.querySelector('.about-section h2:first-of-type');
+    const missionDesc = document.querySelector('.about-section p:first-of-type');
+    if (missionTitle && missionTitle.textContent.includes('使命')) {
+      missionTitle.textContent = about.our_mission;
+    }
+    if (missionDesc && missionDesc.textContent.includes('K-PULSE 致力於')) {
+      missionDesc.textContent = about.mission_desc;
+    }
+    
+    // 網站特色
+    const featuresTitle = document.querySelectorAll('.about-section h2')[1];
+    if (featuresTitle && featuresTitle.textContent.includes('網站特色')) {
+      featuresTitle.textContent = about.features_title;
+    }
+    
+    const featureCards = document.querySelectorAll('.feature-card');
+    if (featureCards.length >= 4) {
+      const titles = featureCards[0].querySelectorAll('h3');
+      const descs = featureCards[0].querySelectorAll('p');
+      
+      if (titles[0]) titles[0].textContent = about.feature_comprehensive;
+      if (descs[0]) descs[0].textContent = about.feature_comprehensive_desc;
+      
+      if (featureCards[1]) {
+        const t = featureCards[1].querySelector('h3');
+        const d = featureCards[1].querySelector('p');
+        if (t) t.textContent = about.feature_design;
+        if (d) d.textContent = about.feature_design_desc;
+      }
+      
+      if (featureCards[2]) {
+        const t = featureCards[2].querySelector('h3');
+        const d = featureCards[2].querySelector('p');
+        if (t) t.textContent = about.feature_search;
+        if (d) d.textContent = about.feature_search_desc;
+      }
+      
+      if (featureCards[3]) {
+        const t = featureCards[3].querySelector('h3');
+        const d = featureCards[3].querySelector('p');
+        if (t) t.textContent = about.feature_culture;
+        if (d) d.textContent = about.feature_culture_desc;
+      }
+    }
+    
+    // 聯絡我們
+    const contactTitle = document.querySelectorAll('.about-section h2')[2];
+    const contactIntro = document.querySelectorAll('.about-section > p')[2];
+    if (contactTitle && contactTitle.textContent.includes('聯絡')) {
+      contactTitle.textContent = about.contact_us;
+    }
+    if (contactIntro && contactIntro.textContent.includes('任何問題')) {
+      contactIntro.textContent = about.contact_intro;
+    }
+    
+    // 表單標籤
     const nameLabel = document.querySelector('label[for="name"]');
     const emailLabel = document.querySelector('label[for="email"]');
     const subjectLabel = document.querySelector('label[for="subject"]');
     const messageLabel = document.querySelector('label[for="message"]');
-    const submitBtn = document.querySelector('.contact-form button[type="submit"]');
     
-    if (title) title.textContent = about.title;
-    if (subtitle) subtitle.textContent = about.subtitle;
-    if (contactTitle) contactTitle.textContent = about.contact_us;
-    if (nameLabel) nameLabel.textContent = about.your_name;
-    if (emailLabel) emailLabel.textContent = about.your_email;
-    if (subjectLabel) subjectLabel.textContent = about.subject;
-    if (messageLabel) messageLabel.textContent = about.message;
-    if (submitBtn && !submitBtn.disabled) submitBtn.textContent = about.send;
+    if (nameLabel) nameLabel.innerHTML = about.form_name + ' <span class="required">*</span>';
+    if (emailLabel) emailLabel.innerHTML = about.form_email + ' <span class="required">*</span>';
+    if (subjectLabel) subjectLabel.innerHTML = about.form_subject + ' <span class="required">*</span>';
+    if (messageLabel) messageLabel.innerHTML = about.form_message + ' <span class="required">*</span>';
+    
+    // 表單 placeholder
+    const nameInput = document.querySelector('#name');
+    const emailInput = document.querySelector('#email');
+    const messageInput = document.querySelector('#message');
+    
+    if (nameInput) nameInput.setAttribute('placeholder', about.form_name_placeholder);
+    if (emailInput) emailInput.setAttribute('placeholder', about.form_email_placeholder);
+    if (messageInput) messageInput.setAttribute('placeholder', about.form_message_placeholder);
+    
+    // 主旨選項
+    const subjectSelect = document.querySelector('#subject');
+    if (subjectSelect) {
+      const options = subjectSelect.querySelectorAll('option');
+      if (options[0]) options[0].textContent = about.subject_select;
+      if (options[1]) options[1].textContent = about.subject_feedback;
+      if (options[2]) options[2].textContent = about.subject_content;
+      if (options[3]) options[3].textContent = about.subject_cooperation;
+      if (options[4]) options[4].textContent = about.subject_technical;
+      if (options[5]) options[5].textContent = about.subject_other;
+    }
+    
+    // 送出按鈕
+    const submitBtn = document.querySelector('.contact-form button[type="submit"]');
+    if (submitBtn && !submitBtn.disabled) submitBtn.textContent = about.form_submit;
+    
+    // 隱私權聲明
+    const privacyNote = document.querySelector('.form-note strong');
+    const privacyDesc = document.querySelector('.form-note p');
+    if (privacyNote) privacyNote.textContent = about.privacy_title;
+    if (privacyDesc) {
+      privacyDesc.innerHTML = `<strong>${about.privacy_title}</strong> ${about.privacy_desc}`;
+    }
+    
+    // 免責聲明
+    const disclaimerTitle = document.querySelectorAll('.about-section h2')[3];
+    const disclaimerDesc = document.querySelectorAll('.about-section > p')[3];
+    if (disclaimerTitle && disclaimerTitle.textContent.includes('免責')) {
+      disclaimerTitle.textContent = about.disclaimer_title;
+    }
+    if (disclaimerDesc) {
+      disclaimerDesc.textContent = about.disclaimer_desc;
+    }
   }
 
   // 翻譯 404 頁面
