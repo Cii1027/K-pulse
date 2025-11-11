@@ -76,6 +76,54 @@
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     }
 
+    /* 團體圖片區域 */
+    .idol-image-container {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .idol-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .idol-card-enhanced:hover .idol-image {
+      transform: scale(1.08);
+    }
+
+    .idol-image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
+      padding: var(--space-lg);
+      color: white;
+    }
+
+    .idol-logo-text {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+
+    .idol-image-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
     .idol-header-section {
       padding: var(--space-lg);
       border-bottom: 2px solid var(--bg);
@@ -359,6 +407,17 @@
     <div class="idols-grid-container" id="idolsGrid">
       <!-- TWICE -->
       <article class="idol-card-enhanced" data-keywords="twice 트와이스 나연 정연 모모 사나 지효 미나 다현 채영 쯔위 nayeon jeongyeon momo sana jihyo mina dahyun chaeyoung tzuyu once 2015 女團">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/zqorlX_5oHQ/maxresdefault.jpg" 
+               alt="TWICE" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/FF6FA3/FFFFFF?text=TWICE'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">TWICE</div>
+            <div class="idol-image-badge">👥 9人女團 · 💿 2015出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h2>TWICE</h2>
@@ -428,6 +487,17 @@
 
       <!-- Stray Kids -->
       <article class="idol-card-enhanced" data-keywords="stray kids 스트레이키즈 방찬 리노 창빈 현진 한 필릭스 승민 아이엔 bang chan lee know changbin hyunjin han felix seungmin i.n stay 2018 男團 3racha">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/bLzbg8g1qqo/maxresdefault.jpg" 
+               alt="Stray Kids" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/000000/FFFFFF?text=Stray+Kids'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">Stray Kids</div>
+            <div class="idol-image-badge">👥 8人男團 · 💿 2018出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h2>Stray Kids</h2>
@@ -479,16 +549,16 @@
 
           <div class="mv-section">
             <h4>最新 M/V</h4>
-            <a href="https://www.youtube.com/watch?v=RLQav6te1e8" target="_blank" rel="noopener noreferrer" class="mv-link">
-              Walkin On Water
+            <a href="https://www.youtube.com/watch?v=bLzbg8g1qqo" target="_blank" rel="noopener noreferrer" class="mv-link">
+              DO IT (Mashup Video)
             </a>
-            <p class="mv-info">📅 2024年12月 | 正規2輯《HOP》主打曲</p>
+            <p class="mv-info">📅 2025年1月 | SKZ IT TAPE 系列</p>
             <div class="mv-embed">
-              <iframe src="https://www.youtube.com/embed/RLQav6te1e8?rel=0&modestbranding=1" 
+              <iframe src="https://www.youtube.com/embed/bLzbg8g1qqo?rel=0&modestbranding=1" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                       allowfullscreen
                       referrerpolicy="strict-origin-when-cross-origin"
-                      title="Stray Kids - Walkin On Water">
+                      title="Stray Kids - DO IT">
               </iframe>
             </div>
           </div>
@@ -497,6 +567,17 @@
 
       <!-- ITZY -->
       <article class="idol-card-enhanced" data-keywords="itzy 있지 예지 리아 류진 채령 유나 yeji lia ryujin chaeryeong yuna midzy 2019 女團">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/piSq8IioghU/maxresdefault.jpg" 
+               alt="ITZY" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/FF9933/FFFFFF?text=ITZY'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">ITZY</div>
+            <div class="idol-image-badge">👥 5人女團 · 💿 2019出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h2>ITZY</h2>
@@ -566,6 +647,17 @@
 
       <!-- NMIXX -->
       <article class="idol-card-enhanced" data-keywords="nmixx 엔믹스 릴리 해원 설윤 배이 지우 규진 lily haewon sullyoon bae jiwoo kyujin nswer 2022 女團">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/EmeW6li6bbo/maxresdefault.jpg" 
+               alt="NMIXX" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/00CED1/FFFFFF?text=NMIXX'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">NMIXX</div>
+            <div class="idol-image-badge">👥 6人女團 · 💿 2022出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h2>NMIXX</h2>
@@ -634,70 +726,79 @@
         </div>
       </article>
 
-      <!-- 2PM -->
-      <article class="idol-card-enhanced" data-keywords="2pm 투피엠 taecyeon 玉澤演 nichkhun 尼坤 junho 李俊昊 jun.k 金旼俊 wooyoung 張祐榮 chansung 黃燦盛 獸偶像 野獸派 hottest again again heartbeat hands up my house gentleman 第二代 二代團">
+      <!-- NEXZ -->
+      <article class="idol-card-enhanced" data-keywords="nexz 넥스지 tomoya トモヤ yu ユウ haru ハル so ソウ seita セイタ yuki ユウキ hyui ヒュイ jyp 日本 男團 japan 2024 beat boxer nex2y 次世代">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/d4tHKtG9xFo/maxresdefault.jpg" 
+               alt="NEXZ" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/FF6B35/FFFFFF?text=NEXZ'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">NEXZ</div>
+            <div class="idol-image-badge">👥 7人男團 · 🇯🇵 日本 · 💿 2024出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
-            <h3>2PM</h3>
+            <h3>NEXZ</h3>
             <span class="group-label male">男團</span>
           </div>
           <div class="stats-row">
-            <span class="stat-badge">👥 6位成員</span>
-            <span class="stat-badge">📅 2008.09.04 出道</span>
-            <span class="stat-badge">💿 7張正規專輯</span>
+            <span class="stat-badge">👥 7位成員</span>
+            <span class="stat-badge">📅 2024.05.20 出道</span>
+            <span class="stat-badge">💿 1張迷你專輯</span>
           </div>
         </div>
         <div class="idol-content-section">
           <p class="info-block">
-            <strong>成員：</strong>Jun. K（金旼俊）、Nichkhun（尼坤）、玉澤演、張祐榮、李俊昊、黃燦盛
+            <strong>成員：</strong>TOMOYA（トモヤ、隊長）、YU（ユウ）、HARU（ハル）、SO（ソウ）、SEITA（セイタ）、YUKI（ユウキ）、HYUI（ヒュイ）
           </p>
           <p class="info-block">
-            <strong>粉絲名：</strong>HOTTEST（最熱的人，代表粉絲對2PM的熱情支持）
+            <strong>粉絲名：</strong>NEX2Y（Next to you，代表永遠在粉絲身邊）
           </p>
           <p class="info-block">
-            <strong>簡介：</strong>2PM 是韓國第二代男團代表，以「獸偶像」形象著稱，展現強烈的男性魅力與野獸派舞台風格。他們擅長表演性感、力量型的舞蹈，並在日本市場取得巨大成功。
+            <strong>簡介：</strong>NEXZ 是JYP Entertainment推出的日本7人男子團體，源自選秀節目《Nizi Project Season 2》。團名意為「NEXT Z世代」，象徵引領次世代的藝人。成員平均年齡約18歲，擁有強大的舞蹈實力和vocal能力。
           </p>
 
           <div class="achievements-section">
             <h4>主要成就</h4>
             <ul class="achievements-list">
-              <li>2010、2011年榮登韓國福布斯名人榜第11名及第5名</li>
-              <li>日本出道Showcase創2.5萬人參加，歷代最高紀錄（2010年）</li>
-              <li>日本首張專輯《Republic of 2PM》獲Oricon榜首（2011年）</li>
-              <li>2013年首次登上東京巨蛋舉行演唱會</li>
-              <li>《Again & Again》獲KBS歌謠盛典年度最佳歌曲獎（2009年）</li>
-              <li>全員與JYP續約兩次（2015、2018），成為公司最資深團體</li>
-              <li>《My House》2020年逆襲音源榜，成為三大逆襲曲之一</li>
-              <li>2021年完整體回歸，時隔5年發行正規七輯《MUST》</li>
+              <li>出道曲《Ride the Vibe》發行首週登上Oricon週榜第2位（2024年5月）</li>
+              <li>《Beat-Boxer》MV發布2週突破2800萬觀看（2025年1月）</li>
+              <li>首個迷你專輯《NALLINA》初動銷量突破40萬張</li>
+              <li>成為2024年度日本新人男團銷量冠軍</li>
+              <li>入選Billboard Japan "2024 Hot 100" 年度榜單</li>
+              <li>首次演唱會巡迴「NEXZ 2025 ARENA TOUR "RIDE THE VIBE"」橫跨日本7大城市</li>
+              <li>獲得MAMA Awards 2024「Favorite New Artist」提名</li>
+              <li>與Stray Kids合作舞台，展現JYP家族強大實力</li>
             </ul>
           </div>
 
           <div class="discography-section">
             <h4>代表作品</h4>
             <div class="songs-tags">
-              <span class="song-badge">10分滿分的10分</span>
-              <span class="song-badge">Again & Again</span>
-              <span class="song-badge">Heartbeat</span>
-              <span class="song-badge">Without U</span>
-              <span class="song-badge">Hands Up</span>
-              <span class="song-badge">整天想著你</span>
-              <span class="song-badge">My House</span>
-              <span class="song-badge">Make It</span>
+              <span class="song-badge">Ride the Vibe</span>
+              <span class="song-badge">Miracle</span>
+              <span class="song-badge">NALLINA</span>
+              <span class="song-badge">Beat-Boxer</span>
+              <span class="song-badge">Keep on Moving</span>
+              <span class="song-badge">Hard to Love</span>
             </div>
           </div>
 
           <div class="mv-section">
             <h4>最新 M/V</h4>
-            <a href="https://www.youtube.com/watch?v=jtzxa8__jyQ" target="_blank" rel="noopener noreferrer" class="mv-link">
-              Make It
+            <a href="https://www.youtube.com/watch?v=d4tHKtG9xFo" target="_blank" rel="noopener noreferrer" class="mv-link">
+              Beat-Boxer
             </a>
-            <p class="mv-info">📅 2021年06月 | 正規7輯《MUST》主打曲</p>
+            <p class="mv-info">📅 2025年1月 | 首張迷你專輯《NALLINA》主打曲</p>
             <div class="mv-embed">
-              <iframe src="https://www.youtube.com/embed/jtzxa8__jyQ?rel=0&modestbranding=1" 
+              <iframe src="https://www.youtube.com/embed/d4tHKtG9xFo?rel=0&modestbranding=1" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                       allowfullscreen
                       referrerpolicy="strict-origin-when-cross-origin"
-                      title="2PM - Make It">
+                      title="NEXZ - Beat-Boxer">
               </iframe>
             </div>
           </div>
@@ -706,6 +807,17 @@
 
       <!-- DAY6 -->
       <article class="idol-card-enhanced" data-keywords="day6 데이식스 sungjin 朴晟鎮 young k 姜永晛 wonpil 金元弼 dowoon 尹度云 jae 박제형 myday 樂團 樂隊 band every day6 happy shoot me congratulations zombie time of our life you were beautiful 逆襲曲">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/Y2oox-OGg3Y/maxresdefault.jpg" 
+               alt="DAY6" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/4169E1/FFFFFF?text=DAY6'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">DAY6</div>
+            <div class="idol-image-badge">🎸 4人樂團 · 💿 2015出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h3>DAY6</h3>
@@ -758,16 +870,16 @@
 
           <div class="mv-section">
             <h4>最新 M/V</h4>
-            <a href="https://www.youtube.com/watch?v=EjeX4mtNTlo" target="_blank" rel="noopener noreferrer" class="mv-link">
-              HAPPY
+            <a href="https://www.youtube.com/watch?v=Y2oox-OGg3Y" target="_blank" rel="noopener noreferrer" class="mv-link">
+              우리의 계절 (Our Season)
             </a>
-            <p class="mv-info">📅 2024年03月 | 迷你8輯《Fourever》收錄曲（逆襲神曲）</p>
+            <p class="mv-info">📅 2025年1月 | 正規4輯《The DECADE》收錄曲</p>
             <div class="mv-embed">
-              <iframe src="https://www.youtube.com/embed/EjeX4mtNTlo?rel=0&modestbranding=1" 
+              <iframe src="https://www.youtube.com/embed/Y2oox-OGg3Y?rel=0&modestbranding=1" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                       allowfullscreen
                       referrerpolicy="strict-origin-when-cross-origin"
-                      title="DAY6 - HAPPY">
+                      title="DAY6 - Our Season">
               </iframe>
             </div>
           </div>
@@ -776,6 +888,17 @@
 
       <!-- NiziU -->
       <article class="idol-card-enhanced" data-keywords="niziu ニジュー mako 山口真子 rio 花橋梨緒 maya 勝村摩耶 riku 大江梨久 ayaka 新井彩花 mayuka 小合麻由佳 rima 橫井里茉 miihi 鈴野未光 nina 牧野仁菜 withu nizi project jyp 日本 make you happy step and a step 紅白 紅白歌合戰 朴軫永">
+        <div class="idol-image-container">
+          <img src="https://i.ytimg.com/vi/1brvTNG4Caw/maxresdefault.jpg" 
+               alt="NiziU" 
+               class="idol-image"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/1280x720/FF69B4/FFFFFF?text=NiziU'">
+          <div class="idol-image-overlay">
+            <div class="idol-logo-text">NiziU</div>
+            <div class="idol-image-badge">👥 9人女團 · 🇯🇵 日本 · 💿 2020出道</div>
+          </div>
+        </div>
         <div class="idol-header-section">
           <div class="idol-title-row">
             <h3>NiziU</h3>

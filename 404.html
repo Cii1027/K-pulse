@@ -3,8 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>關於我 — K-PULSE</title>
+  <title>404 - 頁面未找到 — K-PULSE</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .error-container {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-2xl) var(--space-md);
+    }
+    
+    .error-code {
+      font-size: 8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      line-height: 1;
+    }
+    
+    .error-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      margin: var(--space-xl) 0 var(--space-md);
+      color: var(--text);
+    }
+    
+    .error-message {
+      font-size: var(--text-lg);
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: var(--space-2xl);
+      line-height: 1.6;
+    }
+    
+    .error-actions {
+      display: flex;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .error-illustration {
+      font-size: 6rem;
+      margin-bottom: var(--space-xl);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .popular-links {
+      margin-top: var(--space-2xl);
+      padding: var(--space-xl);
+      background: var(--surface);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    .popular-links h3 {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-lg);
+      color: var(--text);
+    }
+    
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+    }
+    
+    .link-card {
+      padding: var(--space-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all var(--transition-base);
+      text-align: center;
+    }
+    
+    .link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    @media (max-width: 600px) {
+      .error-code {
+        font-size: 5rem;
+      }
+      
+      .error-title {
+        font-size: var(--text-xl);
+      }
+      
+      .error-message {
+        font-size: var(--text-base);
+      }
+      
+      .error-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .error-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -16,7 +133,7 @@
         <a href="hallyu.html">韓流探討</a>
         <a href="about.html">關於我</a>
       </nav>
-      <button id="theme-toggle-3" class="theme-toggle" aria-label="切換日夜模式">
+      <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
         <span class="icon sun">☀️</span>
         <span class="icon moon">🌙</span>
       </button>
@@ -24,83 +141,44 @@
   </header>
 
   <main class="container">
-    <h1>關於 K-PULSE</h1>
-    
-    <section class="about-section">
-      <h2>我們的使命</h2>
-      <p>K-PULSE 致力於成為最全面、最專業的 JYP 娛樂與 K-pop 文化資訊平台。我們相信音樂無國界,透過精心整理的內容,讓每一位粉絲都能深入了解自己喜愛的偶像團體。</p>
-    </section>
-
-    <section class="about-section">
-      <h2>網站特色</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>全面資訊</h3>
-          <p>涵蓋 JYP 娛樂旗下所有廠牌的 11 個團體,從 TWICE 到 KickFlip,提供最完整的成員資料與團體介紹。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>精美設計</h3>
-          <p>響應式設計適配各種裝置,日夜模式切換,為您提供最佳瀏覽體驗。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <h3>快速搜尋</h3>
-          <p>強大的搜尋功能讓您快速找到想要的團體和成員資訊。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌏</div>
-          <h3>韓流文化</h3>
-          <p>深度探討 K-pop 文化現象,從音樂、舞蹈到時尚,全方位解析韓流魅力。</p>
+    <div class="error-container">
+      <div class="error-illustration">🎵</div>
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">哎呀!找不到這個頁面</h2>
+      <p class="error-message">
+        抱歉,您要找的頁面似乎不存在或已被移除。<br>
+        就像是找不到的專輯 B-side 曲目一樣...
+      </p>
+      
+      <div class="error-actions">
+        <a href="index.html" class="btn">回到首頁</a>
+        <a href="idols.html" class="btn">瀏覽偶像</a>
+      </div>
+      
+      <div class="popular-links">
+        <h3>🔥 熱門頁面</h3>
+        <div class="links-grid">
+          <a href="twice.html" class="link-card">
+            <div>🎤 TWICE</div>
+          </a>
+          <a href="straykids.html" class="link-card">
+            <div>⚡ Stray Kids</div>
+          </a>
+          <a href="itzy.html" class="link-card">
+            <div>✨ ITZY</div>
+          </a>
+          <a href="nmixx.html" class="link-card">
+            <div>🌟 NMIXX</div>
+          </a>
+          <a href="day6.html" class="link-card">
+            <div>🎸 DAY6</div>
+          </a>
+          <a href="hallyu.html" class="link-card">
+            <div>🌏 韓流探討</div>
+          </a>
         </div>
       </div>
-    </section>
-
-    <section class="about-section">
-      <h2>聯絡我們</h2>
-      <p>如有任何問題、建議或合作意向,歡迎透過以下表單與我們聯繫:</p>
-      
-      <form class="contact-form" id="contactForm">
-        <div class="form-group">
-          <label for="name">姓名 <span class="required">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="請輸入您的姓名">
-        </div>
-        
-        <div class="form-group">
-          <label for="email">電子郵件 <span class="required">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@email.com">
-        </div>
-        
-        <div class="form-group">
-          <label for="subject">主旨 <span class="required">*</span></label>
-          <select id="subject" name="subject" required>
-            <option value="">請選擇主旨</option>
-            <option value="feedback">網站意見回饋</option>
-            <option value="content">內容建議</option>
-            <option value="cooperation">合作提案</option>
-            <option value="technical">技術問題</option>
-            <option value="other">其他</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="message">訊息內容 <span class="required">*</span></label>
-          <textarea id="message" name="message" rows="6" required placeholder="請詳細描述您的問題或建議..."></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">送出訊息</button>
-      </form>
-      
-      <div class="form-note">
-        <p><strong>隱私權聲明:</strong> 您提供的個人資訊僅用於回覆您的詢問,我們不會將您的資料分享給第三方。</p>
-      </div>
-    </section>
-
-    <section class="about-section">
-      <h2>免責聲明</h2>
-      <p>本網站為個人學習與展示用途建立,所有內容僅供參考。網站中使用的圖片、影片及相關內容版權歸原作者及 JYP Entertainment 所有。如有侵權,請聯繫我們,我們將立即移除相關內容。</p>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">

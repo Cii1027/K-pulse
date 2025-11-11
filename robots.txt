@@ -1,0 +1,37 @@
+# K-PULSE Robots.txt
+# https://www.k-pulse.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# 允許所有搜尋引擎檢索
+Allow: /index.html
+Allow: /idols.html
+Allow: /hallyu.html
+Allow: /about.html
+
+# 團體頁面
+Allow: /twice.html
+Allow: /straykids.html
+Allow: /itzy.html
+Allow: /nmixx.html
+Allow: /2pm.html
+Allow: /day6.html
+Allow: /xdinary-heroes.html
+Allow: /niziu.html
+Allow: /nexz.html
+Allow: /vcha.html
+Allow: /kickflip.html
+
+# CSS, JS, 圖片資源
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# 不允許檢索的路徑
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /scripts/
+
+# Sitemap 位置
+Sitemap: https://www.k-pulse.com/sitemap.xml

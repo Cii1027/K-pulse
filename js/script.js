@@ -36,12 +36,8 @@
 
 // 返回頂部按鈕
 (function(){
-  // 創建按鈕
-  const backToTop = document.createElement('button');
-  backToTop.id = 'back-to-top';
-  backToTop.innerHTML = '↑';
-  backToTop.setAttribute('aria-label', '返回頂部');
-  document.body.appendChild(backToTop);
+  const backToTop = document.getElementById('backToTop');
+  if (!backToTop) return;
 
   // 監聽滾動
   let scrollTimer = null;
@@ -49,9 +45,9 @@
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => {
       if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
+        backToTop.classList.add('show');
       } else {
-        backToTop.classList.remove('visible');
+        backToTop.classList.remove('show');
       }
     }, 100);
   }, { passive: true });
@@ -68,8 +64,7 @@
 // 頁面載入動畫
 (function(){
   document.addEventListener('DOMContentLoaded', () => {
-    // 為主要內容區塊加入 fade-in 動畫
-    const mainSections = document.querySelectorAll('main > section, main > .container > section, .hero, .highlights, .idols-preview, .blog-teaser');
+    const mainSections = document.querySelectorAll('main > section, main > .container > section, .hero, .highlights, .idols-preview');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -85,5 +80,41 @@
     mainSections.forEach(section => {
       observer.observe(section);
     });
+  });
+})();
+
+// 聯絡表單處理
+(function(){
+  const contactForm = document.getElementById('contactForm');
+  if (!contactForm) return;
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // 獲取表單資料
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+    
+    // 簡單驗證
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      alert('請填寫所有必填欄位');
+      return;
+    }
+    
+    // Email 格式驗證
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('請輸入有效的電子郵件地址');
+      return;
+    }
+    
+    // 模擬表單提交 (實際使用時需要串接後端 API)
+    console.log('表單資料:', formData);
+    alert('感謝您的訊息!我們會盡快回覆您。\n\n(這是展示版本,實際使用時需串接後端服務)');
+    contactForm.reset();
   });
 })();
