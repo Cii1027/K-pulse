@@ -209,12 +209,43 @@
 
     setTimeout(() => {
       nameEl.textContent = group.name;
-      descEl.textContent = group.desc;
       linkEl.href = group.link;
 
-      tagsEl.innerHTML = group.tags.map(tag => 
-        `<span class="pick-tag">${tag}</span>`
-      ).join('');
+      // 獲取當前語言翻譯
+      const currentLang = localStorage.getItem('preferred-language') || 'zh';
+      const t = window.translations ? window.translations[currentLang] : null;
+      
+      if (t && t.home) {
+        // 翻譯描述
+        const descKey = `daily_${group.name.toLowerCase().replace(/\s+/g, '')}`;
+        descEl.textContent = t.home[descKey] || group.desc;
+        
+        // 翻譯標籤
+        tagsEl.innerHTML = group.tags.map(tag => {
+          let tagKey = '';
+          // 將中文標籤轉換為 key
+          if (tag === '女團') tagKey = 'tag_girl_group';
+          else if (tag === '男團') tagKey = 'tag_boy_group';
+          else if (tag === '樂團') tagKey = 'tag_band';
+          else if (tag === '第二代') tagKey = 'tag_gen2';
+          else if (tag === '第三代') tagKey = 'tag_gen3';
+          else if (tag === '第四代') tagKey = 'tag_gen4';
+          else if (tag === '第五代') tagKey = 'tag_gen5';
+          else if (tag === '日本') tagKey = 'tag_japan';
+          else if (tag === '美國') tagKey = 'tag_usa';
+          else if (tag === 'Global') tagKey = 'tag_global';
+          else if (tag === 'Studio J') tagKey = 'tag_studio_j';
+          
+          const translatedTag = tagKey ? (t.home[tagKey] || tag) : tag;
+          return `<span class="pick-tag">${translatedTag}</span>`;
+        }).join('');
+      } else {
+        // 如果沒有翻譯系統，使用原始文字
+        descEl.textContent = group.desc;
+        tagsEl.innerHTML = group.tags.map(tag => 
+          `<span class="pick-tag">${tag}</span>`
+        ).join('');
+      }
 
       // 添加淡入效果
       nameEl.style.opacity = '1';

@@ -406,6 +406,49 @@
       if (h4.textContent.includes('最新 M/V')) h4.textContent = idols.latest_mv;
     });
     
+    // 卡片標籤翻譯（成員、粉絲名、簡介）
+    const infoBlocks = document.querySelectorAll('.info-block');
+    infoBlocks.forEach(block => {
+      const strong = block.querySelector('strong');
+      if (strong) {
+        const text = strong.textContent.trim();
+        if (text.includes('成員') || text === 'Members:' || text === '멤버:' || text === 'メンバー:') {
+          strong.textContent = idols.members_label;
+        }
+        if (text.includes('粉絲名') || text === 'Fandom:' || text === '팬덤:' || text === 'ファンダム:') {
+          strong.textContent = idols.fandom_label;
+        }
+        if (text.includes('簡介') || text === 'Introduction:' || text === '소개:' || text === '紹介:') {
+          strong.textContent = idols.intro_label;
+        }
+      }
+    });
+    
+    // 徽章翻譯（女團/男團/樂團）
+    const badges = document.querySelectorAll('.group-label, .idol-image-badge');
+    badges.forEach(badge => {
+      const text = badge.textContent.trim();
+      if (text === '女團' || text === 'Girl Group' || text === '걸그룹' || text === 'ガールグループ') {
+        badge.textContent = idols.girl_group;
+      }
+      if (text === '男團' || text === 'Boy Group' || text === '보이그룹' || text === 'ボーイグループ') {
+        badge.textContent = idols.boy_group;
+      }
+      if (text === '樂團' || text === 'Band' || text === '밴드' || text === 'バンド') {
+        badge.textContent = idols.band;
+      }
+    });
+    
+    // 統計數據標籤翻譯
+    const statBlocks = document.querySelectorAll('.stat-item, .idol-stat');
+    statBlocks.forEach(stat => {
+      let html = stat.innerHTML;
+      html = html.replace(/位成員|Members| Members|명|名/g, idols.members_count);
+      html = html.replace(/張韓語專輯|Korean Albums| Korean Albums|장의 한국어 앨범|枚の韓国語アルバム/g, idols.albums_count);
+      html = html.replace(/出道|Debut|데뷔|デビュー/g, idols.debut_date);
+      stat.innerHTML = html;
+    });
+    
     // 找不到結果訊息
     const noResults = document.querySelector('.no-results p, .idols-main > p');
     if (noResults && noResults.textContent.includes('找不到')) {

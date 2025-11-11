@@ -60,6 +60,32 @@ const translations = {
       groups_intro: '探索 JYP Entertainment 旗下所有活躍團體，從第二代到第五代，每個團體都有獨特的音樂風格與魅力。',
       view_all: '查看所有團體',
       
+      // 今日推薦團體描述
+      daily_twice: '九位成員組成的超人氣女團，以甜美風格和朗朗上口的旋律席捲全球',
+      daily_straykids: '自製偶像團體，以強烈的音樂風格和自主創作能力獲得全球認可',
+      daily_itzy: '以「不同凡想」為理念，傳遞自信與個性的第四代女團代表',
+      daily_nmixx: '突破傳統框架的新世代女團，以「MIXX POP」開創獨特音樂風格',
+      daily_2pm: '二代傳奇男團，以野獸派風格和強大舞台魅力稱霸 K-pop',
+      daily_day6: '五位全能樂手組成的樂團，以真摯的音樂故事觸動人心',
+      daily_xdinary: '六人搖滾樂團，融合搖滾與電子元素創造新世代樂團音樂',
+      daily_niziu: '日本九人女團，以清新可愛風格在日本樂壇大放異彩',
+      daily_nexz: 'JYP 與 Sony Music 合作推出的日本男團新星',
+      daily_vcha: 'JYP 首個美國女團，展現多元文化融合的全球化視野',
+      daily_kickflip: '新生代男團，以街頭文化和運動風格展現青春活力',
+      
+      // 標籤翻譯
+      tag_girl_group: '女團',
+      tag_boy_group: '男團',
+      tag_band: '樂團',
+      tag_gen2: '第二代',
+      tag_gen3: '第三代',
+      tag_gen4: '第四代',
+      tag_gen5: '第五代',
+      tag_japan: '日本',
+      tag_usa: '美國',
+      tag_global: 'Global',
+      tag_studio_j: 'Studio J',
+      
       // 團體卡片
       members_count: '名成員',
       overseas_groups: '海外團體',
@@ -167,7 +193,21 @@ const translations = {
       representative_works: '代表作品',
       latest_mv: '最新 M/V',
       no_results: '😕 找不到符合搜尋條件的團體',
-      data_source: '© 2025 K-PULSE | 資料來源：維基百科'
+      data_source: '© 2025 K-PULSE | 資料來源：維基百科',
+      
+      // 卡片內容
+      members_label: '成員：',
+      fandom_label: '粉絲名：',
+      intro_label: '簡介：',
+      girl_group: '女團',
+      boy_group: '男團',
+      band: '樂團',
+      members_count: '位成員',
+      albums_count: '張韓語專輯',
+      debut_date: '出道',
+      mv_info_date: '📅',
+      mv_info_album: '特別專輯',
+      mv_info_title: '主打曲'
     },
     
     // Hallyu 頁面
@@ -284,12 +324,38 @@ const translations = {
       daily_pick_loading: 'Loading...',
       daily_pick_desc: 'Selecting for you...',
       explore_more: 'Explore More',
-      refresh: '🎲 Refresh',
+      refresh: '🎲 Shuffle',
       timeline_title: '📅 Latest Updates',
       timeline_more: 'View All Updates →',
       groups_title: 'JYP Entertainment Groups',
       groups_intro: 'Explore all active groups under JYP Entertainment, from 2nd to 5th generation, each with unique musical styles and charms.',
       view_all: 'View All Groups',
+      
+      // Daily pick group descriptions
+      daily_twice: 'Nine-member mega-popular girl group sweeping the globe with sweet style and catchy melodies',
+      daily_straykids: 'Self-producing idol group gaining global recognition with powerful music style and creative autonomy',
+      daily_itzy: 'Fourth-generation girl group representative conveying confidence and individuality with "Different" philosophy',
+      daily_nmixx: 'New-generation girl group breaking traditional frameworks, pioneering unique music style with "MIXX POP"',
+      daily_2pm: 'Second-generation legendary boy group dominating K-pop with beast-like style and powerful stage presence',
+      daily_day6: 'Band of five all-around musicians touching hearts with sincere musical stories',
+      daily_xdinary: 'Six-member rock band creating new-generation band music by fusing rock and electronic elements',
+      daily_niziu: 'Japanese nine-member girl group shining bright in Japanese music scene with fresh and cute style',
+      daily_nexz: 'New Japanese boy group star launched through JYP and Sony Music collaboration',
+      daily_vcha: 'JYP\'s first American girl group showcasing global vision with multicultural fusion',
+      daily_kickflip: 'New-generation boy group displaying youthful energy with street culture and sports style',
+      
+      // Tag translations
+      tag_girl_group: 'Girl Group',
+      tag_boy_group: 'Boy Group',
+      tag_band: 'Band',
+      tag_gen2: '2nd Gen',
+      tag_gen3: '3rd Gen',
+      tag_gen4: '4th Gen',
+      tag_gen5: '5th Gen',
+      tag_japan: 'Japan',
+      tag_usa: 'USA',
+      tag_global: 'Global',
+      tag_studio_j: 'Studio J',
       
       // Group cards
       members_count: ' Members',
@@ -393,7 +459,21 @@ const translations = {
       representative_works: 'Representative Works',
       latest_mv: 'Latest M/V',
       no_results: '😕 No groups found matching your search',
-      data_source: '© 2025 K-PULSE | Source: Wikipedia'
+      data_source: '© 2025 K-PULSE | Source: Wikipedia',
+      
+      // Card content
+      members_label: 'Members:',
+      fandom_label: 'Fandom:',
+      intro_label: 'Introduction:',
+      girl_group: 'Girl Group',
+      boy_group: 'Boy Group',
+      band: 'Band',
+      members_count: ' Members',
+      albums_count: ' Korean Albums',
+      debut_date: 'Debut',
+      mv_info_date: '📅',
+      mv_info_album: 'Special Album',
+      mv_info_title: 'Title Track'
     },
     
     hallyu: {
@@ -514,6 +594,32 @@ const translations = {
       groups_intro: 'JYP Entertainment 소속의 모든 활동 그룹을 탐험하세요. 2세대부터 5세대까지, 각각 독특한 음악 스타일과 매력을 가지고 있습니다.',
       view_all: '모든 그룹 보기 →',
       
+      // 오늘의 추천 그룹 설명
+      daily_twice: '9명의 멤버로 구성된 초인기 걸그룹, 달콤한 스타일과 중독성 있는 멜로디로 전 세계를 사로잡음',
+      daily_straykids: '자체 제작 아이돌 그룹, 강렬한 음악 스타일과 자주적 창작 능력으로 글로벌 인정',
+      daily_itzy: '"다르게 생각하라" 이념으로 자신감과 개성을 전달하는 4세대 걸그룹 대표',
+      daily_nmixx: '전통적인 틀을 깨는 신세대 걸그룹, "MIXX POP"으로 독특한 음악 스타일 개척',
+      daily_2pm: '2세대 전설적인 보이그룹, 야수파 스타일과 강력한 무대 매력으로 K-pop 제패',
+      daily_day6: '5명의 만능 뮤지션으로 구성된 밴드, 진실한 음악 이야기로 마음을 울림',
+      daily_xdinary: '6인조 록 밴드, 록과 전자 요소를 융합하여 새로운 세대 밴드 음악 창조',
+      daily_niziu: '일본 9인조 걸그룹, 상큼하고 귀여운 스타일로 일본 음악계에서 빛을 발함',
+      daily_nexz: 'JYP와 Sony Music 협력으로 탄생한 일본 보이그룹 신성',
+      daily_vcha: 'JYP 첫 미국 걸그룹, 다문화 융합의 글로벌 비전 선보임',
+      daily_kickflip: '신세대 보이그룹, 스트리트 문화와 스포츠 스타일로 청춘의 활력 표현',
+      
+      // 태그 번역
+      tag_girl_group: '걸그룹',
+      tag_boy_group: '보이그룹',
+      tag_band: '밴드',
+      tag_gen2: '2세대',
+      tag_gen3: '3세대',
+      tag_gen4: '4세대',
+      tag_gen5: '5세대',
+      tag_japan: '일본',
+      tag_usa: '미국',
+      tag_global: 'Global',
+      tag_studio_j: 'Studio J',
+      
       // 그룹 카드
       members_count: '명',
       overseas_groups: '해외 그룹',
@@ -616,7 +722,21 @@ const translations = {
       representative_works: '대표작',
       latest_mv: '최신 M/V',
       no_results: '😕 검색 조건과 일치하는 그룹이 없습니다',
-      data_source: '© 2025 K-PULSE | 출처: 위키백과'
+      data_source: '© 2025 K-PULSE | 출처: 위키백과',
+      
+      // 카드 내용
+      members_label: '멤버:',
+      fandom_label: '팬덤:',
+      intro_label: '소개:',
+      girl_group: '걸그룹',
+      boy_group: '보이그룹',
+      band: '밴드',
+      members_count: '명',
+      albums_count: '장 한국어 앨범',
+      debut_date: '데뷔',
+      mv_info_date: '📅',
+      mv_info_album: '스페셜 앨범',
+      mv_info_title: '타이틀곡'
     },
     
     hallyu: {
@@ -737,6 +857,32 @@ const translations = {
       groups_intro: 'JYP Entertainment所属のすべてのアクティブグループを探索しましょう。第2世代から第5世代まで、それぞれ独自の音楽スタイルと魅力を持っています。',
       view_all: 'すべてのグループを見る →',
       
+      // 本日のおすすめグループ説明
+      daily_twice: '9人のメンバーで構成された超人気ガールグループ、甘いスタイルとキャッチーなメロディーで世界を席巻',
+      daily_straykids: 'セルフプロデュースアイドルグループ、強烈な音楽スタイルと自主創作能力で世界的に認知',
+      daily_itzy: '「違う考え」の理念で自信と個性を伝える第4世代ガールグループの代表',
+      daily_nmixx: '従来の枠を破る新世代ガールグループ、「MIXX POP」で独自の音楽スタイルを開拓',
+      daily_2pm: '第2世代伝説のボーイグループ、ビースト派スタイルと強力なステージプレゼンスでK-popを制覇',
+      daily_day6: '5人の万能ミュージシャンで構成されたバンド、真摯な音楽ストーリーで心を打つ',
+      daily_xdinary: '6人組ロックバンド、ロックと電子要素を融合して新世代バンド音楽を創造',
+      daily_niziu: '日本の9人組ガールグループ、爽やかで可愛いスタイルで日本音楽シーンで輝く',
+      daily_nexz: 'JYPとSony Musicのコラボレーションで誕生した日本ボーイグループの新星',
+      daily_vcha: 'JYP初のアメリカガールグループ、多文化融合のグローバルビジョンを披露',
+      daily_kickflip: '新世代ボーイグループ、ストリート文化とスポーツスタイルで若々しいエネルギーを表現',
+      
+      // タグ翻訳
+      tag_girl_group: 'ガールグループ',
+      tag_boy_group: 'ボーイグループ',
+      tag_band: 'バンド',
+      tag_gen2: '第2世代',
+      tag_gen3: '第3世代',
+      tag_gen4: '第4世代',
+      tag_gen5: '第5世代',
+      tag_japan: '日本',
+      tag_usa: 'アメリカ',
+      tag_global: 'Global',
+      tag_studio_j: 'Studio J',
+      
       // グループカード
       members_count: '名',
       overseas_groups: '海外グループ',
@@ -839,7 +985,21 @@ const translations = {
       representative_works: '代表作',
       latest_mv: '最新M/V',
       no_results: '😕 検索条件に一致するグループが見つかりません',
-      data_source: '© 2025 K-PULSE | 出典: Wikipedia'
+      data_source: '© 2025 K-PULSE | 出典: Wikipedia',
+      
+      // カード内容
+      members_label: 'メンバー:',
+      fandom_label: 'ファンダム:',
+      intro_label: '紹介:',
+      girl_group: 'ガールグループ',
+      boy_group: 'ボーイグループ',
+      band: 'バンド',
+      members_count: '名',
+      albums_count: '枚の韓国語アルバム',
+      debut_date: 'デビュー',
+      mv_info_date: '📅',
+      mv_info_album: 'スペシャルアルバム',
+      mv_info_title: 'タイトル曲'
     },
     
     hallyu: {
