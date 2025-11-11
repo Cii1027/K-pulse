@@ -207,13 +207,66 @@
     // Hero 區塊
     const heroTitle = document.querySelector('.hero h1');
     const heroSubtitle = document.querySelector('.hero p');
-    const exploreBtn = document.querySelector('.hero .cta-button');
+    const exploreBtn = document.querySelector('.hero .cta-button, .hero .btn');
     
     if (heroTitle) heroTitle.textContent = home.hero_title;
     if (heroSubtitle) heroSubtitle.textContent = home.hero_subtitle;
     if (exploreBtn) exploreBtn.textContent = home.explore_btn;
 
-    // 統計數據
+    // 關於 JYP 區塊
+    const aboutJypTitle = document.querySelector('.about-jyp h2');
+    const aboutJypParas = document.querySelectorAll('.about-text p');
+    const achievementsTitle = document.querySelector('.about-achievements h3');
+    const achievementsList = document.querySelectorAll('.about-achievements li');
+    
+    if (aboutJypTitle) aboutJypTitle.textContent = home.about_jyp_title;
+    if (aboutJypParas.length >= 3) {
+      aboutJypParas[0].innerHTML = home.about_jyp_p1.replace('朴軫永', '<strong>朴軫永</strong>');
+      aboutJypParas[1].innerHTML = home.about_jyp_p2.replace(/「有實力的藝人」|"talented artists"/g, '<strong>$&</strong>');
+      aboutJypParas[2].innerHTML = home.about_jyp_p3
+        .replace(/TWICE|트와이스/g, '<strong>$&</strong>')
+        .replace(/Stray Kids|스트레이 키즈/g, '<strong>$&</strong>');
+    }
+    if (achievementsTitle) achievementsTitle.textContent = home.achievements_title;
+    if (achievementsList.length >= 4) {
+      achievementsList[0].textContent = '🏆 ' + home.achievement_1;
+      achievementsList[1].textContent = '📀 ' + home.achievement_2;
+      achievementsList[2].textContent = '🌍 ' + home.achievement_3;
+      achievementsList[3].textContent = '🎤 ' + home.achievement_4;
+    }
+
+    // 統計數據區塊
+    const statsTitle = document.querySelector('.statistics h2');
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    if (statsTitle) statsTitle.textContent = home.stats_title;
+    if (statCards.length >= 4) {
+      const numbers = statCards[0].querySelectorAll('.stat-number, .stat-label');
+      if (numbers.length >= 2) {
+        numbers[0].textContent = home.stat_1_number;
+        numbers[1].textContent = home.stat_1_label;
+      }
+      
+      const stat2 = statCards[1].querySelectorAll('.stat-number, .stat-label');
+      if (stat2.length >= 2) {
+        stat2[0].textContent = home.stat_2_number;
+        stat2[1].textContent = home.stat_2_label;
+      }
+      
+      const stat3 = statCards[2].querySelectorAll('.stat-number, .stat-label');
+      if (stat3.length >= 2) {
+        stat3[0].textContent = home.stat_3_number;
+        stat3[1].textContent = home.stat_3_label;
+      }
+      
+      const stat4 = statCards[3].querySelectorAll('.stat-number, .stat-label');
+      if (stat4.length >= 2) {
+        stat4[0].textContent = home.stat_4_number;
+        stat4[1].textContent = home.stat_4_label;
+      }
+    }
+
+    // 統計數據（原有的）
     const statLabels = document.querySelectorAll('.stat p');
     if (statLabels.length >= 4) {
       statLabels[0].textContent = home.stats_groups;
