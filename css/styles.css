@@ -1593,3 +1593,45 @@ body.dark .back-to-top:hover {
   }
 }
 
+/* ================================
+   影片容器 Video Container
+   ================================ */
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: var(--space-xl) auto;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  background: var(--surface);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+.video-caption {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .video-container {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+}
+
