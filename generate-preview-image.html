@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-PULSE Social Preview Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+    }
+    
+    .instructions {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .instructions h1 {
+      color: #ff6fa3;
+      margin-top: 0;
+    }
+    
+    .instructions ol {
+      line-height: 2;
+    }
+    
+    .preview-card {
+      width: 1200px;
+      height: 630px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    
+    .preview-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+    
+    .logo {
+      font-size: 120px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      margin-bottom: 30px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 1;
+      background: linear-gradient(to right, #fff, #ffc6db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .tagline {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .groups {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      z-index: 1;
+    }
+    
+    .group-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 20px;
+      font-weight: 600;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 40px;
+      font-size: 24px;
+      opacity: 0.8;
+      z-index: 1;
+    }
+    
+    .scale-info {
+      text-align: center;
+      margin-top: 20px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="instructions">
+    <h1>📸 K-PULSE 社交預覽圖生成器</h1>
+    <p>使用此頁面生成 K-PULSE 的社交媒體預覽圖 (1200x630px)</p>
+    
+    <h3>📋 使用步驟:</h3>
+    <ol>
+      <li>向下滾動查看預覽圖設計</li>
+      <li>按 <strong>F12</strong> 打開開發者工具</li>
+      <li>按 <strong>Ctrl+Shift+P</strong> (Windows) 或 <strong>Cmd+Shift+P</strong> (Mac)</li>
+      <li>輸入 "screenshot" 並選擇 <strong>"Capture node screenshot"</strong></li>
+      <li>點擊預覽卡片 (下方的彩色區域)</li>
+      <li>圖片會自動下載為 PNG 格式</li>
+      <li>將圖片重命名為 <code>k-pulse-preview.jpg</code></li>
+      <li>放到 <code>images/</code> 資料夾</li>
+      <li>更新 HTML 的 meta 標籤為新圖片路徑</li>
+    </ol>
+    
+    <h3>🎨 或使用截圖工具:</h3>
+    <ul>
+      <li>Windows: 使用 Snipping Tool 或 Win+Shift+S</li>
+      <li>Mac: 使用 Cmd+Shift+4</li>
+      <li>確保截圖尺寸為 <strong>1200x630 像素</strong></li>
+    </ul>
+  </div>
+
+  <div class="preview-card">
+    <div class="logo">K-PULSE</div>
+    <div class="tagline">深入探索 JYP 娛樂與 K-pop 文化</div>
+    <div class="groups">
+      <span class="group-badge">TWICE</span>
+      <span class="group-badge">Stray Kids</span>
+      <span class="group-badge">ITZY</span>
+      <span class="group-badge">NMIXX</span>
+      <span class="group-badge">2PM</span>
+      <span class="group-badge">DAY6</span>
+      <span class="group-badge">Xdinary Heroes</span>
+      <span class="group-badge">NiziU</span>
+      <span class="group-badge">NEXZ</span>
+      <span class="group-badge">VCHA</span>
+      <span class="group-badge">KickFlip</span>
+    </div>
+    <div class="footer">cii1027.github.io/K-pulse</div>
+  </div>
+  
+  <div class="scale-info">
+    預覽圖尺寸: 1200 x 630 像素 (推薦的社交媒體預覽尺寸)
+  </div>
+
+  <script>
+    // 確保在頁面載入後顯示預覽卡
+    window.addEventListener('load', () => {
+      const card = document.querySelector('.preview-card');
+      console.log('預覽卡片尺寸:', card.offsetWidth, 'x', card.offsetHeight);
+    });
+  </script>
+</body>
+</html>
