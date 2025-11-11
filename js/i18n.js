@@ -575,18 +575,62 @@
 
   // 翻譯團體頁面
   function translateGroup(group) {
-    const overviewTitle = document.querySelector('h2:contains("團體簡介")');
-    const membersTitle = document.querySelector('h2:contains("成員介紹")');
-    const workTitle = document.querySelector('h2:contains("代表作品")');
+    // 翻譯標題
+    const mainTitle = document.querySelector('main h1');
+    const debutInfo = document.querySelector('main p:first-of-type');
     
-    // 使用更通用的選擇器
+    // 翻譯出道資訊中的「出道」和「粉絲名」
+    if (debutInfo && debutInfo.textContent.includes('出道')) {
+      const text = debutInfo.textContent;
+      const newText = text.replace('出道', group.debut).replace('粉絲名', group.fandom);
+      debutInfo.textContent = newText;
+    }
+    
+    // 翻譯區塊標題
     const headings = document.querySelectorAll('h2');
     headings.forEach(h2 => {
       if (h2.textContent.includes('團體簡介')) h2.textContent = group.overview;
-      if (h2.textContent.includes('成員介紹')) h2.textContent = group.members;
+      if (h2.textContent.includes('成員介紹') || h2.textContent.includes('成員與個人經歷')) {
+        h2.textContent = group.members_experience;
+      }
       if (h2.textContent.includes('代表作品')) h2.textContent = group.representative_work;
       if (h2.textContent.includes('主要成就')) h2.textContent = group.achievements;
     });
+    
+    // 翻譯成員職務
+    const memberRoles = document.querySelectorAll('.member p:first-of-type');
+    memberRoles.forEach(role => {
+      let text = role.textContent;
+      
+      // 替換職務標籤
+      text = text.replace('職務：', group.role + '：');
+      
+      // 替換各種職務
+      text = text.replace(/主唱/g, group.main_vocal);
+      text = text.replace(/領唱/g, group.lead_vocal);
+      text = text.replace(/副唱/g, group.sub_vocal);
+      text = text.replace(/主饒舌/g, group.main_rapper);
+      text = text.replace(/饒舌/g, group.main_rapper);
+      text = text.replace(/主舞/g, group.main_dancer);
+      text = text.replace(/領舞/g, group.lead_dancer);
+      text = text.replace(/舞蹈擔當/g, group.main_dancer);
+      text = text.replace(/視覺/g, group.visual);
+      text = text.replace(/中心/g, group.center);
+      text = text.replace(/隊長/g, group.leader);
+      text = text.replace(/門面/g, group.face);
+      text = text.replace(/形象擔當/g, group.visual);
+      text = text.replace(/主創意/g, group.composer);
+      text = text.replace(/全能/g, group.all_rounder);
+      text = text.replace(/製作人/g, group.producer);
+      
+      role.textContent = text;
+    });
+    
+    // 翻譯「回到偶像總覽」連結
+    const backLink = document.querySelector('main > p:last-of-type a');
+    if (backLink && backLink.textContent.includes('回到偶像總覽')) {
+      backLink.textContent = group.back_to_idols;
+    }
   }
 
   // 顯示語言切換提示
