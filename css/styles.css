@@ -2667,3 +2667,195 @@ html[data-theme="dark"] .back-to-top:hover {
     transform: translateX(-50%) translateY(0);
   }
 }
+
+/* ==================== 載入動畫 ==================== */
+
+/* 淡入動畫 (圖片) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 滑入動畫 (內容區塊) */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 從左滑入 */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 從右滑入 */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 縮放淡入 */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 預設隱藏狀態 */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+/* 淡入效果類別 */
+.fade-in-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* 延遲動畫 (用於交錯效果) */
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* 團體卡片動畫 */
+.idol-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.idol-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 統計卡片動畫 */
+.stat-card {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.stat-card.animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 時間軸項目動畫 */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 圖片懶載入效果 */
+img {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* 區塊進入動畫 */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 保持已載入元素的可見性 */
+.hero,
+.site-header {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 動畫效能優化 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-on-scroll,
+  .idol-card,
+  .stat-card,
+  .timeline-item,
+  section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
