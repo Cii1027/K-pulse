@@ -461,6 +461,9 @@ html[data-theme="dark"] .main-nav a:hover{
   font-size: 0.938rem;
   margin-bottom: 0.25rem;
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-item-title .highlight {
@@ -474,11 +477,15 @@ html[data-theme="dark"] .main-nav a:hover{
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-item-fandom {
   color: var(--accent);
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .search-shortcut {
