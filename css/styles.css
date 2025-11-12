@@ -1,13 +1,18 @@
 :root{
   /* 日間模式變數 */
   --bg: #FFFFFF;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F4F4F4;
   --surface: #F4F4F4;
   --text: #222222;
+  --text-primary: #222222;
   --text-secondary: #666666;
+  --text-rgb: 34, 34, 34;
   --muted: #666666;
   --primary: #4fc3f7;
   --accent: #ff6fa3; /* 亮粉作為強調色 */
   --accent-hover: #ff5a8f;
+  --accent-rgb: 255, 111, 163;
   --border: rgba(0,0,0,0.08);
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
@@ -41,13 +46,18 @@ body.dark,
 html[data-theme="dark"] {
   /* 深夜模式變數 */
   --bg: #121212;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
   --surface: #1e1e1e;
   --text: #E0E0E0;
+  --text-primary: #E0E0E0;
   --text-secondary: #AAAAAA;
+  --text-rgb: 224, 224, 224;
   --muted: #AAAAAA;
   --primary: #4fc3f7;
   --accent: #4fc3f7; /* 夜間降低飽和度 */
   --accent-hover: #3db4e8;
+  --accent-rgb: 79, 195, 247;
   --border: rgba(255,255,255,0.1);
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
@@ -331,7 +341,7 @@ html[data-theme="dark"] .main-nav a:hover{
   top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
-  background: var(--bg-primary);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
