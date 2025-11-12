@@ -309,6 +309,43 @@ const translations = {
       suggestion: '可能是網址輸入錯誤，或頁面已被移除',
       back_home: '返回首頁',
       browse_groups: '瀏覽團體'
+    },
+    
+    // 音樂頁面
+    music_page: {
+      title: '🎵 音樂播放器',
+      subtitle: '探索 JYP 娛樂旗下團體的熱門歌曲',
+      top_tracks: '代表歌曲',
+      debut_year: '出道',
+      members: '位成員',
+      fandom: '粉絲名',
+      meta_tracks: '歌曲 •',
+      meta_album: '專輯 •'
+    },
+    
+    // 統計數據頁面
+    stats_page: {
+      title: '📊 統計數據',
+      subtitle: '探索 JYP 團體的驚人成就',
+      spotify_title: 'Spotify 月聽眾數',
+      spotify_subtitle: '數據截至 2024 年',
+      spotify_unit: '百萬',
+      youtube_title: 'YouTube 訂閱數成長',
+      youtube_subtitle: '2020-2025 年度趨勢',
+      youtube_unit: '百萬',
+      platform_title: '平台影響力比較',
+      platform_subtitle: '各平台粉絲數量（標準化）',
+      platform_spotify: 'Spotify',
+      platform_youtube: 'YouTube',
+      platform_instagram: 'Instagram',
+      platform_twitter: 'Twitter',
+      milestone_title: '重要里程碑',
+      milestone_subtitle: '關鍵成就時間軸',
+      awards_title: '獎項統計',
+      award_daesang: '大賞',
+      award_main: '本賞',
+      award_rookie: '新人獎',
+      views_label: '觀看次數'
     }
   },
 
@@ -604,6 +641,43 @@ const translations = {
       suggestion: 'The URL might be incorrect, or the page has been removed',
       back_home: 'Back to Home',
       browse_groups: 'Browse Groups'
+    },
+    
+    // Music Page
+    music_page: {
+      title: '🎵 Music Player',
+      subtitle: 'Explore popular songs from JYP Entertainment groups',
+      top_tracks: 'Top Tracks',
+      debut_year: 'Debut',
+      members: 'members',
+      fandom: 'Fandom',
+      meta_tracks: 'Track •',
+      meta_album: 'Album •'
+    },
+    
+    // Stats Page
+    stats_page: {
+      title: '📊 Statistics',
+      subtitle: 'Explore the amazing achievements of JYP groups',
+      spotify_title: 'Spotify Monthly Listeners',
+      spotify_subtitle: 'Data as of 2024',
+      spotify_unit: 'Million',
+      youtube_title: 'YouTube Subscribers Growth',
+      youtube_subtitle: 'Trend from 2020-2025',
+      youtube_unit: 'Million',
+      platform_title: 'Platform Influence Comparison',
+      platform_subtitle: 'Followers across platforms (normalized)',
+      platform_spotify: 'Spotify',
+      platform_youtube: 'YouTube',
+      platform_instagram: 'Instagram',
+      platform_twitter: 'Twitter',
+      milestone_title: 'Major Milestones',
+      milestone_subtitle: 'Key achievement timeline',
+      awards_title: 'Awards Statistics',
+      award_daesang: 'Daesang',
+      award_main: 'Bonsang',
+      award_rookie: 'Rookie',
+      views_label: 'Views'
     }
   },
 
@@ -899,6 +973,43 @@ const translations = {
       suggestion: 'URL이 잘못되었거나 페이지가 삭제되었을 수 있습니다',
       back_home: '홈으로',
       browse_groups: '그룹 둘러보기'
+    },
+    
+    // Music Page
+    music_page: {
+      title: '🎵 음악 플레이어',
+      subtitle: 'JYP 엔터테인먼트 그룹의 인기곡 탐색',
+      top_tracks: '대표곡',
+      debut_year: '데뷔',
+      members: '명',
+      fandom: '팬덤명',
+      meta_tracks: '트랙 •',
+      meta_album: '앨범 •'
+    },
+    
+    // Stats Page
+    stats_page: {
+      title: '📊 통계',
+      subtitle: 'JYP 그룹의 놀라운 성과 탐색',
+      spotify_title: 'Spotify 월간 청취자',
+      spotify_subtitle: '2024년 기준',
+      spotify_unit: '백만',
+      youtube_title: 'YouTube 구독자 성장',
+      youtube_subtitle: '2020-2025년 트렌드',
+      youtube_unit: '백만',
+      platform_title: '플랫폼 영향력 비교',
+      platform_subtitle: '플랫폼별 팔로워 수 (표준화)',
+      platform_spotify: 'Spotify',
+      platform_youtube: 'YouTube',
+      platform_instagram: 'Instagram',
+      platform_twitter: 'Twitter',
+      milestone_title: '주요 마일스톤',
+      milestone_subtitle: '주요 성과 타임라인',
+      awards_title: '수상 통계',
+      award_daesang: '대상',
+      award_main: '본상',
+      award_rookie: '신인상',
+      views_label: '조회수'
     }
   },
 
@@ -1194,6 +1305,43 @@ const translations = {
       suggestion: 'URLが間違っているか、ページが削除された可能性があります',
       back_home: 'ホームに戻る',
       browse_groups: 'グループを見る'
+    },
+    
+    // Music Page
+    music_page: {
+      title: '🎵 音楽プレイヤー',
+      subtitle: 'JYPエンターテインメントグループの人気曲を探索',
+      top_tracks: '代表曲',
+      debut_year: 'デビュー',
+      members: '名',
+      fandom: 'ファンダム名',
+      meta_tracks: 'トラック •',
+      meta_album: 'アルバム •'
+    },
+    
+    // Stats Page
+    stats_page: {
+      title: '📊 統計',
+      subtitle: 'JYPグループの驚くべき成果を探索',
+      spotify_title: 'Spotify 月間リスナー',
+      spotify_subtitle: '2024年時点',
+      spotify_unit: '百万',
+      youtube_title: 'YouTube 登録者数の成長',
+      youtube_subtitle: '2020-2025年のトレンド',
+      youtube_unit: '百万',
+      platform_title: 'プラットフォーム影響力の比較',
+      platform_subtitle: 'プラットフォーム別フォロワー数（標準化）',
+      platform_spotify: 'Spotify',
+      platform_youtube: 'YouTube',
+      platform_instagram: 'Instagram',
+      platform_twitter: 'Twitter',
+      milestone_title: '主要なマイルストーン',
+      milestone_subtitle: '主要な成果のタイムライン',
+      awards_title: '受賞統計',
+      award_daesang: '大賞',
+      award_main: '本賞',
+      award_rookie: '新人賞',
+      views_label: '再生回数'
     }
   }
 };

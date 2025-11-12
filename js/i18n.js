@@ -212,6 +212,16 @@
       translate404(t.error404);
     }
     
+    // 音樂頁面
+    if (document.querySelector('.music-hero')) {
+      translateMusic(t.music_page);
+    }
+    
+    // 統計數據頁面
+    if (document.querySelector('.stats-hero')) {
+      translateStats(t.stats_page);
+    }
+    
     // 團體頁面
     if (document.querySelector('.group-header')) {
       translateGroup(t.group);
@@ -681,6 +691,36 @@
     if (suggestion) suggestion.textContent = error404.suggestion;
     if (homeBtn) homeBtn.textContent = error404.back_home;
     if (groupsBtn) groupsBtn.textContent = error404.browse_groups;
+  }
+
+  // 翻譯音樂頁面
+  function translateMusic(music) {
+    const heroTitle = document.querySelector('.music-hero h1');
+    const heroSubtitle = document.querySelector('.music-hero p');
+    const trackTitles = document.querySelectorAll('.tracks-list h3');
+    
+    if (heroTitle) heroTitle.textContent = music.title;
+    if (heroSubtitle) heroSubtitle.textContent = music.subtitle;
+    
+    // 翻譯「代表歌曲」標題
+    trackTitles.forEach(title => {
+      if (title.textContent.includes('代表歌曲')) {
+        title.textContent = music.top_tracks;
+      }
+    });
+  }
+
+  // 翻譯統計數據頁面
+  function translateStats(stats) {
+    const heroTitle = document.querySelector('.stats-hero h1');
+    const heroSubtitle = document.querySelector('.stats-hero p');
+    
+    if (heroTitle) heroTitle.textContent = stats.title;
+    if (heroSubtitle) heroSubtitle.textContent = stats.subtitle;
+    
+    // 翻譯圖表標題（這些會在 Chart.js 初始化時處理）
+    // 這裡可以存儲翻譯，讓其他腳本使用
+    window.statsTranslations = stats;
   }
 
   // 翻譯團體頁面
