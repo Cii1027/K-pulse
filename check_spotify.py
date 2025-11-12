@@ -6,9 +6,9 @@ spotify_fixes = {
     'Stray Kids': '2dIgFjalVxs4ThymZ67YCE',
     'ITZY': '2KC9Qb60EaY0kW4eH68vr3',
     'NMIXX': '28ot3wh4oNmoFOdVajibBl',
-    '2PM': '5xszGMT22UgbX3Vao3VJj',
+    '2PM': '5iRPbkcPmqAFFwDUj6ywVS',
     'DAY6': '5TnQc2N1iKlFjYD7CPGvFc',
-    'Xdinary Heroes': '4LJGEwnJgaGLIgGNq6TvTH'
+    'Xdinary Heroes': '1khChLj7REGqjM043PlYyn'
 }
 
 print("=== 檢查 Spotify 嵌入狀態 ===\n")
