@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="JYP 娛樂旗下團體統計數據視覺化 - YouTube 觀看數、Spotify 月聽眾、獎項統計" />
+  <meta name="theme-color" content="#ff6fa3" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cii1027.github.io/K-pulse/stats.html" />
+  <meta property="og:title" content="統計數據 — K-PULSE" />
+  <meta property="og:description" content="探索 JYP 團體的數據成就" />
+  <meta property="og:image" content="https://cii1027.github.io/K-pulse/images/optimized/twice-1200.jpg" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="統計數據 — K-PULSE" />
+  <meta name="twitter:description" content="探索 JYP 團體的數據成就" />
+  <meta name="twitter:image" content="https://cii1027.github.io/K-pulse/images/optimized/twice-1200.jpg" />
+  
+  <title>統計數據 — K-PULSE</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .stats-hero {
+      background: linear-gradient(135deg, rgba(255, 111, 163, 0.1), rgba(79, 195, 247, 0.1));
+      padding: calc(var(--space-2xl) + var(--space-lg)) 0 var(--space-2xl);
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .stats-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-md);
+    }
+
+    .stats-hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-sublabel {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      margin-top: var(--space-xs);
+    }
+
+    .chart-section {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .chart-card h2 {
+      margin-bottom: var(--space-lg);
+      font-size: 1.75rem;
+      color: var(--text);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 400px;
+      margin-bottom: var(--space-md);
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.875rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    .group-rankings {
+      display: grid;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .ranking-item {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      transition: all var(--transition-base);
+    }
+
+    .ranking-item:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .ranking-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-secondary);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .ranking-number.top-1 { color: #FFD700; }
+    .ranking-number.top-2 { color: #C0C0C0; }
+    .ranking-number.top-3 { color: #CD7F32; }
+
+    .ranking-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+    }
+
+    .ranking-info {
+      flex: 1;
+    }
+
+    .ranking-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .ranking-stats {
+      display: flex;
+      gap: var(--space-lg);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .ranking-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: var(--space-sm);
+    }
+
+    .ranking-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      border-radius: 4px;
+      transition: width 1s ease-out;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .award-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .award-card:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-md);
+    }
+
+    .award-trophy {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .award-count {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .award-type {
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .award-group {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .milestone-timeline {
+      position: relative;
+      padding-left: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .milestone-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--primary));
+    }
+
+    .milestone-item {
+      position: relative;
+      padding: var(--space-lg);
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .milestone-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--space-xl) - 6px);
+      top: var(--space-lg);
+      width: 15px;
+      height: 15px;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+    }
+
+    .milestone-date {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .milestone-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .milestone-description {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      .chart-container {
+        height: 300px;
+      }
+
+      .ranking-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .ranking-stats {
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">K-PULSE</a>
+      <nav class="main-nav">
+        <a href="index.html">首頁</a>
+        <a href="idols.html">JYP 偶像</a>
+        <a href="music.html">音樂</a>
+        <a href="stats.html" class="active">統計數據</a>
+        <a href="hallyu.html">韓流探討</a>
+        <a href="about.html">關於我</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats-hero">
+      <div class="container">
+        <h1>📊 統計數據視覺化</h1>
+        <p>探索 JYP 娛樂旗下團體的數據成就 - YouTube 觀看數、Spotify 月聽眾、獎項統計</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- 總覽統計 -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🎬</div>
+          <div class="stat-value">350億+</div>
+          <div class="stat-label">YouTube 總觀看數</div>
+          <div class="stat-sublabel">所有團體累計</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎵</div>
+          <div class="stat-value">7500萬+</div>
+          <div class="stat-label">Spotify 月聽眾</div>
+          <div class="stat-sublabel">2025年1月統計</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-value">800+</div>
+          <div class="stat-label">音樂節目獎項</div>
+          <div class="stat-sublabel">一位獎項總數</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value">11</div>
+          <div class="stat-label">活躍團體</div>
+          <div class="stat-sublabel">2025年現役</div>
+        </div>
+      </div>
+
+      <!-- YouTube 觀看數排行 -->
+      <section class="chart-section">
+        <div class="chart-card">
+          <h2>📺 YouTube 觀看數排行榜</h2>
+          <div class="group-rankings">
+            <div class="ranking-item">
+              <div class="ranking-number top-1">1</div>
+              <img src="images/optimized/twice-800.jpg" alt="TWICE" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">TWICE</div>
+                <div class="ranking-stats">
+                  <span>👁️ 160億觀看</span>
+                  <span>📹 502 影片</span>
+                  <span>👥 1870萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-number top-2">2</div>
+              <img src="images/optimized/straykids-800.jpg" alt="Stray Kids" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">Stray Kids</div>
+                <div class="ranking-stats">
+                  <span>👁️ 95億觀看</span>
+                  <span>📹 438 影片</span>
+                  <span>👥 1450萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-number top-3">3</div>
+              <img src="images/optimized/itzy-800.jpg" alt="ITZY" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">ITZY</div>
+                <div class="ranking-stats">
+                  <span>👁️ 48億觀看</span>
+                  <span>📹 289 影片</span>
+                  <span>👥 982萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 60%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-number">4</div>
+              <img src="images/group-icons/2pm.jpg" alt="2PM" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">2PM</div>
+                <div class="ranking-stats">
+                  <span>👁️ 25億觀看</span>
+                  <span>📹 197 影片</span>
+                  <span>👥 548萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 45%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-number">5</div>
+              <img src="images/group-icons/day6.jpg" alt="DAY6" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">DAY6</div>
+                <div class="ranking-stats">
+                  <span>👁️ 12億觀看</span>
+                  <span>📹 234 影片</span>
+                  <span>👥 421萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 35%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ranking-item">
+              <div class="ranking-number">6</div>
+              <img src="images/optimized/nmixx-800.jpg" alt="NMIXX" class="ranking-avatar">
+              <div class="ranking-info">
+                <div class="ranking-name">NMIXX</div>
+                <div class="ranking-stats">
+                  <span>👁️ 8.5億觀看</span>
+                  <span>📹 156 影片</span>
+                  <span>👥 385萬訂閱</span>
+                </div>
+                <div class="ranking-bar">
+                  <div class="ranking-bar-fill" style="width: 28%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotify 月聽眾圖表 -->
+        <div class="chart-card">
+          <h2>🎧 Spotify 月聽眾統計</h2>
+          <div class="chart-container">
+            <canvas id="spotifyChart"></canvas>
+          </div>
+        </div>
+
+        <!-- YouTube 成長趨勢 -->
+        <div class="chart-card">
+          <h2>📈 YouTube 訂閱成長趨勢 (2020-2025)</h2>
+          <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 音樂節目獎項統計 -->
+        <div class="chart-card">
+          <h2>🏆 音樂節目一位獎項統計</h2>
+          <div class="awards-grid">
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">134</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">TWICE</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">89</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">Stray Kids</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">67</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">ITZY</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">45</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">2PM</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">28</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">DAY6</div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-trophy">🥇</div>
+              <div class="award-count">23</div>
+              <div class="award-type">音樂節目一位</div>
+              <div class="award-group">NMIXX</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 重要里程碑 -->
+        <div class="chart-card">
+          <h2>🎯 重要里程碑時間軸</h2>
+          <div class="milestone-timeline">
+            <div class="milestone-item">
+              <div class="milestone-date">2024年12月</div>
+              <div class="milestone-title">Stray Kids 首次奪得 Billboard 200 四連冠</div>
+              <div class="milestone-description">專輯《合 (合)》空降冠軍，成為歷史上第二組達成此成就的團體</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2024年3月</div>
+              <div class="milestone-title">TWICE 成為 K-pop 女團 YouTube 觀看數第一</div>
+              <div class="milestone-description">總觀看數突破 160 億次，創下女團新紀錄</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2023年8月</div>
+              <div class="milestone-title">Stray Kids 蟬聯 Billboard 200 冠軍</div>
+              <div class="milestone-description">專輯《5-STAR》首週銷量破紀錄，連續第三張專輯奪冠</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2023年2月</div>
+              <div class="milestone-title">NMIXX 突破 300 萬訂閱</div>
+              <div class="milestone-description">出道僅一年即達成里程碑，展現驚人成長速度</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2022年6月</div>
+              <div class="milestone-title">ITZY 單曲《WANNABE》突破 5 億觀看</div>
+              <div class="milestone-description">成為第四代女團代表作品之一</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2021年10月</div>
+              <div class="milestone-title">TWICE 成為首個 YouTube 訂閱破千萬的 K-pop 女團</div>
+              <div class="milestone-description">創下歷史性里程碑，訂閱數達 1000 萬</div>
+            </div>
+
+            <div class="milestone-item">
+              <div class="milestone-date">2020年6月</div>
+              <div class="milestone-title">Stray Kids《God's Menu》爆紅</div>
+              <div class="milestone-description">觀看數突破 5 億，成為團體代表作</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 各平台對比圖表 -->
+        <div class="chart-card">
+          <h2>📱 各平台粉絲數對比</h2>
+          <div class="chart-container">
+            <canvas id="platformChart"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3 class="footer-logo">K-PULSE</h3>
+          <p>深入探索 JYP 娛樂與 K-pop 文化</p>
+          <div class="social-links" style="margin-top: 1rem;">
+            <a href="https://www.instagram.com/jypentertainment/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://twitter.com/jypentertainment" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/jypentertainment" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>快速連結</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="idols.html">JYP 偶像</a></li>
+            <li><a href="music.html">音樂</a></li>
+            <li><a href="stats.html">統計數據</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>熱門團體</h4>
+          <ul class="footer-links">
+            <li><a href="twice.html">TWICE</a></li>
+            <li><a href="straykids.html">Stray Kids</a></li>
+            <li><a href="itzy.html">ITZY</a></li>
+            <li><a href="nmixx.html">NMIXX</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>聯絡資訊</h4>
+          <ul class="footer-links">
+            <li>📧 contact@k-pulse.com</li>
+            <li>🌐 www.k-pulse.com</li>
+            <li>📍 台灣</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 K-PULSE — 深入探索 JYP 與 K-pop 文化</p>
+        <p class="footer-note">本網站為教育展示用途，所有內容僅供參考學習</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="回到頂部">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Spotify 月聽眾圖表
+    const spotifyCtx = document.getElementById('spotifyChart').getContext('2d');
+    new Chart(spotifyCtx, {
+      type: 'bar',
+      data: {
+        labels: ['TWICE', 'Stray Kids', 'ITZY', 'NMIXX', '2PM', 'DAY6', 'Xdinary Heroes'],
+        datasets: [{
+          label: 'Spotify 月聽眾 (百萬)',
+          data: [28.5, 24.2, 11.8, 5.4, 3.2, 2.8, 1.9],
+          backgroundColor: [
+            'rgba(255, 111, 163, 0.8)',
+            'rgba(79, 195, 247, 0.8)',
+            'rgba(255, 213, 79, 0.8)',
+            'rgba(186, 104, 200, 0.8)',
+            'rgba(129, 199, 132, 0.8)',
+            'rgba(255, 138, 101, 0.8)',
+            'rgba(144, 164, 174, 0.8)'
+          ],
+          borderColor: [
+            'rgba(255, 111, 163, 1)',
+            'rgba(79, 195, 247, 1)',
+            'rgba(255, 213, 79, 1)',
+            'rgba(186, 104, 200, 1)',
+            'rgba(129, 199, 132, 1)',
+            'rgba(255, 138, 101, 1)',
+            'rgba(144, 164, 174, 1)'
+          ],
+          borderWidth: 2,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.parsed.y + '百萬月聽眾';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value + 'M';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // YouTube 成長趨勢圖表
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    new Chart(growthCtx, {
+      type: 'line',
+      data: {
+        labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [
+          {
+            label: 'TWICE',
+            data: [8.2, 10.5, 12.8, 15.2, 17.1, 18.7],
+            borderColor: 'rgba(255, 111, 163, 1)',
+            backgroundColor: 'rgba(255, 111, 163, 0.1)',
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'Stray Kids',
+            data: [2.1, 4.5, 7.8, 10.5, 13.2, 14.5],
+            borderColor: 'rgba(79, 195, 247, 1)',
+            backgroundColor: 'rgba(79, 195, 247, 0.1)',
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'ITZY',
+            data: [3.2, 5.8, 7.5, 8.6, 9.3, 9.8],
+            borderColor: 'rgba(255, 213, 79, 1)',
+            backgroundColor: 'rgba(255, 213, 79, 0.1)',
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'NMIXX',
+            data: [0, 0, 1.2, 2.5, 3.2, 3.85],
+            borderColor: 'rgba(186, 104, 200, 1)',
+            backgroundColor: 'rgba(186, 104, 200, 0.1)',
+            tension: 0.4,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.dataset.label + ': ' + context.parsed.y + '百萬訂閱';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value + 'M';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // 各平台對比圖表
+    const platformCtx = document.getElementById('platformChart').getContext('2d');
+    new Chart(platformCtx, {
+      type: 'radar',
+      data: {
+        labels: ['YouTube 訂閱', 'Instagram 粉絲', 'Twitter 粉絲', 'Spotify 聽眾', 'TikTok 粉絲'],
+        datasets: [
+          {
+            label: 'TWICE',
+            data: [100, 95, 80, 100, 85],
+            borderColor: 'rgba(255, 111, 163, 1)',
+            backgroundColor: 'rgba(255, 111, 163, 0.2)',
+            borderWidth: 2
+          },
+          {
+            label: 'Stray Kids',
+            data: [85, 80, 75, 90, 92],
+            borderColor: 'rgba(79, 195, 247, 1)',
+            backgroundColor: 'rgba(79, 195, 247, 0.2)',
+            borderWidth: 2
+          },
+          {
+            label: 'ITZY',
+            data: [65, 70, 60, 55, 78],
+            borderColor: 'rgba(255, 213, 79, 1)',
+            backgroundColor: 'rgba(255, 213, 79, 0.2)',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          }
+        },
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

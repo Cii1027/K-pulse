@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="探索 JYP 娛樂旗下團體的熱門歌曲 - Spotify 播放清單整合" />
+  <meta name="theme-color" content="#ff6fa3" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cii1027.github.io/K-pulse/music.html" />
+  <meta property="og:title" content="音樂播放器 — K-PULSE" />
+  <meta property="og:description" content="聆聽 JYP 娛樂旗下團體的熱門歌曲" />
+  <meta property="og:image" content="https://cii1027.github.io/K-pulse/images/optimized/twice-1200.jpg" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="音樂播放器 — K-PULSE" />
+  <meta name="twitter:description" content="聆聽 JYP 娛樂旗下團體的熱門歌曲" />
+  <meta name="twitter:image" content="https://cii1027.github.io/K-pulse/images/optimized/twice-1200.jpg" />
+  
+  <title>音樂播放器 — K-PULSE</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .music-hero {
+      background: linear-gradient(135deg, rgba(255, 111, 163, 0.1), rgba(79, 195, 247, 0.1));
+      padding: calc(var(--space-2xl) + var(--space-lg)) 0 var(--space-2xl);
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .music-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-md);
+    }
+
+    .music-hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .group-tabs {
+      display: flex;
+      gap: var(--space-sm);
+      overflow-x: auto;
+      padding: var(--space-md) 0;
+      margin-bottom: var(--space-xl);
+      border-bottom: 2px solid var(--border);
+      scrollbar-width: thin;
+    }
+
+    .group-tabs::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .group-tabs::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .group-tab {
+      padding: var(--space-sm) var(--space-lg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-full);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .group-tab:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .group-tab.active {
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: white;
+      border-color: transparent;
+    }
+
+    .playlist-container {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .playlist-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .playlist-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      padding: var(--space-xl);
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .playlist-cover {
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .playlist-info h2 {
+      font-size: 2rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .playlist-meta {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .spotify-embed {
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-xl);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .top-tracks {
+      display: grid;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .track-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+
+    .track-item:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .track-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .track-cover {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+    }
+
+    .track-info {
+      flex: 1;
+    }
+
+    .track-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .track-meta {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .track-stats {
+      display: flex;
+      gap: var(--space-md);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .music-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .stat-card {
+      padding: var(--space-xl);
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .playlist-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .playlist-cover {
+        width: 150px;
+        height: 150px;
+      }
+
+      .track-number {
+        min-width: 30px;
+        font-size: 1.25rem;
+      }
+
+      .track-cover {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">K-PULSE</a>
+      <nav class="main-nav">
+        <a href="index.html">首頁</a>
+        <a href="idols.html">JYP 偶像</a>
+        <a href="music.html" class="active">音樂</a>
+        <a href="stats.html">統計數據</a>
+        <a href="hallyu.html">韓流探討</a>
+        <a href="about.html">關於我</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="music-hero">
+      <div class="container">
+        <h1>🎵 音樂播放器</h1>
+        <p>聆聽 JYP 娛樂旗下團體的熱門歌曲，透過 Spotify 播放清單探索更多精彩音樂</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- 團體選擇標籤 -->
+      <div class="group-tabs">
+        <button class="group-tab active" data-group="twice">TWICE</button>
+        <button class="group-tab" data-group="straykids">Stray Kids</button>
+        <button class="group-tab" data-group="itzy">ITZY</button>
+        <button class="group-tab" data-group="nmixx">NMIXX</button>
+        <button class="group-tab" data-group="2pm">2PM</button>
+        <button class="group-tab" data-group="day6">DAY6</button>
+        <button class="group-tab" data-group="xdinary">Xdinary Heroes</button>
+      </div>
+
+      <!-- TWICE 播放清單 -->
+      <div class="playlist-container active" data-group="twice">
+        <div class="playlist-header">
+          <img src="images/optimized/twice-800.jpg" alt="TWICE" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>TWICE 熱門歌曲</h2>
+            <p class="playlist-meta">9 位成員 • 2015 出道 • 粉絲名：ONCE</p>
+            <p>以明亮、流行的歌曲和精準舞台著稱的國民女團</p>
+          </div>
+        </div>
+
+        <!-- Spotify Embed -->
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/7n2Ycct7Beij7Dj7new7xy?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <!-- 熱門歌曲列表 -->
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">TT</div>
+              <div class="track-meta">2016 • TWICEcoaster : LANE 1</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5.9億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">FANCY</div>
+              <div class="track-meta">2019 • FANCY YOU</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5.7億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">Feel Special</div>
+              <div class="track-meta">2019 • Feel Special</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 4.9億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">ONE SPARK</div>
+              <div class="track-meta">2024 • With YOU-th</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 1.2億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">What is Love?</div>
+              <div class="track-meta">2018 • What is Love?</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 4.2億</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stray Kids 播放清單 -->
+      <div class="playlist-container" data-group="straykids">
+        <div class="playlist-header">
+          <img src="images/optimized/straykids-800.jpg" alt="Stray Kids" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>Stray Kids 熱門歌曲</h2>
+            <p class="playlist-meta">8 位成員 • 2018 出道 • 粉絲名：STAY</p>
+            <p>以自我音樂風格與強烈舞台表現征服全球</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/2dIgFjalVxs4ThymZ67YCE?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">God's Menu</div>
+              <div class="track-meta">2020 • GO生</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5.3億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">Back Door</div>
+              <div class="track-meta">2020 • IN生</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3.9億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">MANIAC</div>
+              <div class="track-meta">2022 • ODDINARY</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3.5億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">S-Class</div>
+              <div class="track-meta">2023 • 5-STAR</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2.1億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">Thunderous</div>
+              <div class="track-meta">2021 • NOEASY</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2.8億</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITZY 播放清單 -->
+      <div class="playlist-container" data-group="itzy">
+        <div class="playlist-header">
+          <img src="images/optimized/itzy-800.jpg" alt="ITZY" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>ITZY 熱門歌曲</h2>
+            <p class="playlist-meta">5 位成員 • 2019 出道 • 粉絲名：MIDZY</p>
+            <p>以自信與女力概念、強烈舞台魅力快速受到關注</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/2KC9Qb60EaY0kW4eH68vr3?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">마.피.아. In the morning</div>
+              <div class="track-meta">2021 • GUESS WHO</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2.5億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">WANNABE</div>
+              <div class="track-meta">2020 • IT'z ME</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2.7億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">DALLA DALLA</div>
+              <div class="track-meta">2019 • IT'z Different</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3.1億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">BORN TO BE</div>
+              <div class="track-meta">2024 • BORN TO BE</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 8500萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">ICY</div>
+              <div class="track-meta">2019 • IT'z ICY</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2.6億</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NMIXX 播放清單 -->
+      <div class="playlist-container" data-group="nmixx">
+        <div class="playlist-header">
+          <img src="images/optimized/nmixx-800.jpg" alt="NMIXX" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>NMIXX 熱門歌曲</h2>
+            <p class="playlist-meta">6 位成員 • 2022 出道 • 風格：實驗性、多元音樂融合</p>
+            <p>風格多變，嘗試混合不同音樂元素</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/28ot3wh4oNmoFOdVajibBl?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">DICE</div>
+              <div class="track-meta">2022 • ENTWURF</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 7600萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">O.O</div>
+              <div class="track-meta">2022 • AD MARE</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 9800萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">Love Me Like This</div>
+              <div class="track-meta">2023 • expérgo</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5700萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">Party O'Clock</div>
+              <div class="track-meta">2023 • expérgo</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3200萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">Young, Dumb, Stupid</div>
+              <div class="track-meta">2023 • expérgo</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 2100萬</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2PM 播放清單 -->
+      <div class="playlist-container" data-group="2pm">
+        <div class="playlist-header">
+          <img src="images/group-icons/2pm.jpg" alt="2PM" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>2PM 熱門歌曲</h2>
+            <p class="playlist-meta">6 位成員 • 2008 出道 • 粉絲名：HOTTEST</p>
+            <p>野獸派舞蹈和強烈舞台魅力的傳奇男團</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/5xszGMT22UgbX3Vao3VJj?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">My House</div>
+              <div class="track-meta">2015 • NO.5</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 1.5億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">Again & Again</div>
+              <div class="track-meta">2009 • 2:00PM Time For Change</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5800萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">Heartbeat</div>
+              <div class="track-meta">2009 • 1:59PM</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 4500萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">A.D.T.O.Y.</div>
+              <div class="track-meta">2012 • GROWN</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3700萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">GO CRAZY</div>
+              <div class="track-meta">2014 • GO CRAZY</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 4200萬</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY6 播放清單 -->
+      <div class="playlist-container" data-group="day6">
+        <div class="playlist-header">
+          <img src="images/group-icons/day6.jpg" alt="DAY6" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>DAY6 熱門歌曲</h2>
+            <p class="playlist-meta">4 位成員 • 2015 出道 • 粉絲名：My Day</p>
+            <p>真摯的抒情搖滾和深刻歌詞的樂團</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/5TnQc2N1iKlFjYD7CPGvFc?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">Congratulations</div>
+              <div class="track-meta">2015 • The Day</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 1億</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">You Were Beautiful</div>
+              <div class="track-meta">2017 • Every DAY6 February</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 9500萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">Shoot Me</div>
+              <div class="track-meta">2018 • Shoot Me : Youth Part 1</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 5600萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">Time of Our Life</div>
+              <div class="track-meta">2019 • The Book of Us : Gravity</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 4200萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">Sweet Chaos</div>
+              <div class="track-meta">2019 • The Book of Us : Entropy</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 3800萬</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Xdinary Heroes 播放清單 -->
+      <div class="playlist-container" data-group="xdinary">
+        <div class="playlist-header">
+          <img src="images/group-icons/xdinary-heroes.jpg" alt="Xdinary Heroes" class="playlist-cover">
+          <div class="playlist-info">
+            <h2>Xdinary Heroes 熱門歌曲</h2>
+            <p class="playlist-meta">6 位成員 • 2021 出道 • 粉絲名：Villains</p>
+            <p>強烈的搖滾風格和創新音樂概念</p>
+          </div>
+        </div>
+
+        <iframe class="spotify-embed" 
+          style="border-radius:12px" 
+          src="https://open.spotify.com/embed/artist/4LJGEwnJgaGLIgGNq6TvTH?utm_source=generator" 
+          width="100%" 
+          height="380" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+
+        <div class="top-tracks">
+          <div class="track-item">
+            <span class="track-number">1</span>
+            <div class="track-info">
+              <div class="track-title">Hair Cut</div>
+              <div class="track-meta">2023 • Troubleshooting</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 1500萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">2</span>
+            <div class="track-info">
+              <div class="track-title">Test Me</div>
+              <div class="track-meta">2022 • Test Me</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 1200萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">3</span>
+            <div class="track-info">
+              <div class="track-title">Break the Brake</div>
+              <div class="track-meta">2023 • Troubleshooting</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 980萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">4</span>
+            <div class="track-info">
+              <div class="track-title">Paranoid</div>
+              <div class="track-meta">2022 • Overload</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 850萬</span>
+            </div>
+          </div>
+          <div class="track-item">
+            <span class="track-number">5</span>
+            <div class="track-info">
+              <div class="track-title">Man in the Box</div>
+              <div class="track-meta">2023 • Livelock</div>
+            </div>
+            <div class="track-stats">
+              <span>👁️ 720萬</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3 class="footer-logo">K-PULSE</h3>
+          <p>深入探索 JYP 娛樂與 K-pop 文化</p>
+          <div class="social-links" style="margin-top: 1rem;">
+            <a href="https://www.instagram.com/jypentertainment/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://twitter.com/jypentertainment" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/jypentertainment" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>快速連結</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="idols.html">JYP 偶像</a></li>
+            <li><a href="music.html">音樂</a></li>
+            <li><a href="stats.html">統計數據</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>熱門團體</h4>
+          <ul class="footer-links">
+            <li><a href="twice.html">TWICE</a></li>
+            <li><a href="straykids.html">Stray Kids</a></li>
+            <li><a href="itzy.html">ITZY</a></li>
+            <li><a href="nmixx.html">NMIXX</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>聯絡資訊</h4>
+          <ul class="footer-links">
+            <li>📧 contact@k-pulse.com</li>
+            <li>🌐 www.k-pulse.com</li>
+            <li>📍 台灣</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 K-PULSE — 深入探索 JYP 與 K-pop 文化</p>
+        <p class="footer-note">本網站為教育展示用途，所有內容僅供參考學習</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="回到頂部">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script src="js/script.js"></script>
+  <script>
+    // 團體切換功能
+    document.querySelectorAll('.group-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const group = tab.dataset.group;
+        
+        // 更新標籤樣式
+        document.querySelectorAll('.group-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // 切換內容
+        document.querySelectorAll('.playlist-container').forEach(container => {
+          container.classList.remove('active');
+        });
+        document.querySelector(`.playlist-container[data-group="${group}"]`).classList.add('active');
+        
+        // 滾動到頂部
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -17,6 +17,22 @@
     <priority>0.9</priority>
   </url>
   
+  <!-- 音樂播放器 -->
+  <url>
+    <loc>https://cii1027.github.io/K-pulse/music.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- 統計數據 -->
+  <url>
+    <loc>https://cii1027.github.io/K-pulse/stats.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <!-- 韓流探討 -->
   <url>
     <loc>https://cii1027.github.io/K-pulse/hallyu.html</loc>

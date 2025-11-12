@@ -40,6 +40,8 @@
     <nav class="main-nav">
       <a href="index.html">首頁</a>
       <a href="idols.html">JYP 偶像</a>
+      <a href="music.html">音樂</a>
+      <a href="stats.html">統計數據</a>
       <a href="hallyu.html">韓流探討</a>
       <a href="about.html">關於我</a>
     </nav>
@@ -244,6 +246,52 @@
         </div>
       </div>
     </section>
+
+    <!-- 新功能快速連結 -->
+    <section class="features-highlight" style="padding: var(--space-2xl) 0; background: linear-gradient(135deg, rgba(255, 111, 163, 0.05), rgba(79, 195, 247, 0.05));">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-xl); font-size: 2rem;">🎯 探索更多功能</h2>
+        <div class="stats-grid" style="max-width: 900px; margin: 0 auto;">
+          <a href="music.html" class="stat-card" style="text-decoration: none; transition: all var(--transition-base); cursor: pointer; border: 2px solid transparent;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md);">🎵</div>
+            <div class="stat-number" style="font-size: 1.5rem; margin-bottom: var(--space-sm);">音樂播放器</div>
+            <div class="stat-label" style="font-size: 0.875rem; line-height: 1.6;">
+              整合 Spotify 播放清單<br>
+              聆聽各團體熱門歌曲<br>
+              探索 JYP 音樂世界
+            </div>
+          </a>
+          <div class="stat-card" style="opacity: 0.6;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md);">🌐</div>
+            <div class="stat-number" style="font-size: 1.5rem; margin-bottom: var(--space-sm);">語言切換</div>
+            <div class="stat-label" style="font-size: 0.875rem; line-height: 1.6;">
+              中文 • English<br>
+              한국어 • 日本語<br>
+              四種語言隨心切換
+            </div>
+          </div>
+          <a href="stats.html" class="stat-card" style="text-decoration: none; transition: all var(--transition-base); cursor: pointer; border: 2px solid transparent;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md);">📊</div>
+            <div class="stat-number" style="font-size: 1.5rem; margin-bottom: var(--space-sm);">統計數據</div>
+            <div class="stat-label" style="font-size: 0.875rem; line-height: 1.6;">
+              YouTube 觀看數排行<br>
+              Spotify 月聽眾統計<br>
+              音樂節目獎項總覽
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <style>
+      .features-highlight .stat-card:hover {
+        transform: translateY(-12px) scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border-color: var(--accent) !important;
+      }
+      .features-highlight a.stat-card:hover {
+        color: inherit;
+      }
+    </style>
 
     <!-- 今日推薦 -->
     <section class="daily-pick">
