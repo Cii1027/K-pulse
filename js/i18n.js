@@ -467,13 +467,16 @@
   // 翻譯 Idols 頁面
   function translateIdols(idols) {
     // 標題和搜尋
-    const title = document.querySelector('.idols-main h1, .idols-page-header h1');
-    const subtitle = document.querySelector('.idols-page-header p');
-    const searchInput = document.querySelector('#groupSearch, .search-input');
+    const title = document.querySelector('.idols-main h1, .idols-page-header');
+    const subtitle = document.querySelector('.idols-source');
+    const searchInput = document.querySelector('#idolSearch, .search-input');
     
     if (title) title.textContent = idols.title;
     if (subtitle) subtitle.textContent = idols.subtitle;
-    if (searchInput) searchInput.setAttribute('placeholder', idols.search_placeholder);
+    if (searchInput) {
+      searchInput.setAttribute('placeholder', idols.search_placeholder);
+      searchInput.setAttribute('aria-label', idols.search_placeholder);
+    }
     
     // 標題（主要成就、代表作品、最新 M/V）
     const achievementTitles = document.querySelectorAll('h4');
@@ -695,8 +698,8 @@
 
   // 翻譯音樂頁面
   function translateMusic(music) {
-    const heroTitle = document.querySelector('.music-hero h1');
-    const heroSubtitle = document.querySelector('.music-hero p');
+    const heroTitle = document.querySelector('.music-hero h1, .music-title');
+    const heroSubtitle = document.querySelector('.music-hero p, .music-subtitle');
     const trackTitles = document.querySelectorAll('.tracks-list h3');
     
     if (heroTitle) heroTitle.textContent = music.title;
@@ -704,7 +707,7 @@
     
     // 翻譯「代表歌曲」標題
     trackTitles.forEach(title => {
-      if (title.textContent.includes('代表歌曲')) {
+      if (title.textContent.includes('代表歌曲') || title.textContent.includes('Top Tracks') || title.textContent.includes('대표곡')) {
         title.textContent = music.top_tracks;
       }
     });
@@ -712,8 +715,8 @@
 
   // 翻譯統計數據頁面
   function translateStats(stats) {
-    const heroTitle = document.querySelector('.stats-hero h1');
-    const heroSubtitle = document.querySelector('.stats-hero p');
+    const heroTitle = document.querySelector('.stats-hero h1, .stats-title');
+    const heroSubtitle = document.querySelector('.stats-hero p, .stats-subtitle');
     
     if (heroTitle) heroTitle.textContent = stats.title;
     if (heroSubtitle) heroSubtitle.textContent = stats.subtitle;
