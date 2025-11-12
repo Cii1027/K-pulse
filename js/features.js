@@ -43,9 +43,11 @@
       
       // 更新 aria-live 區域
       const currentSlide = slides[idx];
-      const img = currentSlide.querySelector('img');
-      if(img && track) {
-        track.setAttribute('aria-label', `第 ${idx + 1} 張，共 ${slides.length} 張：${img.alt}`);
+      const mvTitle = currentSlide.querySelector('.mv-info-bar h3');
+      if(mvTitle && track) {
+        const artist = mvTitle.textContent;
+        const song = currentSlide.querySelector('.mv-info-bar p')?.textContent || '';
+        track.setAttribute('aria-label', `第 ${idx + 1} 張，共 ${slides.length} 張：${artist} - ${song}`);
       }
       
       // 重置進度條
