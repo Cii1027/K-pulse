@@ -129,13 +129,10 @@ const searchDatabase = {
 
 // 初始化搜尋功能
 function initSearch() {
-  const searchBtn = document.getElementById('search-btn');
-  const searchModal = document.getElementById('search-modal');
   const searchInput = document.getElementById('search-input');
-  const searchClose = document.getElementById('search-close');
   const searchResults = document.getElementById('search-results');
 
-  if (!searchBtn || !searchModal) return;
+  if (!searchInput || !searchResults) return;
 
   // 獲取當前語言的翻譯文字
   function getSearchText(key) {
@@ -309,13 +306,6 @@ function initSearch() {
     });
 
     searchResults.innerHTML = html;
-
-    // 為搜尋結果添加點擊事件
-    searchResults.querySelectorAll('.search-item').forEach(item => {
-      item.addEventListener('click', () => {
-        closeSearch();
-      });
-    });
   }
 
   // 高亮匹配文字
@@ -335,9 +325,6 @@ function initSearch() {
   function escapeRegex(text) {
     return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-
-  // 初始化時顯示空狀態
-  showEmptyState();
 }
 
 // 頁面載入後初始化
