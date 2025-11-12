@@ -757,20 +757,6 @@ const translations = {
       copy_link: '링크 복사'
     },
     
-
-      contact: '연락처',
-      copyright: '© 2025 K-PULSE — JYP 및 K-pop 문화 탐구',
-      note: '이 웹사이트는 교육 목적입니다. 모든 콘텐츠는 참고용입니다.'
-    },
-    
-    common: {
-      back_to_top: '맨 위로',
-      loading: '로딩 중...',
-      error: '오류 발생',
-      read_more: '더 읽기',
-      learn_more: '더 알아보기'
-    },
-    
     group: {
       overview: '그룹 소개',
       members: '멤버',
