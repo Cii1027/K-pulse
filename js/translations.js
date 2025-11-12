@@ -10,6 +10,8 @@ const translations = {
     nav: {
       home: '首頁',
       idols: 'JYP 偶像',
+      music: '音樂',
+      stats: '統計數據',
       hallyu: '韓流探討',
       about: '關於我',
       timeline: '大事記'
@@ -315,6 +317,8 @@ const translations = {
     nav: {
       home: 'Home',
       idols: 'JYP Idols',
+      music: 'Music',
+      stats: 'Statistics',
       hallyu: 'Hallyu Wave',
       about: 'About',
       timeline: 'Timeline'
@@ -608,6 +612,8 @@ const translations = {
     nav: {
       home: '홈',
       idols: 'JYP 아이돌',
+      music: '음악',
+      stats: '통계',
       hallyu: '한류',
       about: '소개',
       timeline: '타임라인'
@@ -901,6 +907,8 @@ const translations = {
     nav: {
       home: 'ホーム',
       idols: 'JYP アイドル',
+      music: '音楽',
+      stats: '統計',
       hallyu: '韓流',
       about: '紹介',
       timeline: 'タイムライン'

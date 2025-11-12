@@ -227,11 +227,13 @@
   // 翻譯導航欄
   function translateNav(nav) {
     const navLinks = document.querySelectorAll('.main-nav a');
-    if (navLinks.length >= 4) {
+    if (navLinks.length >= 6) {
       navLinks[0].textContent = nav.home;
       navLinks[1].textContent = nav.idols;
-      navLinks[2].textContent = nav.hallyu;
-      navLinks[3].textContent = nav.about;
+      navLinks[2].textContent = nav.music || '音樂';
+      navLinks[3].textContent = nav.stats || '統計數據';
+      navLinks[4].textContent = nav.hallyu;
+      navLinks[5].textContent = nav.about;
     }
   }
 
