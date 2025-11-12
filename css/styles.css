@@ -919,6 +919,25 @@ html[data-theme="dark"] .main-nav a:hover{
   box-shadow: var(--shadow-md);
   border-color: var(--accent);
 }
+
+/* 團體照片樣式 */
+.group-photo {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: block;
+  object-fit: cover;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.group-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 .member-photo { 
   width: 120px; 
   height: 120px; 
