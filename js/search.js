@@ -8,6 +8,7 @@ const searchDatabase = {
       name: { zh: 'TWICE', en: 'TWICE', ko: '트와이스', ja: 'トゥワイス' },
       debut: '2015',
       members: 9,
+      memberNames: ['娜璉', '定延', 'MOMO', '紗夏', '志效', 'MINA', '多賢', '彩瑛', '子瑜', 'Nayeon', 'Jeongyeon', 'Sana', 'Jihyo', 'Dahyun', 'Chaeyoung', 'Tzuyu', '나연', '정연', '모모', '사나', '지효', '미나', '다현', '채영', '쯔위'],
       fandom: 'ONCE',
       url: 'twice.html',
       icon: 'images/optimized/twice-400.jpg',
@@ -19,6 +20,7 @@ const searchDatabase = {
       name: { zh: 'Stray Kids', en: 'Stray Kids', ko: '스트레이 키즈', ja: 'ストレイキッズ' },
       debut: '2018',
       members: 8,
+      memberNames: ['方燦', '李諾', '彰彬', '鉉辰', 'HAN', 'Felix', '昇玟', 'I.N', 'Bang Chan', 'Lee Know', 'Changbin', 'Hyunjin', '한', '필릭스', '승민', '아이엔', '방찬', '리노', '창빈', '현진'],
       fandom: 'STAY',
       url: 'straykids.html',
       icon: 'images/optimized/straykids-400.jpg',
@@ -30,6 +32,7 @@ const searchDatabase = {
       name: { zh: 'ITZY', en: 'ITZY', ko: '있지', ja: 'イッジ' },
       debut: '2019',
       members: 5,
+      memberNames: ['禮志', 'Lia', '留眞', '彩領', '有娜', 'Yeji', 'Ryujin', 'Chaeryeong', 'Yuna', '예지', '리아', '류진', '채령', '유나'],
       fandom: 'MIDZY',
       url: 'itzy.html',
       icon: 'images/optimized/itzy-400.jpg',
@@ -41,6 +44,7 @@ const searchDatabase = {
       name: { zh: 'NMIXX', en: 'NMIXX', ko: '엔믹스', ja: 'エンミックス' },
       debut: '2022',
       members: 6,
+      memberNames: ['lily', '海嫄', 'Sullyoon', 'BAE', 'Jiwoo', 'Kyujin', '릴리', '해원', '설윤', '배', '지우', '규진'],
       fandom: 'NSWER',
       url: 'nmixx.html',
       icon: 'images/optimized/nmixx-400.jpg',
@@ -52,6 +56,7 @@ const searchDatabase = {
       name: { zh: '2PM', en: '2PM', ko: '투피엠', ja: 'ツーピーエム' },
       debut: '2008',
       members: 6,
+      memberNames: ['Jun.K', 'Nichkhun', '玉澤演', '張祐榮', '李俊昊', '黃燦成', 'Taecyeon', 'Wooyoung', 'Junho', 'Chansung', '준케이', '닉쿤', '택연', '우영', '준호', '찬성'],
       fandom: 'HOTTEST',
       url: '2pm.html',
       icon: 'images/group-icons/2pm.jpg',
@@ -63,6 +68,7 @@ const searchDatabase = {
       name: { zh: 'DAY6', en: 'DAY6', ko: '데이식스', ja: 'デイシックス' },
       debut: '2015',
       members: 4,
+      memberNames: ['成振', 'Young K', '元弼', '道雲', 'Sungjin', 'Wonpil', 'Dowoon', '성진', '영케이', '원필', '도운'],
       fandom: 'MY DAY',
       url: 'day6.html',
       icon: 'images/group-icons/day6.jpg',
@@ -74,6 +80,7 @@ const searchDatabase = {
       name: { zh: 'Xdinary Heroes', en: 'Xdinary Heroes', ko: '엑스디너리 히어로즈', ja: 'エクストラオーディナリーヒーローズ' },
       debut: '2021',
       members: 6,
+      memberNames: ['건일', 'Jungsu', 'Gaon', 'O.de', 'Jun Han', 'Jooyeon', '정수', '가온', '오드', '준한', '주연'],
       fandom: 'VILLAINS',
       url: 'xdinary-heroes.html',
       icon: 'images/group-icons/xdinary-heroes.jpg',
@@ -85,6 +92,7 @@ const searchDatabase = {
       name: { zh: 'NiziU', en: 'NiziU', ko: '니쥬', ja: 'ニジュー' },
       debut: '2020',
       members: 9,
+      memberNames: ['Mako', 'Rio', 'Maya', 'Riku', 'Ayaka', 'Mayuka', 'Rima', 'Miihi', 'Nina', 'まこ', 'りお', 'まや', 'りく', 'あやか', 'まゆか', 'りま', 'みいひ', 'にな'],
       fandom: 'WithU',
       url: 'niziu.html',
       icon: 'images/group-icons/niziu.jpg',
@@ -96,6 +104,7 @@ const searchDatabase = {
       name: { zh: 'NEXZ', en: 'NEXZ', ko: '넥스지', ja: 'ネクスジ' },
       debut: '2024',
       members: 7,
+      memberNames: ['Tomoya', 'Yu', 'Haru', 'Yuki', 'So', 'Seita', 'Hyui', 'ともや', 'ゆう', 'はる', 'ゆうき', 'そう', 'せいた', 'ひゅい'],
       fandom: 'NEX2Y',
       url: 'nexz.html',
       icon: 'images/group-icons/nexz.jpg',
@@ -107,6 +116,7 @@ const searchDatabase = {
       name: { zh: 'VCHA', en: 'VCHA', ko: '브이차', ja: 'ヴィーチャ' },
       debut: '2024',
       members: 4,
+      memberNames: ['Camila', 'Lexi', 'Savanna', 'KG'],
       fandom: '',
       url: 'vcha.html',
       icon: 'images/group-icons/vcha.jpg',
@@ -118,6 +128,7 @@ const searchDatabase = {
       name: { zh: 'KickFlip', en: 'KickFlip', ko: '킥플립', ja: 'キックフリップ' },
       debut: '2025',
       members: 7,
+      memberNames: ['건우', 'Amaru', 'Keiju', 'Donghyeon', 'Gyurae', 'Jin-O', 'Min', 'Gunwoo', 'アマル', 'けいじゅ', '동현', '규래', '진오', '민'],
       fandom: 'WEFLIP',
       url: 'kickflip.html',
       icon: 'images/group-icons/kickflip.jpg',
@@ -242,6 +253,11 @@ function initSearch() {
         name.toLowerCase().includes(query)
       );
       
+      // 搜尋成員名稱
+      const memberMatch = group.memberNames && group.memberNames.some(member => 
+        member.toLowerCase().includes(query)
+      );
+      
       // 搜尋關鍵字
       const keywordMatch = group.keywords.some(keyword => 
         keyword.toLowerCase().includes(query)
@@ -255,7 +271,7 @@ function initSearch() {
         tag.toLowerCase().includes(query)
       );
 
-      return nameMatch || keywordMatch || fandomMatch || tagMatch;
+      return nameMatch || memberMatch || keywordMatch || fandomMatch || tagMatch;
     });
 
     displayResults(results, query);
