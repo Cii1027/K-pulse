@@ -202,47 +202,20 @@ function initSearch() {
   // 監聽語言切換事件
   window.addEventListener('languageChanged', updatePlaceholder);
 
-  if (!searchBtn || !searchModal) return;
+  if (!searchInput || !searchResults) return;
 
-  // 開啟搜尋模態框
-  function openSearch() {
-    searchModal.classList.add('active');
-    searchInput.focus();
-    document.body.style.overflow = 'hidden';
-  }
-
-  // 關閉搜尋模態框
-  function closeSearch() {
-    searchModal.classList.remove('active');
-    searchInput.value = '';
-    searchResults.innerHTML = '';
-    document.body.style.overflow = '';
-  }
-
-  // 按鈕點擊事件
-  searchBtn.addEventListener('click', openSearch);
-  searchClose.addEventListener('click', closeSearch);
-
-  // 點擊背景關閉
-  searchModal.addEventListener('click', (e) => {
-    if (e.target === searchModal) {
-      closeSearch();
+  // 點擊外部關閉搜尋結果
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+      searchResults.innerHTML = '';
     }
   });
 
-  // ESC 鍵關閉
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-      closeSearch();
-    }
-    // Ctrl+K 或 Cmd+K 開啟搜尋
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (searchModal.classList.contains('active')) {
-        closeSearch();
-      } else {
-        openSearch();
-      }
+  // 搜尋輸入框獲得焦點時，如果有內容則顯示結果
+  searchInput.addEventListener('focus', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query.length > 0) {
+      performSearch(query);
     }
   });
 
@@ -250,27 +223,19 @@ function initSearch() {
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim().toLowerCase();
     if (query.length === 0) {
-      showEmptyState();
+      searchResults.innerHTML = '';
     } else {
       performSearch(query);
     }
   });
 
-  // 顯示空狀態
-  function showEmptyState() {
-    searchResults.innerHTML = `
-      <div class="search-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
-        <p>${getSearchText('emptyTitle')}</p>
-        <p style="font-size: 0.875rem; margin-top: 0.5rem;">
-          ${getSearchText('emptyDesc')}
-        </p>
-      </div>
-    `;
-  }
+  // Ctrl+K 快捷鍵聚焦搜尋框
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
 
   // 執行搜尋
   function performSearch(query) {
