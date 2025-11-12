@@ -296,7 +296,7 @@ function initSearch() {
     }
 
     const currentLang = localStorage.getItem('preferred-language') || 'zh';
-    let html = `<div class="search-category">${getSearchText('resultsTitle')} · ${results.length} ${getSearchText('groups')}</div>`;
+    let html = '';
 
     results.forEach(group => {
       const groupName = group.name[currentLang] || group.name.zh;
@@ -304,17 +304,15 @@ function initSearch() {
 
       html += `
         <a href="${group.url}" class="search-item" data-group="${group.id}">
-          <img src="${group.icon}" alt="${groupName}" class="search-item-icon" loading="lazy">
           <div class="search-item-content">
             <div class="search-item-title">
               ${highlightedName}
-              ${group.tags[0] ? `<span class="search-item-badge">${group.tags[0]}</span>` : ''}
             </div>
             <div class="search-item-meta">
               <span>${group.debut} ${getSearchText('debut')}</span>
               <span>·</span>
               <span>${group.members} ${getSearchText('members')}</span>
-              ${group.fandom ? `<span>·</span><span>${group.fandom}</span>` : ''}
+              ${group.fandom ? `<span>·</span><span class="search-item-fandom">${group.fandom}</span>` : ''}
             </div>
           </div>
         </a>
