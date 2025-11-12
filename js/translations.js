@@ -320,7 +320,20 @@ const translations = {
       members: '位成員',
       fandom: '粉絲名',
       meta_tracks: '歌曲 •',
-      meta_album: '專輯 •'
+      meta_album: '專輯 •',
+      
+      // 團體描述
+      twice_desc: '以明亮、流行的歌曲和精準舞台著稱的國民女團',
+      straykids_desc: '自製音樂的先驅團體，以強烈節奏感和自主創作能力聞名',
+      itzy_desc: '以自信女力概念和強烈舞台表現力著稱的第四代代表女團',
+      nmixx_desc: '突破傳統框架的新世代女團，以「MIXX POP」開創獨特音樂風格',
+      '2pm_desc': '二代傳奇男團，以野獸派風格和強大舞台魅力稱霸 K-pop',
+      day6_desc: '五位全能樂手組成的樂團，以真摯的音樂故事觸動人心',
+      xdinary_desc: '六人搖滾樂團，融合搖滾與電子元素創造新世代樂團音樂',
+      
+      // 歌曲標籤
+      hot_tracks: '熱門歌曲',
+      group_info: '團體資訊'
     },
     
     // 統計數據頁面
@@ -652,7 +665,20 @@ const translations = {
       members: 'members',
       fandom: 'Fandom',
       meta_tracks: 'Track •',
-      meta_album: 'Album •'
+      meta_album: 'Album •',
+      
+      // Group descriptions
+      twice_desc: 'National girl group known for bright, catchy songs and precise performances',
+      straykids_desc: 'Self-producing pioneers known for powerful beats and creative autonomy',
+      itzy_desc: 'Fourth-gen representatives known for confident girl-power concept and stage presence',
+      nmixx_desc: 'New generation breaking traditional boundaries with unique "MIXX POP" style',
+      '2pm_desc': 'Second-gen legends dominating K-pop with beast-like style and powerful charisma',
+      day6_desc: 'Five talented musicians touching hearts with sincere musical storytelling',
+      xdinary_desc: 'Six-piece rock band creating new-generation music by fusing rock and electronic elements',
+      
+      // Song labels
+      hot_tracks: 'Hot Tracks',
+      group_info: 'Group Info'
     },
     
     // Stats Page
@@ -984,7 +1010,20 @@ const translations = {
       members: '명',
       fandom: '팬덤명',
       meta_tracks: '트랙 •',
-      meta_album: '앨범 •'
+      meta_album: '앨범 •',
+      
+      // 그룹 설명
+      twice_desc: '밝고 대중적인 음악과 정확한 무대로 유명한 국민 걸그룹',
+      straykids_desc: '강렬한 리듬감과 자체 제작 능력으로 유명한 자체 제작 아이돌',
+      itzy_desc: '자신감 넘치는 걸파워 콘셉트와 강력한 무대 표현력을 자랑하는 4세대 대표 걸그룹',
+      nmixx_desc: '전통적인 틀을 깨는 신세대 걸그룹, "MIXX POP"으로 독특한 음악 스타일 개척',
+      '2pm_desc': '야수파 스타일과 강력한 무대 카리스마로 K-pop을 지배한 2세대 전설',
+      day6_desc: '진심 어린 음악 이야기로 마음을 움직이는 다섯 명의 전능한 뮤지션',
+      xdinary_desc: '록과 일렉트로닉 요소를 결합해 신세대 밴드 음악을 창조하는 6인조 록 밴드',
+      
+      // 곡 레이블
+      hot_tracks: '인기곡',
+      group_info: '그룹 정보'
     },
     
     // Stats Page
@@ -1316,7 +1355,20 @@ const translations = {
       members: '名',
       fandom: 'ファンダム名',
       meta_tracks: 'トラック •',
-      meta_album: 'アルバム •'
+      meta_album: 'アルバム •',
+      
+      // グループ説明
+      twice_desc: '明るくポップな楽曲と正確なステージで有名な国民的ガールグループ',
+      straykids_desc: '強烈なリズム感と自主制作能力で知られる自主制作アイドル',
+      itzy_desc: '自信に満ちたガールパワーコンセプトと強力なステージ表現力を誇る第4世代代表ガールグループ',
+      nmixx_desc: '伝統的な枠を破る新世代ガールグループ、「MIXX POP」でユニークな音楽スタイルを開拓',
+      '2pm_desc': 'ビースト派スタイルと強力なステージカリスマでK-popを支配した第2世代の伝説',
+      day6_desc: '真摯な音楽ストーリーで心を動かす5人の万能ミュージシャン',
+      xdinary_desc: 'ロックとエレクトロニック要素を融合して新世代バンド音楽を創造する6人組ロックバンド',
+      
+      // 曲ラベル
+      hot_tracks: '人気曲',
+      group_info: 'グループ情報'
     },
     
     // Stats Page

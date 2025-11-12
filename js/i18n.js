@@ -711,6 +711,16 @@
         title.textContent = music.top_tracks;
       }
     });
+    
+    // 翻譯團體描述
+    const groupDescriptions = document.querySelectorAll('.group-description[data-group]');
+    groupDescriptions.forEach(desc => {
+      const groupKey = desc.getAttribute('data-group');
+      const descKey = `${groupKey}_desc`;
+      if (music[descKey]) {
+        desc.textContent = music[descKey];
+      }
+    });
   }
 
   // 翻譯統計數據頁面
