@@ -1,6 +1,6 @@
 // features.js — 輔助功能：輪播、偶像搜尋
 (function(){
-  /* Carousel for hero */
+  /* Enhanced Carousel with Progress Bar */
   function initCarousel(){
     const car = document.querySelector('.carousel');
     if(!car) return;
@@ -9,9 +9,14 @@
     const prev = car.querySelector('.carousel-btn.prev');
     const next = car.querySelector('.carousel-btn.next');
     const dots = car.querySelector('.carousel-dots');
+    const progressBar = car.querySelector('.carousel-progress-bar');
+    
     let idx = 0;
     let timer = null;
+    let progressTimer = null;
     let isTransitioning = false;
+    let isPaused = false;
+    const AUTO_PLAY_INTERVAL = 5000; // 5 秒自動播放
 
     function render(){
       if(isTransitioning) return;
@@ -42,6 +47,9 @@
       if(img && track) {
         track.setAttribute('aria-label', `第 ${idx + 1} 張，共 ${slides.length} 張：${img.alt}`);
       }
+      
+      // 重置進度條
+      resetProgress();
     }
 
     function go(i){ 
@@ -49,12 +57,81 @@
       idx = (i + slides.length) % slides.length; 
       render(); 
     }
+    
     function nextSlide(){ go(idx+1); }
     function prevSlide(){ go(idx-1); }
+    
+    // 進度條動畫
+    function resetProgress() {
+      if (!progressBar) return;
+      
+      // 清除現有計時器
+      if (progressTimer) {
+        clearInterval(progressTimer);
+      }
+      
+      // 重置進度條
+      progressBar.style.transition = 'none';
+      progressBar.style.width = '0%';
+      
+      // 如果暫停中,不啟動進度條
+      if (isPaused) return;
+      
+      // 使用 requestAnimationFrame 確保重置生效
+      requestAnimationFrame(() => {
+        progressBar.style.transition = `width ${AUTO_PLAY_INTERVAL}ms linear`;
+        progressBar.style.width = '100%';
+      });
+    }
+    
+    function pauseProgress() {
+      if (!progressBar) return;
+      isPaused = true;
+      car.classList.add('paused');
+      
+      // 獲取當前進度
+      const currentWidth = progressBar.offsetWidth;
+      const totalWidth = progressBar.parentElement.offsetWidth;
+      const percentage = (currentWidth / totalWidth) * 100;
+      
+      // 停止動畫
+      progressBar.style.transition = 'none';
+      progressBar.style.width = percentage + '%';
+    }
+    
+    function resumeProgress() {
+      if (!progressBar) return;
+      isPaused = false;
+      car.classList.remove('paused');
+      
+      // 獲取剩餘時間
+      const currentWidth = parseFloat(progressBar.style.width) || 0;
+      const remainingPercentage = 100 - currentWidth;
+      const remainingTime = (remainingPercentage / 100) * AUTO_PLAY_INTERVAL;
+      
+      // 繼續動畫
+      progressBar.style.transition = `width ${remainingTime}ms linear`;
+      progressBar.style.width = '100%';
+    }
+    
     function reset(){ 
       clearInterval(timer); 
-      timer = setInterval(nextSlide, 5000); 
+      timer = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+      resetProgress();
     }
+
+    // 滑鼠懸停暫停
+    car.addEventListener('mouseenter', () => {
+      clearInterval(timer);
+      pauseProgress();
+    });
+    
+    car.addEventListener('mouseleave', () => {
+      if (!document.hidden) {
+        timer = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+        resumeProgress();
+      }
+    });
 
     // 鍵盤導航
     car.addEventListener('keydown', (e) => {
@@ -105,15 +182,19 @@
       }
     });
 
+    // 初始化
     render();
-    timer = setInterval(nextSlide, 5000);
+    timer = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+    resetProgress();
     
     // 暫停在視窗外時
     document.addEventListener('visibilitychange', () => {
       if(document.hidden) {
         clearInterval(timer);
+        pauseProgress();
       } else {
-        reset();
+        timer = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+        resumeProgress();
       }
     });
   }

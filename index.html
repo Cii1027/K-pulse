@@ -113,32 +113,88 @@
             <a class="btn" href="idols.html">探索 JYP 偶像</a>
           </div>
           <div class="hero-media">
-            <!-- 簡易輪播（JS 會操作 .slide） -->
-            <div class="carousel" role="region" aria-roledescription="carousel" aria-label="網站焦點輪播">
+            <!-- 最新 M/V 輪播 -->
+            <div class="carousel" role="region" aria-roledescription="carousel" aria-label="最新音樂錄影帶">
               <button class="carousel-btn prev" aria-label="上一張">‹</button>
               <div class="carousel-track" aria-live="polite">
-                <div class="slide">
+                <div class="slide" data-mv="straykids-chk-chk-boom">
+                  <div class="mv-overlay">
+                    <div class="mv-info">
+                      <h3>Stray Kids</h3>
+                      <p>Chk Chk Boom</p>
+                      <span class="mv-date">2024.07</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=pNfTK39k55U" target="_blank" rel="noopener" class="mv-play-btn" aria-label="在 YouTube 觀看">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </a>
+                  </div>
                   <picture>
-                    <source type="image/webp" srcset="images/optimized/straykids-400.webp 400w, images/optimized/straykids-800.webp 800w, images/optimized/straykids-1200.webp 1200w, images/optimized/straykids-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
-                    <!-- fallback src points to existing highres SVG so page shows before optimization runs -->
-                    <img loading="lazy" src="images/highres/straykids-hd.svg" srcset="images/optimized/straykids-400.jpg 400w, images/optimized/straykids-800.jpg 800w, images/optimized/straykids-1200.jpg 1200w, images/optimized/straykids-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="Stray Kids 演唱會示意圖">
+                    <source type="image/webp" srcset="images/optimized/straykids-400.webp 400w, images/optimized/straykids-800.webp 800w, images/optimized/straykids-1200.webp 1200w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/optimized/straykids-400.jpg" srcset="images/optimized/straykids-400.jpg 400w, images/optimized/straykids-800.jpg 800w, images/optimized/straykids-1200.jpg 1200w" sizes="(max-width:800px) 100vw, 800px" alt="Stray Kids - Chk Chk Boom M/V">
                   </picture>
                 </div>
-                <div class="slide">
+                <div class="slide" data-mv="twice-strategy">
+                  <div class="mv-overlay">
+                    <div class="mv-info">
+                      <h3>TWICE</h3>
+                      <p>Strategy (feat. Megan Thee Stallion)</p>
+                      <span class="mv-date">2024.12</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=D_6QmL6rExc" target="_blank" rel="noopener" class="mv-play-btn" aria-label="在 YouTube 觀看">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </a>
+                  </div>
                   <picture>
-                    <source type="image/webp" srcset="images/optimized/twice-400.webp 400w, images/optimized/twice-800.webp 800w, images/optimized/twice-1200.webp 1200w, images/optimized/twice-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
-                    <img loading="lazy" src="images/highres/twice-hd.svg" srcset="images/optimized/twice-400.jpg 400w, images/optimized/twice-800.jpg 800w, images/optimized/twice-1200.jpg 1200w, images/optimized/twice-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="TWICE 圖片示意">
+                    <source type="image/webp" srcset="images/optimized/twice-400.webp 400w, images/optimized/twice-800.webp 800w, images/optimized/twice-1200.webp 1200w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/optimized/twice-400.jpg" srcset="images/optimized/twice-400.jpg 400w, images/optimized/twice-800.jpg 800w, images/optimized/twice-1200.jpg 1200w" sizes="(max-width:800px) 100vw, 800px" alt="TWICE - Strategy M/V">
                   </picture>
                 </div>
-                <div class="slide">
+                <div class="slide" data-mv="itzy-gold">
+                  <div class="mv-overlay">
+                    <div class="mv-info">
+                      <h3>ITZY</h3>
+                      <p>GOLD</p>
+                      <span class="mv-date">2024.10</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=P3aGK_Gwqjw" target="_blank" rel="noopener" class="mv-play-btn" aria-label="在 YouTube 觀看">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </a>
+                  </div>
                   <picture>
-                    <source type="image/webp" srcset="images/optimized/itzy-400.webp 400w, images/optimized/itzy-800.webp 800w, images/optimized/itzy-1200.webp 1200w, images/optimized/itzy-1600.webp 1600w" sizes="(max-width:800px) 100vw, 800px">
-                    <img loading="lazy" src="images/highres/itzy-hd.svg" srcset="images/optimized/itzy-400.jpg 400w, images/optimized/itzy-800.jpg 800w, images/optimized/itzy-1200.jpg 1200w, images/optimized/itzy-1600.jpg 1600w" sizes="(max-width:800px) 100vw, 800px" alt="ITZY 圖片示意">
+                    <source type="image/webp" srcset="images/optimized/itzy-400.webp 400w, images/optimized/itzy-800.webp 800w, images/optimized/itzy-1200.webp 1200w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/optimized/itzy-400.jpg" srcset="images/optimized/itzy-400.jpg 400w, images/optimized/itzy-800.jpg 800w, images/optimized/itzy-1200.jpg 1200w" sizes="(max-width:800px) 100vw, 800px" alt="ITZY - GOLD M/V">
+                  </picture>
+                </div>
+                <div class="slide" data-mv="nmixx-see-that">
+                  <div class="mv-overlay">
+                    <div class="mv-info">
+                      <h3>NMIXX</h3>
+                      <p>See that?</p>
+                      <span class="mv-date">2024.08</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=fCt1cTe4s6w" target="_blank" rel="noopener" class="mv-play-btn" aria-label="在 YouTube 觀看">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </a>
+                  </div>
+                  <picture>
+                    <source type="image/webp" srcset="images/optimized/nmixx-400.webp 400w, images/optimized/nmixx-800.webp 800w, images/optimized/nmixx-1200.webp 1200w" sizes="(max-width:800px) 100vw, 800px">
+                    <img loading="lazy" src="images/optimized/nmixx-400.jpg" srcset="images/optimized/nmixx-400.jpg 400w, images/optimized/nmixx-800.jpg 800w, images/optimized/nmixx-1200.jpg 1200w" sizes="(max-width:800px) 100vw, 800px" alt="NMIXX - See that? M/V">
                   </picture>
                 </div>
               </div>
               <button class="carousel-btn next" aria-label="下一張">›</button>
               <div class="carousel-dots" aria-hidden="true"></div>
+              <div class="carousel-progress">
+                <div class="carousel-progress-bar"></div>
+              </div>
             </div>
           </div>
         </div>
