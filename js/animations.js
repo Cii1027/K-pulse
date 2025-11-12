@@ -62,15 +62,18 @@
           
           // 如果圖片已有 src,直接標記為載入
           if (img.complete && img.naturalHeight !== 0) {
+            img.classList.remove('lazy');
             img.classList.add('loaded');
           } else {
             // 等待圖片載入
             img.addEventListener('load', () => {
+              img.classList.remove('lazy');
               img.classList.add('loaded');
             }, { once: true });
             
             // 錯誤處理
             img.addEventListener('error', () => {
+              img.classList.remove('lazy');
               img.classList.add('loaded'); // 即使失敗也顯示
             }, { once: true });
           }
@@ -84,9 +87,11 @@
     
     images.forEach(img => {
       if (img.complete && img.naturalHeight !== 0) {
-        // 圖片已載入
+        // 圖片已載入,不需要動畫
         img.classList.add('loaded');
       } else {
+        // 標記為需要懶載入
+        img.classList.add('lazy');
         imageObserver.observe(img);
       }
     });

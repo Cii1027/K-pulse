@@ -2811,10 +2811,14 @@ html[data-theme="dark"] .back-to-top:hover {
   transform: translateX(0);
 }
 
-/* 圖片懶載入效果 */
+/* 圖片懶載入效果 - 預設可見,避免 JS 失效時圖片消失 */
 img {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease-in-out;
+}
+
+img.lazy {
+  opacity: 0;
 }
 
 img.loaded {
