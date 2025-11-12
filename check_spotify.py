@@ -1,8 +1,8 @@
 import re
 
-# 正確的 Spotify Artist ID（這些是官方驗證過的）
+# 正確的 Spotify Artist ID(這些是官方驗證過的)
 spotify_fixes = {
-    'TWICE': '7n2Ycct7Beij7Dj7new7xy',
+    'TWICE': '7n2Ycct7Beij7Dj7meI4X0',
     'Stray Kids': '2dIgFjalVxs4ThymZ67YCE',
     'ITZY': '2KC9Qb60EaY0kW4eH68vr3',
     'NMIXX': '28ot3wh4oNmoFOdVajibBl',
