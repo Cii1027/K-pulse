@@ -34,6 +34,15 @@
     const header = document.querySelector('.site-header .nav-container');
     if (!header) return;
 
+    // 如果已經存在語言選擇器(HTML中),則直接綁定事件
+    const existingLangBtn = document.getElementById('lang-btn');
+    if (existingLangBtn) {
+      setupLanguageSwitcherEvents();
+      updateLanguageDisplay();
+      return;
+    }
+
+    // 以下是舊版動態創建的代碼(保留作為後備)
     // 檢查是否已存在
     if (document.querySelector('.language-switcher')) return;
 
@@ -76,10 +85,35 @@
     setupLanguageSwitcherEvents();
   }
 
+  // 更新語言顯示
+  function updateLanguageDisplay() {
+    const langText = document.querySelector('.lang-text');
+    const langOptions = document.querySelectorAll('.lang-option');
+    
+    const langNames = {
+      'zh': '中文',
+      'en': 'EN',
+      'ko': '한국어',
+      'ja': '日本語'
+    };
+    
+    if (langText) {
+      langText.textContent = langNames[currentLang] || '中文';
+    }
+    
+    langOptions.forEach(option => {
+      if (option.dataset.lang === currentLang) {
+        option.classList.add('active');
+      } else {
+        option.classList.remove('active');
+      }
+    });
+  }
+
   // 設置事件監聽
   function setupLanguageSwitcherEvents() {
-    const langBtn = document.getElementById('langBtn');
-    const langDropdown = document.getElementById('langDropdown');
+    const langBtn = document.getElementById('lang-btn') || document.getElementById('langBtn');
+    const langDropdown = document.querySelector('.lang-dropdown');
     const langOptions = document.querySelectorAll('.lang-option');
 
     if (!langBtn || !langDropdown) return;
@@ -87,11 +121,14 @@
     // 切換下拉選單
     langBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      const isExpanded = langBtn.getAttribute('aria-expanded') === 'true';
+      langBtn.setAttribute('aria-expanded', !isExpanded);
       langDropdown.classList.toggle('show');
     });
 
     // 點擊外部關閉
     document.addEventListener('click', () => {
+      langBtn.setAttribute('aria-expanded', 'false');
       langDropdown.classList.remove('show');
     });
 
@@ -105,6 +142,7 @@
           switchLanguage(selectedLang);
         }
         
+        langBtn.setAttribute('aria-expanded', 'false');
         langDropdown.classList.remove('show');
       });
     });
@@ -119,15 +157,7 @@
     document.documentElement.lang = getLangCode(lang);
     
     // 更新按鈕文字
-    const langText = document.querySelector('.lang-text');
-    if (langText) {
-      langText.textContent = lang.toUpperCase();
-    }
-    
-    // 更新選中狀態
-    document.querySelectorAll('.lang-option').forEach(option => {
-      option.classList.toggle('active', option.dataset.lang === lang);
-    });
+    updateLanguageDisplay();
     
     // 應用翻譯
     applyTranslations();

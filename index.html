@@ -43,10 +43,37 @@
       <a href="hallyu.html">韓流探討</a>
       <a href="about.html">關於我</a>
     </nav>
-    <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
-      <span class="icon sun">☀️</span>
-      <span class="icon moon">🌙</span>
-    </button>
+    <div class="header-controls">
+      <div class="language-selector">
+        <button id="lang-btn" class="lang-btn" aria-label="選擇語言" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-icon">🌐</span>
+          <span class="lang-text">中文</span>
+          <span class="lang-arrow">▾</span>
+        </button>
+        <div class="lang-dropdown" role="menu">
+          <button class="lang-option" data-lang="zh" role="menuitem">
+            <span class="lang-flag">🇹🇼</span>
+            <span>繁體中文</span>
+          </button>
+          <button class="lang-option" data-lang="en" role="menuitem">
+            <span class="lang-flag">🇺🇸</span>
+            <span>English</span>
+          </button>
+          <button class="lang-option" data-lang="ko" role="menuitem">
+            <span class="lang-flag">🇰🇷</span>
+            <span>한국어</span>
+          </button>
+          <button class="lang-option" data-lang="ja" role="menuitem">
+            <span class="lang-flag">🇯🇵</span>
+            <span>日本語</span>
+          </button>
+        </div>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
   </div>
   </header>
 

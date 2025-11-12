@@ -174,6 +174,114 @@ body.dark .main-nav a:hover,
 html[data-theme="dark"] .main-nav a:hover{
   background:rgba(255,255,255,0.1);
 }
+
+/* Header controls group */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Language selector */
+.language-selector {
+  position: relative;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+  background: rgba(0,0,0,0.05);
+  border-color: var(--accent);
+}
+
+[data-theme="dark"] .lang-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.lang-icon {
+  font-size: 1.1rem;
+}
+
+.lang-text {
+  font-weight: 500;
+}
+
+.lang-arrow {
+  font-size: 0.8rem;
+  transition: transform var(--transition-fast);
+}
+
+.lang-btn[aria-expanded="true"] .lang-arrow {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-fast);
+  z-index: 1000;
+}
+
+.lang-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.lang-option:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .lang-option:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.lang-option.active {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lang-flag {
+  font-size: 1.2rem;
+}
+
 .theme-toggle{
   background:transparent;
   border:0;
@@ -498,6 +606,16 @@ html[data-theme="dark"] .main-nav a:hover{
     padding-top: var(--space-sm);
     border-top: 1px solid var(--border);
     margin-top: var(--space-sm);
+  }
+  .header-controls {
+    order: 2;
+  }
+  .lang-btn .lang-text {
+    display: none;
+  }
+  .lang-btn {
+    padding: 0.5rem;
+    min-width: auto;
   }
   /* 小螢幕時讓 hero 圖片高度自適應並維持置中 */
   .hero-media img{max-width:320px;height:auto}
