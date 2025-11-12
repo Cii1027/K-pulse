@@ -162,6 +162,9 @@
     // 應用翻譯
     applyTranslations();
     
+    // 觸發語言切換事件,讓其他功能可以響應
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+    
     // 顯示提示
     showLanguageToast(lang);
   }

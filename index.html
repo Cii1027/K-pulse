@@ -43,6 +43,32 @@
       <a href="hallyu.html">韓流探討</a>
       <a href="about.html">關於我</a>
     </nav>
+    <div class="search-container">
+      <button id="search-btn" class="search-btn" aria-label="搜尋">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+      <div id="search-modal" class="search-modal">
+        <div class="search-modal-content">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="search-input" class="search-input" placeholder="搜尋團體或成員... (Ctrl+K)" autocomplete="off">
+            <button id="search-close" class="search-close" aria-label="關閉搜尋">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+    </div>
     <div class="header-controls">
       <div class="language-selector">
         <button id="lang-btn" class="lang-btn" aria-label="選擇語言" aria-haspopup="true" aria-expanded="false">
@@ -488,6 +514,7 @@
   <script src="js/i18n.js"></script>
   
   <script src="js/script.js"></script>
+  <script src="js/search.js"></script>
   <script src="js/features.js"></script>
 </body>
 </html>
