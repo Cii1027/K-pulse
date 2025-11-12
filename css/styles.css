@@ -2834,3 +2834,188 @@ section.visible {
     transform: none !important;
   }
 }
+ 
+ 
+/* ===================================
+   社交分享功能
+   =================================== */
+
+/* 分享按鈕容器 */
+.share-buttons-container {
+  margin: var(--space-xl) 0;
+}
+
+.share-section {
+  background: rgba(var(--text-rgb), 0.03);
+  border-radius: 16px;
+  padding: var(--space-xl);
+  margin: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.share-section h3 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+}
+
+.share-section p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* 分享按鈕組 */
+.share-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(var(--text-rgb), 0.1);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.share-btn svg {
+  flex-shrink: 0;
+}
+
+/* 各平台顏色 */
+.share-twitter:hover {
+  background: #1DA1F2;
+  color: white;
+  border-color: #1DA1F2;
+}
+
+.share-facebook:hover {
+  background: #1877F2;
+  color: white;
+  border-color: #1877F2;
+}
+
+.share-line:hover {
+  background: #00B900;
+  color: white;
+  border-color: #00B900;
+}
+
+.share-copy:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.share-copy.copied {
+  background: #10B981;
+  color: white;
+  border-color: #10B981;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Toast 通知 */
+.share-toast {
+  position: fixed;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  z-index: 10000;
+  opacity: 0;
+  transition: all var(--transition);
+  border: 2px solid rgba(var(--text-rgb), 0.1);
+}
+
+.share-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.share-toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.share-toast-success {
+  border-color: #10B981;
+}
+
+.share-toast-success svg {
+  color: #10B981;
+}
+
+.share-toast-error {
+  border-color: #EF4444;
+}
+
+.share-toast-error svg {
+  color: #EF4444;
+}
+
+/* Native Share 按鈕 (移動設備) */
+[data-native-share] {
+  display: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 600px) {
+  .share-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .share-btn {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .share-toast {
+    left: var(--space-md);
+    right: var(--space-md);
+    transform: translateX(0) translateY(100px);
+  }
+  
+  .share-toast.show {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* 暗色模式優化 */
+html[data-theme="dark"] .share-toast {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+html[data-theme="dark"] .share-btn {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+html[data-theme="dark"] .share-btn:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}

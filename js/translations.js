@@ -150,6 +150,22 @@ const translations = {
       learn_more: '了解更多'
     },
     
+    // 分享功能
+    share: {
+      title: '🎵 分享這個頁面',
+      description: '喜歡這個團體嗎?分享給更多朋友一起探索!',
+      twitter: 'Twitter',
+      facebook: 'Facebook',
+      line: 'Line',
+      copy: '複製連結',
+      copy_success: '連結已複製到剪貼簿!',
+      copy_error: '複製失敗,請手動複製',
+      share_to_twitter: '分享到 Twitter',
+      share_to_facebook: '分享到 Facebook',
+      share_to_line: '分享到 Line',
+      copy_link: '複製連結'
+    },
+    
     // 團體頁面
     group: {
       overview: '團體簡介',
@@ -432,6 +448,22 @@ const translations = {
       learn_more: 'Learn More'
     },
     
+    // Share Feature
+    share: {
+      title: '🎵 Share This Page',
+      description: 'Love this group? Share with more friends to explore together!',
+      twitter: 'Twitter',
+      facebook: 'Facebook',
+      line: 'Line',
+      copy: 'Copy Link',
+      copy_success: 'Link copied to clipboard!',
+      copy_error: 'Copy failed, please copy manually',
+      share_to_twitter: 'Share to Twitter',
+      share_to_facebook: 'Share to Facebook',
+      share_to_line: 'Share to Line',
+      copy_link: 'Copy Link'
+    },
+    
     group: {
       overview: 'Group Overview',
       members: 'Members',
@@ -696,6 +728,36 @@ const translations = {
       description: 'JYP 엔터테인먼트와 K-pop 문화 탐구',
       quick_links: '빠른 링크',
       popular_groups: '인기 그룹',
+      contact: '연락처',
+      copyright: '© 2025 K-PULSE — JYP와 K-pop 문화 탐구',
+      note: '본 웹사이트는 교육 전시 목적이며, 모든 내용은 참고 학습용입니다'
+    },
+    
+    common: {
+      back_to_top: '맨 위로',
+      loading: '로딩 중...',
+      error: '오류 발생',
+      read_more: '더 읽기',
+      learn_more: '자세히 보기'
+    },
+    
+    // 공유 기능
+    share: {
+      title: '🎵 이 페이지 공유',
+      description: '이 그룹을 좋아하시나요? 더 많은 친구들과 함께 탐험해보세요!',
+      twitter: 'Twitter',
+      facebook: 'Facebook',
+      line: 'Line',
+      copy: '링크 복사',
+      copy_success: '링크가 클립보드에 복사되었습니다!',
+      copy_error: '복사 실패, 수동으로 복사해주세요',
+      share_to_twitter: 'Twitter에 공유',
+      share_to_facebook: 'Facebook에 공유',
+      share_to_line: 'Line에 공유',
+      copy_link: '링크 복사'
+    },
+    
+
       contact: '연락처',
       copyright: '© 2025 K-PULSE — JYP 및 K-pop 문화 탐구',
       note: '이 웹사이트는 교육 목적입니다. 모든 콘텐츠는 참고용입니다.'
@@ -984,6 +1046,22 @@ const translations = {
       error: 'エラーが発生しました',
       read_more: '続きを読む',
       learn_more: 'もっと見る'
+    },
+    
+    // シェア機能
+    share: {
+      title: '🎵 このページをシェア',
+      description: 'このグループが好きですか？もっと多くの友達と一緒に探検しましょう!',
+      twitter: 'Twitter',
+      facebook: 'Facebook',
+      line: 'Line',
+      copy: 'リンクをコピー',
+      copy_success: 'リンクがクリップボードにコピーされました!',
+      copy_error: 'コピーに失敗しました。手動でコピーしてください',
+      share_to_twitter: 'Twitterでシェア',
+      share_to_facebook: 'Facebookでシェア',
+      share_to_line: 'Lineでシェア',
+      copy_link: 'リンクをコピー'
     },
     
     group: {
