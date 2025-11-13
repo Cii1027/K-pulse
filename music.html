@@ -2,7 +2,7 @@
 <html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description" content="探索 JYP 娛樂旗下團體的熱門歌曲 - Spotify 播放清單整合" />
   <meta name="theme-color" content="#ff6fa3" />
   
@@ -236,14 +236,49 @@
     }
 
     @media (max-width: 768px) {
+      .music-hero {
+        padding: calc(var(--space-xl) + var(--space-lg)) var(--space-md) var(--space-xl);
+      }
+
+      .music-hero p {
+        font-size: 1rem;
+        padding: 0 var(--space-md);
+      }
+
+      .group-tabs {
+        padding: var(--space-sm) 0;
+        margin-bottom: var(--space-lg);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .group-tab {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.875rem;
+      }
+
       .playlist-header {
         flex-direction: column;
         text-align: center;
+        padding: var(--space-lg);
+        gap: var(--space-md);
       }
 
       .playlist-cover {
         width: 150px;
         height: 150px;
+      }
+
+      .playlist-info h2 {
+        font-size: 1.5rem;
+      }
+
+      .playlist-info p {
+        font-size: 0.875rem;
+      }
+
+      .spotify-embed {
+        width: 100% !important;
+        min-height: 380px;
       }
 
       .track-number {
@@ -254,6 +289,79 @@
       .track-cover {
         width: 50px;
         height: 50px;
+      }
+
+      .track-item {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+      }
+
+      .track-title {
+        font-size: 0.9rem;
+      }
+
+      .track-meta {
+        font-size: 0.75rem;
+      }
+
+      .track-stats {
+        gap: var(--space-sm);
+        font-size: 0.75rem;
+      }
+
+      .music-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .stat-card {
+        padding: var(--space-lg);
+      }
+
+      .stat-icon {
+        font-size: 2rem;
+      }
+
+      .stat-value {
+        font-size: 1.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: var(--space-sm);
+      }
+
+      .music-hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .playlist-header {
+        padding: var(--space-md);
+      }
+
+      .playlist-cover {
+        width: 120px;
+        height: 120px;
+      }
+
+      .playlist-info h2 {
+        font-size: 1.25rem;
+      }
+
+      .group-tab {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.8rem;
+      }
+
+      .track-item {
+        flex-wrap: wrap;
+      }
+
+      .track-stats {
+        width: 100%;
+        margin-top: var(--space-xs);
+        justify-content: center;
       }
     }
   </style>
