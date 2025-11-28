@@ -1,0 +1,21 @@
+/stats /stats.html 200
+/music /music.html 200
+/idols /idols.html 200
+/hallyu /hallyu.html 200
+/about /about.html 200
+
+# 團體頁面重定向
+/twice /twice.html 200
+/straykids /straykids.html 200
+/itzy /itzy.html 200
+/nmixx /nmixx.html 200
+/2pm /2pm.html 200
+/day6 /day6.html 200
+/xdinary-heroes /xdinary-heroes.html 200
+/niziu /niziu.html 200
+/nexz /nexz.html 200
+/vcha /vcha.html 200
+/kickflip /kickflip.html 200
+
+# 404 處理
+/* /404.html 404
