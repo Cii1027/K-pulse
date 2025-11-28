@@ -21,13 +21,21 @@ git push origin main
 
 ### 3. 配置建置設定
 
-**Framework preset**: None (靜態網站)
+**重要：請完全按照以下設定**
+
+**Framework preset**: `None`
 
 **Build settings**:
-- Build command: (留空)
-- Build output directory: `/`
+- **Build command**: (留空，不要填寫任何內容)
+- **Build output directory**: `/` (根目錄)
+- **Root directory**: (留空)
 
-**Environment variables**: (不需要)
+**Environment variables**: (不需要設定)
+
+**⚠️ 注意事項**：
+- 不要選擇任何框架預設（如 React、Vue 等）
+- Build command 必須留空，因為這是純靜態網站
+- 如果看到自動偵測的設定，請手動改為以上設定
 
 ### 4. 部署
 
@@ -72,3 +80,30 @@ Cloudflare Pages 提供：
 2. 圖片已經過優化（已完成）
 3. CSS/JS 檔案已壓縮（已完成）
 4. 確認 `robots.txt` 和 `sitemap.xml` 已更新
+
+## 🔧 故障排除
+
+### 錯誤：deploy command failed
+如果看到以下錯誤：
+```
+error occurred while running deploy command
+```
+
+**解決方法**：
+1. 在 Cloudflare Pages 設定中，確認：
+   - Framework preset = `None`
+   - Build command = **完全留空**（不要有任何字元）
+   - Build output directory = `/`
+
+2. 不要讓 Cloudflare 自動偵測框架
+   - 手動選擇 "None" 或 "Static Site"
+   
+3. 如果已經創建專案但設定錯誤：
+   - 進入專案 Settings
+   - 找到 "Build & Development"
+   - 修改為正確設定
+   - 點擊 "Save"
+   - 重新部署：Deployments > "Retry deployment"
+
+### package.json 注意
+專案中有 `package.json` 但這只用於本地圖片優化，**不需要在 Cloudflare Pages 執行**。確保 Build command 留空即可。
