@@ -1,0 +1,13 @@
+name = "k-pulse"
+compatibility_date = "2025-11-28"
+pages_build_output_dir = "./"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "k_pulse"
+# 將下列 ID 替換成您在 Cloudflare 建立的 D1 資料庫 ID
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+[vars]
+# 設定一組管理密鑰，用於讀取回覆（GET）授權
+ADMIN_KEY = "REPLACE_WITH_A_SECURE_KEY"

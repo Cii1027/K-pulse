@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>回覆列表 — K-PULSE Admin</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">K-PULSE</a>
+      <nav class="main-nav">
+        <a href="index.html">首頁</a>
+        <a href="about.html">關於我</a>
+        <a href="responses.html" class="active">回覆列表</a>
+      </nav>
+      <button id="theme-toggle-3" class="theme-toggle" aria-label="切換日夜模式">
+        <span class="icon sun">☀️</span>
+        <span class="icon moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>聯絡回覆列表</h1>
+    <p>請輸入管理密鑰以載入最新回覆（僅管理者使用）。</p>
+
+    <form id="adminKeyForm" class="contact-form" style="max-width:600px">
+      <div class="form-row">
+        <label for="adminKey">管理密鑰</label>
+        <input type="password" id="adminKey" name="adminKey" placeholder="輸入 ADMIN_KEY" required />
+      </div>
+      <div class="form-row">
+        <label for="limit">載入筆數</label>
+        <input type="number" id="limit" name="limit" value="50" min="1" max="500" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">載入回覆</button>
+      </div>
+    </form>
+
+    <div id="responsesContainer" class="table-container" style="margin-top:20px"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-bottom">
+        <p>© 2025 K-PULSE — 管理介面</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/responses.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
